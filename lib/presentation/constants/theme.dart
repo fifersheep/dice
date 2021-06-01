@@ -20,10 +20,20 @@ class AppTheme {
           ),
         ),
         textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
-            primary: ThemeColors.green,
-            padding: EdgeInsets.symmetric(horizontal: 24),
-            backgroundColor: ThemeColors.white,
+          style: ButtonStyle(
+            padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry>(
+              (_) => EdgeInsets.symmetric(horizontal: 24),
+            ),
+            backgroundColor: MaterialStateProperty.resolveWith<Color>(
+              (states) {
+                if (states.contains(MaterialState.disabled))
+                  return ThemeColors.white[50]!;
+                return ThemeColors.white; // Use the component's default.
+              },
+            ),
+            foregroundColor: MaterialStateProperty.resolveWith<Color>(
+              (_) => ThemeColors.green,
+            ),
           ),
         ),
       );

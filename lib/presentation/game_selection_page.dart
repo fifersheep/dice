@@ -1,8 +1,8 @@
-import 'package:dice/presentation/constants/colors.dart';
+import 'package:dice/domain/game_selection/game_selection_bloc.dart';
+import 'package:dice/domain/game_selection/game_selection_event.dart';
+import 'package:dice/domain/game_selection/game_selection_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-import 'participant_details.dart';
 
 class GameSelectionPage extends StatefulWidget {
   GameSelectionPage({Key? key}) : super(key: key);
@@ -12,9 +12,10 @@ class GameSelectionPage extends StatefulWidget {
 }
 
 class _GameSelectionPageState extends State<GameSelectionPage> {
+  final GameSelectionBloc bloc = GameSelectionBloc();
+
   @override
   Widget build(BuildContext context) {
-    final x = OutlineInputBorder();
     return Scaffold(
         body: Padding(
       padding: const EdgeInsets.all(32),
@@ -33,23 +34,32 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
                 children: [
                   TextField(
                     decoration: InputDecoration(labelText: 'Game title'),
+                    onChanged: (value) => bloc.add(
+                      GameSelectionEvent.gameTitleChanged(value),
+                    ),
                   ),
                   SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      ButtonBar(
-                        children: [
-                          TextButton(
-                            onPressed: () {},
-                            child: Text("Create"),
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text("Join"),
-                          ),
-                        ],
-                      )
+                      StreamBuilder<GameSelectionState>(
+                          stream: bloc.stream,
+                          builder: (context, snapshot) {
+                            final enableButtons =
+                                snapshot.data?.isGameTitleValid == true;
+                            return ButtonBar(
+                              children: [
+                                TextButton(
+                                  onPressed: enableButtons ? () {} : null,
+                                  child: Text("Create"),
+                                ),
+                                TextButton(
+                                  onPressed: enableButtons ? () {} : null,
+                                  child: Text("Join"),
+                                ),
+                              ],
+                            );
+                          })
                     ],
                   ),
                 ],
