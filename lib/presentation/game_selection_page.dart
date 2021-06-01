@@ -17,57 +17,77 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(32),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Dice",
-            style: TextStyle(fontSize: 48),
-          ),
-          SizedBox(height: 64),
-          Center(
-            child: Container(
-              constraints: BoxConstraints(maxWidth: 600),
-              child: Column(
-                children: [
-                  TextField(
-                    decoration: InputDecoration(labelText: 'Game title'),
-                    onChanged: (value) => bloc.add(
-                      GameSelectionEvent.gameTitleChanged(value),
+      body: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Dice",
+              style: TextStyle(fontSize: 48),
+            ),
+            SizedBox(height: 64),
+            Center(
+              child: Container(
+                constraints: BoxConstraints(maxWidth: 600),
+                child: Column(
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Game title'),
+                      onChanged: (value) => bloc.add(
+                        GameSelectionEvent.gameTitleChanged(value),
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      StreamBuilder<GameSelectionState>(
-                          stream: bloc.stream,
-                          builder: (context, snapshot) {
-                            final enableButtons =
-                                snapshot.data?.isGameTitleValid == true;
-                            return ButtonBar(
-                              children: [
-                                TextButton(
-                                  onPressed: enableButtons ? () {} : null,
-                                  child: Text("Create"),
-                                ),
-                                TextButton(
-                                  onPressed: enableButtons ? () {} : null,
-                                  child: Text("Join"),
-                                ),
-                              ],
-                            );
-                          })
-                    ],
-                  ),
-                ],
+                    SizedBox(height: 16),
+                    _gameSelection(),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ));
+    );
+  }
+
+  @override
+  void dispose() {
+    bloc.close();
+    super.dispose();
+  }
+
+  Widget _gameSelection() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        StreamBuilder<GameSelectionState>(
+          stream: bloc.stream,
+          builder: (context, snapshot) {
+            final enableButtons = snapshot.data?.isGameTitleValid == true;
+            return ButtonBar(
+              children: [
+                TextButton(
+                  onPressed: enableButtons
+                      ? () {
+                          final value = snapshot.data?.gameTitle;
+                          if (value != null) {
+                            bloc.add(
+                              GameSelectionEvent.createGamePressed(value),
+                            );
+                          }
+                        }
+                      : null,
+                  child: Text("Create"),
+                ),
+                TextButton(
+                  onPressed: enableButtons ? () {} : null,
+                  child: Text("Join"),
+                ),
+              ],
+            );
+          },
+        )
+      ],
+    );
   }
 }
