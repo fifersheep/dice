@@ -9,10 +9,13 @@ class FirebaseGameSelectionRepository {
             toFirestore: (game, _) => game.toJson(),
           );
 
-  Future<void> createGame(String gameTitle) {
-    return _games
-        .add(Game(id: "", name: gameTitle, status: "Created"))
-        .then((game) => print("Game Created: ${game.id}"))
-        .catchError((error) => print("Failed to create game: $error"));
-  }
+  Future<Game?> createGame(String gameName) => _games
+      .add(Game(id: "", name: gameName, status: "Created"))
+      .then((documentSnapshot) => documentSnapshot.get())
+      .then((game) => game.data());
+
+  Future<Game?> getGame(String gameName) =>
+      _games.where('name', isEqualTo: gameName).limit(1).get().then((snapshot) {
+        return snapshot.size > 0 ? snapshot.docs[0].data() : null;
+      });
 }

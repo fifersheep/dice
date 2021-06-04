@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'constants/theme.dart';
-import 'game_selection_page.dart';
+import 'routes/routes.gr.dart';
 
 class App extends StatelessWidget {
+  final _router = AppRouter();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Dice',
       theme: AppTheme.defaultTheme,
-      home: GameSelectionPage(),
+      routerDelegate: _router.delegate(
+        initialRoutes: [GameSelectionRoute()],
+      ),
+      routeInformationParser: _router.defaultRouteParser(),
     );
   }
 }
