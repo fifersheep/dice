@@ -7,18 +7,30 @@ class Game {
 
   final String id;
   final String name;
-  final String status;
+  final GameStatus status;
 
   static fromJson(String id, Map<String, dynamic> data) {
+    final statuses = {
+      'Created': GameStatus.Created,
+      'Started': GameStatus.Started,
+      'Ended': GameStatus.Ended,
+    };
+
     return Game(
       id: id,
       name: data['name'],
-      status: data['status'],
+      status: statuses[data['status']] ?? GameStatus.Ended,
     );
   }
 
   toJson() => {
         'name': name,
-        'status': status,
+        'status': status.valueString(),
       };
+}
+
+enum GameStatus { Created, Started, Ended }
+
+extension GetValueString on GameStatus {
+  String valueString() => this.toString().split('.').last;
 }

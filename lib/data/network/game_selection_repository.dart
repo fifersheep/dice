@@ -10,7 +10,7 @@ class FirebaseGameSelectionRepository {
           );
 
   Future<Game?> createGame(String gameName) => _games
-      .add(Game(id: "", name: gameName, status: "Created"))
+      .add(Game(id: '', name: gameName, status: GameStatus.Created))
       .then((documentSnapshot) => documentSnapshot.get())
       .then((game) => game.data());
 

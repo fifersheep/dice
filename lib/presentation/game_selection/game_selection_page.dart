@@ -37,7 +37,7 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
                     TextField(
                       decoration: InputDecoration(labelText: 'Game name'),
                       onChanged: (value) => bloc.add(
-                        GameSelectionEvent.gameNameChanged(value),
+                        GameSelectionEvent.gameNameChanged(value.trim()),
                       ),
                     ),
                     SizedBox(height: 16),
@@ -77,6 +77,9 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
                 return _checkingGame();
               } else if (state.validation == GameSelectionValidation.Joinable) {
                 return _joinGame(state.gameName);
+              } else if (state.validation ==
+                  GameSelectionValidation.Unjoinable) {
+                return _alreadyStarted();
               } else {
                 return _noActions();
               }
@@ -115,6 +118,8 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
       ],
     );
   }
+
+  Widget _alreadyStarted() => Text("This game has already started");
 
   Widget _noActions() => Text("Enter a valid game name");
 }

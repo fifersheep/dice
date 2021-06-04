@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dice/data/model/game.dart';
 import 'package:dice/data/network/game_selection_repository.dart';
 import 'package:dice/domain/game_selection/game_selection_event.dart';
 import 'package:dice/domain/game_selection/game_selection_state.dart';
@@ -27,9 +28,12 @@ class GameSelectionBloc extends Bloc<GameSelectionEvent, GameSelectionState> {
         );
         final game = await repository.getGame(event.gameName);
         if (game != null) {
+          final validation = game.status == GameStatus.Created
+              ? GameSelectionValidation.Joinable
+              : GameSelectionValidation.Unjoinable;
           yield GameSelectionState.nameChange(
             gameName: event.gameName,
-            validation: GameSelectionValidation.Joinable,
+            validation: validation,
           );
         } else {
           yield GameSelectionState.nameChange(
