@@ -18,6 +18,7 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
 
   @override
   Widget build(BuildContext context) {
+    final editController = TextEditingController();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(32),
@@ -39,9 +40,10 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
                       onChanged: (value) => bloc.add(
                         GameSelectionEvent.gameNameChanged(value.trim()),
                       ),
+                      controller: editController,
                     ),
                     SizedBox(height: 16),
-                    _gameSelection(),
+                    _gameSelection(editController),
                   ],
                 ),
               ),
@@ -58,7 +60,7 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
     super.dispose();
   }
 
-  Widget _gameSelection() {
+  Widget _gameSelection(TextEditingController editController) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -66,6 +68,7 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
           bloc: bloc,
           listener: (context, state) {
             if (state is GameSelected) {
+              editController.clear();
               context.router.pushNamed('/games/${state.gameId}');
             }
           },
@@ -83,8 +86,6 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
               } else {
                 return _noActions();
               }
-            } else if (state is GameSelected) {
-              return Text('Joining game...');
             } else {
               return _noActions();
             }
