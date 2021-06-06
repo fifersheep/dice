@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:dice/domain/gameplay/gameplay_bloc.dart';
 import 'package:dice/domain/gameplay/gameplay_event.dart';
 import 'package:dice/domain/gameplay/gameplay_state.dart';
+import 'package:dice/presentation/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,7 +42,8 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
     );
   }
 
-  Widget _lobby(String name, List<String> participants) => Column(
+  Widget _lobby(String name, List<LobbyParticipantInfo> participants) => Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
@@ -53,12 +55,31 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
             child: Container(
               constraints: BoxConstraints(maxWidth: 600),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: participants
                     .map(
-                      (p) => Text(p),
+                      (p) => _participant(p),
                     )
                     .toList(),
               ),
+            ),
+          ),
+        ],
+      );
+
+  Widget _participant(LobbyParticipantInfo participant) => Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(participant.name),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Icon(
+              participant.ready
+                  ? Icons.task_alt_outlined
+                  : Icons.radio_button_unchecked_outlined,
+              color:
+                  participant.ready ? ThemeColors.white : ThemeColors.white25,
+              size: 30,
             ),
           ),
         ],

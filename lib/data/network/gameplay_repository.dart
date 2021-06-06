@@ -9,6 +9,6 @@ class FirebaseGameplayRepository {
             toFirestore: (game, _) => game.toJson(),
           );
 
-  Future<Game?> getGame(String gameId) =>
-      _games.doc(gameId).get().then((snapshot) => snapshot.data() ?? null);
+  Stream<Game?> getGame(String gameId) =>
+      _games.doc(gameId).snapshots().map((e) => e.data() ?? null);
 }

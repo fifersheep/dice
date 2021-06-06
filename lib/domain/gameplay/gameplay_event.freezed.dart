@@ -21,6 +21,12 @@ class _$GameplayEventTearOff {
       gameId,
     );
   }
+
+  GameplayUpdated gameplayUpdated(Gameplay gameplay) {
+    return GameplayUpdated(
+      gameplay,
+    );
+  }
 }
 
 /// @nodoc
@@ -28,33 +34,31 @@ const $GameplayEvent = _$GameplayEventTearOff();
 
 /// @nodoc
 mixin _$GameplayEvent {
-  String get gameId => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String gameId) joined,
+    required TResult Function(Gameplay gameplay) gameplayUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String gameId)? joined,
+    TResult Function(Gameplay gameplay)? gameplayUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GameplayJoined value) joined,
+    required TResult Function(GameplayUpdated value) gameplayUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GameplayJoined value)? joined,
+    TResult Function(GameplayUpdated value)? gameplayUpdated,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $GameplayEventCopyWith<GameplayEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -63,7 +67,6 @@ abstract class $GameplayEventCopyWith<$Res> {
   factory $GameplayEventCopyWith(
           GameplayEvent value, $Res Function(GameplayEvent) then) =
       _$GameplayEventCopyWithImpl<$Res>;
-  $Res call({String gameId});
 }
 
 /// @nodoc
@@ -74,27 +77,13 @@ class _$GameplayEventCopyWithImpl<$Res>
   final GameplayEvent _value;
   // ignore: unused_field
   final $Res Function(GameplayEvent) _then;
-
-  @override
-  $Res call({
-    Object? gameId = freezed,
-  }) {
-    return _then(_value.copyWith(
-      gameId: gameId == freezed
-          ? _value.gameId
-          : gameId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $GameplayJoinedCopyWith<$Res>
-    implements $GameplayEventCopyWith<$Res> {
+abstract class $GameplayJoinedCopyWith<$Res> {
   factory $GameplayJoinedCopyWith(
           GameplayJoined value, $Res Function(GameplayJoined) then) =
       _$GameplayJoinedCopyWithImpl<$Res>;
-  @override
   $Res call({String gameId});
 }
 
@@ -156,6 +145,7 @@ class _$GameplayJoined implements GameplayJoined {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String gameId) joined,
+    required TResult Function(Gameplay gameplay) gameplayUpdated,
   }) {
     return joined(gameId);
   }
@@ -164,6 +154,7 @@ class _$GameplayJoined implements GameplayJoined {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String gameId)? joined,
+    TResult Function(Gameplay gameplay)? gameplayUpdated,
     required TResult orElse(),
   }) {
     if (joined != null) {
@@ -176,6 +167,7 @@ class _$GameplayJoined implements GameplayJoined {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GameplayJoined value) joined,
+    required TResult Function(GameplayUpdated value) gameplayUpdated,
   }) {
     return joined(this);
   }
@@ -184,6 +176,7 @@ class _$GameplayJoined implements GameplayJoined {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GameplayJoined value)? joined,
+    TResult Function(GameplayUpdated value)? gameplayUpdated,
     required TResult orElse(),
   }) {
     if (joined != null) {
@@ -196,10 +189,125 @@ class _$GameplayJoined implements GameplayJoined {
 abstract class GameplayJoined implements GameplayEvent {
   const factory GameplayJoined(String gameId) = _$GameplayJoined;
 
-  @override
   String get gameId => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   $GameplayJoinedCopyWith<GameplayJoined> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GameplayUpdatedCopyWith<$Res> {
+  factory $GameplayUpdatedCopyWith(
+          GameplayUpdated value, $Res Function(GameplayUpdated) then) =
+      _$GameplayUpdatedCopyWithImpl<$Res>;
+  $Res call({Gameplay gameplay});
+}
+
+/// @nodoc
+class _$GameplayUpdatedCopyWithImpl<$Res>
+    extends _$GameplayEventCopyWithImpl<$Res>
+    implements $GameplayUpdatedCopyWith<$Res> {
+  _$GameplayUpdatedCopyWithImpl(
+      GameplayUpdated _value, $Res Function(GameplayUpdated) _then)
+      : super(_value, (v) => _then(v as GameplayUpdated));
+
+  @override
+  GameplayUpdated get _value => super._value as GameplayUpdated;
+
+  @override
+  $Res call({
+    Object? gameplay = freezed,
+  }) {
+    return _then(GameplayUpdated(
+      gameplay == freezed
+          ? _value.gameplay
+          : gameplay // ignore: cast_nullable_to_non_nullable
+              as Gameplay,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GameplayUpdated implements GameplayUpdated {
+  const _$GameplayUpdated(this.gameplay);
+
+  @override
+  final Gameplay gameplay;
+
+  @override
+  String toString() {
+    return 'GameplayEvent.gameplayUpdated(gameplay: $gameplay)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GameplayUpdated &&
+            (identical(other.gameplay, gameplay) ||
+                const DeepCollectionEquality()
+                    .equals(other.gameplay, gameplay)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameplay);
+
+  @JsonKey(ignore: true)
+  @override
+  $GameplayUpdatedCopyWith<GameplayUpdated> get copyWith =>
+      _$GameplayUpdatedCopyWithImpl<GameplayUpdated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String gameId) joined,
+    required TResult Function(Gameplay gameplay) gameplayUpdated,
+  }) {
+    return gameplayUpdated(gameplay);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String gameId)? joined,
+    TResult Function(Gameplay gameplay)? gameplayUpdated,
+    required TResult orElse(),
+  }) {
+    if (gameplayUpdated != null) {
+      return gameplayUpdated(gameplay);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GameplayJoined value) joined,
+    required TResult Function(GameplayUpdated value) gameplayUpdated,
+  }) {
+    return gameplayUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GameplayJoined value)? joined,
+    TResult Function(GameplayUpdated value)? gameplayUpdated,
+    required TResult orElse(),
+  }) {
+    if (gameplayUpdated != null) {
+      return gameplayUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GameplayUpdated implements GameplayEvent {
+  const factory GameplayUpdated(Gameplay gameplay) = _$GameplayUpdated;
+
+  Gameplay get gameplay => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GameplayUpdatedCopyWith<GameplayUpdated> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -25,7 +25,8 @@ class _$GameplayStateTearOff {
   }
 
   GameInLobby inLobby(
-      {required String gameName, required List<String> participants}) {
+      {required String gameName,
+      required List<LobbyParticipantInfo> participants}) {
     return GameInLobby(
       gameName: gameName,
       participants: participants,
@@ -50,7 +51,8 @@ mixin _$GameplayState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(String gameName, List<String> participants)
+    required TResult Function(
+            String gameName, List<LobbyParticipantInfo> participants)
         inLobby,
     required TResult Function(String gameName, List<String> participants)
         inPlay,
@@ -60,7 +62,8 @@ mixin _$GameplayState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(String gameName, List<String> participants)? inLobby,
+    TResult Function(String gameName, List<LobbyParticipantInfo> participants)?
+        inLobby,
     TResult Function(String gameName, List<String> participants)? inPlay,
     required TResult orElse(),
   }) =>
@@ -142,7 +145,8 @@ class _$GameLoading implements GameLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(String gameName, List<String> participants)
+    required TResult Function(
+            String gameName, List<LobbyParticipantInfo> participants)
         inLobby,
     required TResult Function(String gameName, List<String> participants)
         inPlay,
@@ -155,7 +159,8 @@ class _$GameLoading implements GameLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(String gameName, List<String> participants)? inLobby,
+    TResult Function(String gameName, List<LobbyParticipantInfo> participants)?
+        inLobby,
     TResult Function(String gameName, List<String> participants)? inPlay,
     required TResult orElse(),
   }) {
@@ -235,7 +240,8 @@ class _$GameError implements GameError {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(String gameName, List<String> participants)
+    required TResult Function(
+            String gameName, List<LobbyParticipantInfo> participants)
         inLobby,
     required TResult Function(String gameName, List<String> participants)
         inPlay,
@@ -248,7 +254,8 @@ class _$GameError implements GameError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(String gameName, List<String> participants)? inLobby,
+    TResult Function(String gameName, List<LobbyParticipantInfo> participants)?
+        inLobby,
     TResult Function(String gameName, List<String> participants)? inPlay,
     required TResult orElse(),
   }) {
@@ -294,7 +301,7 @@ abstract class $GameInLobbyCopyWith<$Res> {
   factory $GameInLobbyCopyWith(
           GameInLobby value, $Res Function(GameInLobby) then) =
       _$GameInLobbyCopyWithImpl<$Res>;
-  $Res call({String gameName, List<String> participants});
+  $Res call({String gameName, List<LobbyParticipantInfo> participants});
 }
 
 /// @nodoc
@@ -320,7 +327,7 @@ class _$GameInLobbyCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
       participants: participants == freezed
           ? _value.participants
           : participants // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<LobbyParticipantInfo>,
     ));
   }
 }
@@ -333,7 +340,7 @@ class _$GameInLobby implements GameInLobby {
   @override
   final String gameName;
   @override
-  final List<String> participants;
+  final List<LobbyParticipantInfo> participants;
 
   @override
   String toString() {
@@ -368,7 +375,8 @@ class _$GameInLobby implements GameInLobby {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(String gameName, List<String> participants)
+    required TResult Function(
+            String gameName, List<LobbyParticipantInfo> participants)
         inLobby,
     required TResult Function(String gameName, List<String> participants)
         inPlay,
@@ -381,7 +389,8 @@ class _$GameInLobby implements GameInLobby {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(String gameName, List<String> participants)? inLobby,
+    TResult Function(String gameName, List<LobbyParticipantInfo> participants)?
+        inLobby,
     TResult Function(String gameName, List<String> participants)? inPlay,
     required TResult orElse(),
   }) {
@@ -421,10 +430,11 @@ class _$GameInLobby implements GameInLobby {
 abstract class GameInLobby implements GameplayState {
   const factory GameInLobby(
       {required String gameName,
-      required List<String> participants}) = _$GameInLobby;
+      required List<LobbyParticipantInfo> participants}) = _$GameInLobby;
 
   String get gameName => throw _privateConstructorUsedError;
-  List<String> get participants => throw _privateConstructorUsedError;
+  List<LobbyParticipantInfo> get participants =>
+      throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GameInLobbyCopyWith<GameInLobby> get copyWith =>
       throw _privateConstructorUsedError;
@@ -508,7 +518,8 @@ class _$GameInPlay implements GameInPlay {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(String gameName, List<String> participants)
+    required TResult Function(
+            String gameName, List<LobbyParticipantInfo> participants)
         inLobby,
     required TResult Function(String gameName, List<String> participants)
         inPlay,
@@ -521,7 +532,8 @@ class _$GameInPlay implements GameInPlay {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(String gameName, List<String> participants)? inLobby,
+    TResult Function(String gameName, List<LobbyParticipantInfo> participants)?
+        inLobby,
     TResult Function(String gameName, List<String> participants)? inPlay,
     required TResult orElse(),
   }) {
