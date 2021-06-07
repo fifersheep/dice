@@ -84,4 +84,10 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
           ),
         ],
       );
+
+  @override
+  void dispose() {
+    bloc.close();
+    super.dispose();
+  }
 }
