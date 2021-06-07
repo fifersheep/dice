@@ -9,6 +9,7 @@ class FirebaseGamesRepository {
             toFirestore: (game, _) => game.toJson(),
           );
 
+  // todo: don't set the status client-side, use cloud functions
   Future<Game?> createGame(String gameName) => _games
       .add(Game(id: '', name: gameName, status: GameStatus.Created))
       .then((documentSnapshot) => documentSnapshot.get())

@@ -12,9 +12,7 @@ class App extends StatelessWidget {
     return MaterialApp.router(
       title: 'Dice',
       theme: AppTheme.defaultTheme,
-      routerDelegate: _router.delegate(
-        initialRoutes: [GameSelectionRoute()],
-      ),
+      routerDelegate: _router.delegate(),
       routeInformationParser: _router.defaultRouteParser(),
     );
   }
