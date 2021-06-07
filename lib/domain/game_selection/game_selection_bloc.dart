@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dice/data/model/game.dart';
-import 'package:dice/data/network/game_selection_repository.dart';
+import 'package:dice/data/network/games_repository.dart';
 import 'package:dice/domain/game_selection/game_selection_event.dart';
 import 'package:dice/domain/game_selection/game_selection_state.dart';
 
@@ -11,7 +11,7 @@ class GameSelectionBloc extends Bloc<GameSelectionEvent, GameSelectionState> {
           validation: GameSelectionValidation.Invalid,
         ));
 
-  final repository = FirebaseGameSelectionRepository();
+  final repository = FirebaseGamesRepository();
 
   @override
   Stream<GameSelectionState> mapEventToState(GameSelectionEvent event) async* {

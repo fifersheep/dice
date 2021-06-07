@@ -1,3 +1,4 @@
+import 'package:dice/domain/gameplay/gameplay_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'gameplay_state.freezed.dart';
@@ -21,6 +22,6 @@ class GameplayState with _$GameplayState {
 
   const factory GameplayState.inPlay({
     required String gameName,
-    required List<String> participants,
+    required List<ParticipatingPlayer> participatingPlayers,
   }) = GameInPlay;
 }

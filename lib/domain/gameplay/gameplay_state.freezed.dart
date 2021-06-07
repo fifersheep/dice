@@ -34,10 +34,11 @@ class _$GameplayStateTearOff {
   }
 
   GameInPlay inPlay(
-      {required String gameName, required List<String> participants}) {
+      {required String gameName,
+      required List<ParticipatingPlayer> participatingPlayers}) {
     return GameInPlay(
       gameName: gameName,
-      participants: participants,
+      participatingPlayers: participatingPlayers,
     );
   }
 }
@@ -54,7 +55,8 @@ mixin _$GameplayState {
     required TResult Function(
             String gameName, List<LobbyParticipantInfo> participants)
         inLobby,
-    required TResult Function(String gameName, List<String> participants)
+    required TResult Function(
+            String gameName, List<ParticipatingPlayer> participatingPlayers)
         inPlay,
   }) =>
       throw _privateConstructorUsedError;
@@ -64,7 +66,9 @@ mixin _$GameplayState {
     TResult Function()? error,
     TResult Function(String gameName, List<LobbyParticipantInfo> participants)?
         inLobby,
-    TResult Function(String gameName, List<String> participants)? inPlay,
+    TResult Function(
+            String gameName, List<ParticipatingPlayer> participatingPlayers)?
+        inPlay,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -148,7 +152,8 @@ class _$GameLoading implements GameLoading {
     required TResult Function(
             String gameName, List<LobbyParticipantInfo> participants)
         inLobby,
-    required TResult Function(String gameName, List<String> participants)
+    required TResult Function(
+            String gameName, List<ParticipatingPlayer> participatingPlayers)
         inPlay,
   }) {
     return loading();
@@ -161,7 +166,9 @@ class _$GameLoading implements GameLoading {
     TResult Function()? error,
     TResult Function(String gameName, List<LobbyParticipantInfo> participants)?
         inLobby,
-    TResult Function(String gameName, List<String> participants)? inPlay,
+    TResult Function(
+            String gameName, List<ParticipatingPlayer> participatingPlayers)?
+        inPlay,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -243,7 +250,8 @@ class _$GameError implements GameError {
     required TResult Function(
             String gameName, List<LobbyParticipantInfo> participants)
         inLobby,
-    required TResult Function(String gameName, List<String> participants)
+    required TResult Function(
+            String gameName, List<ParticipatingPlayer> participatingPlayers)
         inPlay,
   }) {
     return error();
@@ -256,7 +264,9 @@ class _$GameError implements GameError {
     TResult Function()? error,
     TResult Function(String gameName, List<LobbyParticipantInfo> participants)?
         inLobby,
-    TResult Function(String gameName, List<String> participants)? inPlay,
+    TResult Function(
+            String gameName, List<ParticipatingPlayer> participatingPlayers)?
+        inPlay,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -378,7 +388,8 @@ class _$GameInLobby implements GameInLobby {
     required TResult Function(
             String gameName, List<LobbyParticipantInfo> participants)
         inLobby,
-    required TResult Function(String gameName, List<String> participants)
+    required TResult Function(
+            String gameName, List<ParticipatingPlayer> participatingPlayers)
         inPlay,
   }) {
     return inLobby(gameName, participants);
@@ -391,7 +402,9 @@ class _$GameInLobby implements GameInLobby {
     TResult Function()? error,
     TResult Function(String gameName, List<LobbyParticipantInfo> participants)?
         inLobby,
-    TResult Function(String gameName, List<String> participants)? inPlay,
+    TResult Function(
+            String gameName, List<ParticipatingPlayer> participatingPlayers)?
+        inPlay,
     required TResult orElse(),
   }) {
     if (inLobby != null) {
@@ -445,7 +458,7 @@ abstract class $GameInPlayCopyWith<$Res> {
   factory $GameInPlayCopyWith(
           GameInPlay value, $Res Function(GameInPlay) then) =
       _$GameInPlayCopyWithImpl<$Res>;
-  $Res call({String gameName, List<String> participants});
+  $Res call({String gameName, List<ParticipatingPlayer> participatingPlayers});
 }
 
 /// @nodoc
@@ -460,17 +473,17 @@ class _$GameInPlayCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? gameName = freezed,
-    Object? participants = freezed,
+    Object? participatingPlayers = freezed,
   }) {
     return _then(GameInPlay(
       gameName: gameName == freezed
           ? _value.gameName
           : gameName // ignore: cast_nullable_to_non_nullable
               as String,
-      participants: participants == freezed
-          ? _value.participants
-          : participants // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      participatingPlayers: participatingPlayers == freezed
+          ? _value.participatingPlayers
+          : participatingPlayers // ignore: cast_nullable_to_non_nullable
+              as List<ParticipatingPlayer>,
     ));
   }
 }
@@ -478,16 +491,17 @@ class _$GameInPlayCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GameInPlay implements GameInPlay {
-  const _$GameInPlay({required this.gameName, required this.participants});
+  const _$GameInPlay(
+      {required this.gameName, required this.participatingPlayers});
 
   @override
   final String gameName;
   @override
-  final List<String> participants;
+  final List<ParticipatingPlayer> participatingPlayers;
 
   @override
   String toString() {
-    return 'GameplayState.inPlay(gameName: $gameName, participants: $participants)';
+    return 'GameplayState.inPlay(gameName: $gameName, participatingPlayers: $participatingPlayers)';
   }
 
   @override
@@ -497,16 +511,16 @@ class _$GameInPlay implements GameInPlay {
             (identical(other.gameName, gameName) ||
                 const DeepCollectionEquality()
                     .equals(other.gameName, gameName)) &&
-            (identical(other.participants, participants) ||
+            (identical(other.participatingPlayers, participatingPlayers) ||
                 const DeepCollectionEquality()
-                    .equals(other.participants, participants)));
+                    .equals(other.participatingPlayers, participatingPlayers)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(gameName) ^
-      const DeepCollectionEquality().hash(participants);
+      const DeepCollectionEquality().hash(participatingPlayers);
 
   @JsonKey(ignore: true)
   @override
@@ -521,10 +535,11 @@ class _$GameInPlay implements GameInPlay {
     required TResult Function(
             String gameName, List<LobbyParticipantInfo> participants)
         inLobby,
-    required TResult Function(String gameName, List<String> participants)
+    required TResult Function(
+            String gameName, List<ParticipatingPlayer> participatingPlayers)
         inPlay,
   }) {
-    return inPlay(gameName, participants);
+    return inPlay(gameName, participatingPlayers);
   }
 
   @override
@@ -534,11 +549,13 @@ class _$GameInPlay implements GameInPlay {
     TResult Function()? error,
     TResult Function(String gameName, List<LobbyParticipantInfo> participants)?
         inLobby,
-    TResult Function(String gameName, List<String> participants)? inPlay,
+    TResult Function(
+            String gameName, List<ParticipatingPlayer> participatingPlayers)?
+        inPlay,
     required TResult orElse(),
   }) {
     if (inPlay != null) {
-      return inPlay(gameName, participants);
+      return inPlay(gameName, participatingPlayers);
     }
     return orElse();
   }
@@ -573,10 +590,11 @@ class _$GameInPlay implements GameInPlay {
 abstract class GameInPlay implements GameplayState {
   const factory GameInPlay(
       {required String gameName,
-      required List<String> participants}) = _$GameInPlay;
+      required List<ParticipatingPlayer> participatingPlayers}) = _$GameInPlay;
 
   String get gameName => throw _privateConstructorUsedError;
-  List<String> get participants => throw _privateConstructorUsedError;
+  List<ParticipatingPlayer> get participatingPlayers =>
+      throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GameInPlayCopyWith<GameInPlay> get copyWith =>
       throw _privateConstructorUsedError;

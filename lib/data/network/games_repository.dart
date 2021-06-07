@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dice/data/model/game.dart';
 
-class FirebaseGameSelectionRepository {
+class FirebaseGamesRepository {
   final _games =
       FirebaseFirestore.instance.collection('games').withConverter<Game>(
             fromFirestore: (snapshot, _) =>
@@ -18,4 +18,7 @@ class FirebaseGameSelectionRepository {
       _games.where('name', isEqualTo: gameName).limit(1).get().then((snapshot) {
         return snapshot.size > 0 ? snapshot.docs[0].data() : null;
       });
+
+  Stream<Game?> gameStream(String gameId) =>
+      _games.doc(gameId).snapshots().map((e) => e.data());
 }
