@@ -8,4 +8,5 @@ class GameplayEvent with _$GameplayEvent {
   const factory GameplayEvent.joined(String gameId) = GameplayJoined;
   const factory GameplayEvent.gameplayUpdated(Gameplay gameplay) =
       GameplayUpdated;
+  const factory GameplayEvent.readyTapped() = ReadyTapped;
 }

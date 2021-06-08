@@ -55,9 +55,9 @@ class _PlayerSelectionPageState extends State<PlayerSelectionPage> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         BlocConsumer<PlayerSelectionBloc, PlayerSelectionState>(
-          bloc: bloc,
+          bloc: bloc..add(PlayerSelectionEvent.checkForCurrentPlayer()),
           listener: (context, state) {
-            if (state is PlayerCreated) {
+            if (state is PlayerExists || state is PlayerCreated) {
               context.router.pushNamed('/games');
             }
           },

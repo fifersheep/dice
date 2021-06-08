@@ -28,10 +28,8 @@ class _$PlayerSelectionEventTearOff {
     );
   }
 
-  PlayerFound playerFound(String id) {
-    return PlayerFound(
-      id,
-    );
+  CheckForCurrentPlayer checkForCurrentPlayer() {
+    return const CheckForCurrentPlayer();
   }
 }
 
@@ -44,14 +42,14 @@ mixin _$PlayerSelectionEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String name) nameChanged,
     required TResult Function(String name) createPlayerPressed,
-    required TResult Function(String id) playerFound,
+    required TResult Function() checkForCurrentPlayer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String name)? nameChanged,
     TResult Function(String name)? createPlayerPressed,
-    TResult Function(String id)? playerFound,
+    TResult Function()? checkForCurrentPlayer,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,14 +57,15 @@ mixin _$PlayerSelectionEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(PlayerNameChanged value) nameChanged,
     required TResult Function(CreatePlayerPressed value) createPlayerPressed,
-    required TResult Function(PlayerFound value) playerFound,
+    required TResult Function(CheckForCurrentPlayer value)
+        checkForCurrentPlayer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PlayerNameChanged value)? nameChanged,
     TResult Function(CreatePlayerPressed value)? createPlayerPressed,
-    TResult Function(PlayerFound value)? playerFound,
+    TResult Function(CheckForCurrentPlayer value)? checkForCurrentPlayer,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -166,7 +165,7 @@ class _$PlayerNameChanged
   TResult when<TResult extends Object?>({
     required TResult Function(String name) nameChanged,
     required TResult Function(String name) createPlayerPressed,
-    required TResult Function(String id) playerFound,
+    required TResult Function() checkForCurrentPlayer,
   }) {
     return nameChanged(name);
   }
@@ -176,7 +175,7 @@ class _$PlayerNameChanged
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String name)? nameChanged,
     TResult Function(String name)? createPlayerPressed,
-    TResult Function(String id)? playerFound,
+    TResult Function()? checkForCurrentPlayer,
     required TResult orElse(),
   }) {
     if (nameChanged != null) {
@@ -190,7 +189,8 @@ class _$PlayerNameChanged
   TResult map<TResult extends Object?>({
     required TResult Function(PlayerNameChanged value) nameChanged,
     required TResult Function(CreatePlayerPressed value) createPlayerPressed,
-    required TResult Function(PlayerFound value) playerFound,
+    required TResult Function(CheckForCurrentPlayer value)
+        checkForCurrentPlayer,
   }) {
     return nameChanged(this);
   }
@@ -200,7 +200,7 @@ class _$PlayerNameChanged
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PlayerNameChanged value)? nameChanged,
     TResult Function(CreatePlayerPressed value)? createPlayerPressed,
-    TResult Function(PlayerFound value)? playerFound,
+    TResult Function(CheckForCurrentPlayer value)? checkForCurrentPlayer,
     required TResult orElse(),
   }) {
     if (nameChanged != null) {
@@ -297,7 +297,7 @@ class _$CreatePlayerPressed
   TResult when<TResult extends Object?>({
     required TResult Function(String name) nameChanged,
     required TResult Function(String name) createPlayerPressed,
-    required TResult Function(String id) playerFound,
+    required TResult Function() checkForCurrentPlayer,
   }) {
     return createPlayerPressed(name);
   }
@@ -307,7 +307,7 @@ class _$CreatePlayerPressed
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String name)? nameChanged,
     TResult Function(String name)? createPlayerPressed,
-    TResult Function(String id)? playerFound,
+    TResult Function()? checkForCurrentPlayer,
     required TResult orElse(),
   }) {
     if (createPlayerPressed != null) {
@@ -321,7 +321,8 @@ class _$CreatePlayerPressed
   TResult map<TResult extends Object?>({
     required TResult Function(PlayerNameChanged value) nameChanged,
     required TResult Function(CreatePlayerPressed value) createPlayerPressed,
-    required TResult Function(PlayerFound value) playerFound,
+    required TResult Function(CheckForCurrentPlayer value)
+        checkForCurrentPlayer,
   }) {
     return createPlayerPressed(this);
   }
@@ -331,7 +332,7 @@ class _$CreatePlayerPressed
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PlayerNameChanged value)? nameChanged,
     TResult Function(CreatePlayerPressed value)? createPlayerPressed,
-    TResult Function(PlayerFound value)? playerFound,
+    TResult Function(CheckForCurrentPlayer value)? checkForCurrentPlayer,
     required TResult orElse(),
   }) {
     if (createPlayerPressed != null) {
@@ -351,83 +352,60 @@ abstract class CreatePlayerPressed implements PlayerSelectionEvent {
 }
 
 /// @nodoc
-abstract class $PlayerFoundCopyWith<$Res> {
-  factory $PlayerFoundCopyWith(
-          PlayerFound value, $Res Function(PlayerFound) then) =
-      _$PlayerFoundCopyWithImpl<$Res>;
-  $Res call({String id});
+abstract class $CheckForCurrentPlayerCopyWith<$Res> {
+  factory $CheckForCurrentPlayerCopyWith(CheckForCurrentPlayer value,
+          $Res Function(CheckForCurrentPlayer) then) =
+      _$CheckForCurrentPlayerCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$PlayerFoundCopyWithImpl<$Res>
+class _$CheckForCurrentPlayerCopyWithImpl<$Res>
     extends _$PlayerSelectionEventCopyWithImpl<$Res>
-    implements $PlayerFoundCopyWith<$Res> {
-  _$PlayerFoundCopyWithImpl(
-      PlayerFound _value, $Res Function(PlayerFound) _then)
-      : super(_value, (v) => _then(v as PlayerFound));
+    implements $CheckForCurrentPlayerCopyWith<$Res> {
+  _$CheckForCurrentPlayerCopyWithImpl(
+      CheckForCurrentPlayer _value, $Res Function(CheckForCurrentPlayer) _then)
+      : super(_value, (v) => _then(v as CheckForCurrentPlayer));
 
   @override
-  PlayerFound get _value => super._value as PlayerFound;
-
-  @override
-  $Res call({
-    Object? id = freezed,
-  }) {
-    return _then(PlayerFound(
-      id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  CheckForCurrentPlayer get _value => super._value as CheckForCurrentPlayer;
 }
 
 /// @nodoc
 
-class _$PlayerFound with DiagnosticableTreeMixin implements PlayerFound {
-  const _$PlayerFound(this.id);
-
-  @override
-  final String id;
+class _$CheckForCurrentPlayer
+    with DiagnosticableTreeMixin
+    implements CheckForCurrentPlayer {
+  const _$CheckForCurrentPlayer();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PlayerSelectionEvent.playerFound(id: $id)';
+    return 'PlayerSelectionEvent.checkForCurrentPlayer()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'PlayerSelectionEvent.playerFound'))
-      ..add(DiagnosticsProperty('id', id));
+      ..add(DiagnosticsProperty(
+          'type', 'PlayerSelectionEvent.checkForCurrentPlayer'));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is PlayerFound &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+    return identical(this, other) || (other is CheckForCurrentPlayer);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
-
-  @JsonKey(ignore: true)
-  @override
-  $PlayerFoundCopyWith<PlayerFound> get copyWith =>
-      _$PlayerFoundCopyWithImpl<PlayerFound>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String name) nameChanged,
     required TResult Function(String name) createPlayerPressed,
-    required TResult Function(String id) playerFound,
+    required TResult Function() checkForCurrentPlayer,
   }) {
-    return playerFound(id);
+    return checkForCurrentPlayer();
   }
 
   @override
@@ -435,11 +413,11 @@ class _$PlayerFound with DiagnosticableTreeMixin implements PlayerFound {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String name)? nameChanged,
     TResult Function(String name)? createPlayerPressed,
-    TResult Function(String id)? playerFound,
+    TResult Function()? checkForCurrentPlayer,
     required TResult orElse(),
   }) {
-    if (playerFound != null) {
-      return playerFound(id);
+    if (checkForCurrentPlayer != null) {
+      return checkForCurrentPlayer();
     }
     return orElse();
   }
@@ -449,9 +427,10 @@ class _$PlayerFound with DiagnosticableTreeMixin implements PlayerFound {
   TResult map<TResult extends Object?>({
     required TResult Function(PlayerNameChanged value) nameChanged,
     required TResult Function(CreatePlayerPressed value) createPlayerPressed,
-    required TResult Function(PlayerFound value) playerFound,
+    required TResult Function(CheckForCurrentPlayer value)
+        checkForCurrentPlayer,
   }) {
-    return playerFound(this);
+    return checkForCurrentPlayer(this);
   }
 
   @override
@@ -459,21 +438,16 @@ class _$PlayerFound with DiagnosticableTreeMixin implements PlayerFound {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PlayerNameChanged value)? nameChanged,
     TResult Function(CreatePlayerPressed value)? createPlayerPressed,
-    TResult Function(PlayerFound value)? playerFound,
+    TResult Function(CheckForCurrentPlayer value)? checkForCurrentPlayer,
     required TResult orElse(),
   }) {
-    if (playerFound != null) {
-      return playerFound(this);
+    if (checkForCurrentPlayer != null) {
+      return checkForCurrentPlayer(this);
     }
     return orElse();
   }
 }
 
-abstract class PlayerFound implements PlayerSelectionEvent {
-  const factory PlayerFound(String id) = _$PlayerFound;
-
-  String get id => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $PlayerFoundCopyWith<PlayerFound> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class CheckForCurrentPlayer implements PlayerSelectionEvent {
+  const factory CheckForCurrentPlayer() = _$CheckForCurrentPlayer;
 }

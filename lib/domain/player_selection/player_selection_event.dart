@@ -9,5 +9,6 @@ class PlayerSelectionEvent with _$PlayerSelectionEvent {
       PlayerNameChanged;
   const factory PlayerSelectionEvent.createPlayerPressed(String name) =
       CreatePlayerPressed;
-  const factory PlayerSelectionEvent.playerFound(String id) = PlayerFound;
+  const factory PlayerSelectionEvent.checkForCurrentPlayer() =
+      CheckForCurrentPlayer;
 }

@@ -120,7 +120,11 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
     );
   }
 
-  Widget _alreadyStarted() => Text("This game has already started");
+  Widget _alreadyStarted() => Center(
+        child: Text("This game has already started"),
+      );
 
-  Widget _noActions() => Text("Enter a valid game name");
+  Widget _noActions() => Center(
+        child: Text("Enter a valid game name"),
+      );
 }

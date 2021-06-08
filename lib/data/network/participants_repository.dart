@@ -14,4 +14,9 @@ class FirebaseParticipantsRepository {
       .where('gameId', isEqualTo: gameId)
       .snapshots()
       .map((e) => e.docs.map((e) => e.data()).toList());
+
+  Future<void> setParticipantReady(String id, bool isReady) =>
+      _participants.doc(id).update({
+        'ready': isReady,
+      });
 }

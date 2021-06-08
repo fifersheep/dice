@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dice/data/model/participant.dart';
 import 'package:dice/data/model/player.dart';
 import 'package:dice/data/network/players_repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:dice/data/model/game.dart';
 import 'package:dice/data/network/games_repository.dart';
@@ -20,6 +21,8 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
   final _playersRepository = FirebasePlayersRepository();
 
   StreamSubscription? _subscription;
+
+  String? _currentPlayerId;
 
   @override
   void onEvent(GameplayEvent event) {
@@ -38,27 +41,43 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
                 participatingPlayers.whereType<ParticipatingPlayer>().toList()),
           )
           .listen((gameplay) => add(GameplayEvent.gameplayUpdated(gameplay)));
+    } else if (event is ReadyTapped && state is GameInLobby) {
+      final currentPlayerId = _currentPlayerId;
+      if (currentPlayerId != null) {
+        final currentState = (state as GameInLobby);
+        final currentParticipatingPlayer = currentState.participatingPlayers
+            .firstWhere((participatingPlayer) =>
+                participatingPlayer.player.id == currentPlayerId);
+        _participantsRepository.setParticipantReady(
+            currentParticipatingPlayer.participant.id,
+            !currentState.currentPlayerReady);
+      }
     }
     super.onEvent(event);
   }
 
   @override
   Stream<GameplayState> mapEventToState(GameplayEvent event) async* {
-    if (event is GameplayUpdated) {
+    final currentPlayerId = await _getCurrentPlayerId();
+    if (event is GameplayUpdated && currentPlayerId != null) {
       final game = event.gameplay.game;
       final participatingPlayers = event.gameplay.participatingPlayers;
       if (game?.status == GameStatus.Created) {
         yield GameplayState.inLobby(
-            gameName: game!.name,
-            participants: participatingPlayers
-                .map((participatingPlayer) => LobbyParticipantInfo(
-                      participatingPlayer.player.name,
-                      participatingPlayer.participant.ready,
-                    ))
-                .toList());
+          currentPlayerReady: participatingPlayers
+              .firstWhere(
+                  (element) => element.participant.playerId == currentPlayerId)
+              .participant
+              .ready,
+          gameName: game!.name,
+          participatingPlayers: participatingPlayers,
+        );
       } else if (game?.status == GameStatus.Started) {
         yield GameplayState.inPlay(
-            gameName: game!.name, participatingPlayers: participatingPlayers);
+          currentPlayerId: currentPlayerId,
+          gameName: game!.name,
+          participatingPlayers: participatingPlayers,
+        );
       }
     }
   }
@@ -78,6 +97,14 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
   Future<ParticipatingPlayer?> _player(Participant participant) async {
     final player = await _playersRepository.getPlayer(participant.playerId);
     return player != null ? ParticipatingPlayer(player, participant) : null;
+  }
+
+  Future<String?> _getCurrentPlayerId() async {
+    if (_currentPlayerId == null) {
+      _currentPlayerId = await SharedPreferences.getInstance()
+          .then((prefs) => prefs.getString('currentPlayerId'));
+    }
+    return _currentPlayerId;
   }
 }
 

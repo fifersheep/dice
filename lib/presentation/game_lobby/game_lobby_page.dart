@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dice/data/model/participant.dart';
 import 'package:dice/domain/gameplay/gameplay_bloc.dart';
 import 'package:dice/domain/gameplay/gameplay_event.dart';
 import 'package:dice/domain/gameplay/gameplay_state.dart';
@@ -31,18 +32,25 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
         bloc: bloc,
         builder: (context, snapshot) {
           if (snapshot is GameInLobby) {
-            return _lobby(snapshot.gameName, snapshot.participants);
+            return _lobby(snapshot.gameName, snapshot.participatingPlayers,
+                snapshot.currentPlayerReady);
           } else if (snapshot is GameInPlay) {
-            return Text('Game ${snapshot.gameName} is in play');
+            return Center(
+              child: Text('Game ${snapshot.gameName} is in play'),
+            );
           } else {
-            return Text('Game unavailable');
+            return Center(
+              child: Text('Game unavailable'),
+            );
           }
         },
       ),
     );
   }
 
-  Widget _lobby(String name, List<LobbyParticipantInfo> participants) => Column(
+  Widget _lobby(String name, List<ParticipatingPlayer> participatingPlayers,
+          bool currentPlayerReady) =>
+      Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -56,7 +64,7 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
               constraints: BoxConstraints(maxWidth: 600),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
-                children: participants
+                children: participatingPlayers
                     .map(
                       (p) => _participant(p),
                     )
@@ -64,21 +72,37 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 16),
+            child: GestureDetector(
+              onTap: () => bloc.add(GameplayEvent.readyTapped()),
+              child: Icon(
+                currentPlayerReady
+                    ? Icons.task_alt_outlined
+                    : Icons.radio_button_unchecked_outlined,
+                color: currentPlayerReady
+                    ? ThemeColors.white
+                    : ThemeColors.white25,
+                size: 100,
+              ),
+            ),
+          ),
         ],
       );
 
-  Widget _participant(LobbyParticipantInfo participant) => Row(
+  Widget _participant(ParticipatingPlayer participatingPlayer) => Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(participant.name),
+          Text(participatingPlayer.player.name),
           Padding(
             padding: const EdgeInsets.all(8),
             child: Icon(
-              participant.ready
+              participatingPlayer.participant.ready
                   ? Icons.task_alt_outlined
                   : Icons.radio_button_unchecked_outlined,
-              color:
-                  participant.ready ? ThemeColors.white : ThemeColors.white25,
+              color: participatingPlayer.participant.ready
+                  ? ThemeColors.white
+                  : ThemeColors.white25,
               size: 30,
             ),
           ),

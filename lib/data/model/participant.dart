@@ -1,5 +1,6 @@
 class Participant {
   Participant({
+    required this.id,
     required this.gameId,
     required this.playerId,
     required this.betQuantity,
@@ -7,6 +8,7 @@ class Participant {
     required this.ready,
   });
 
+  final String id;
   final String gameId;
   final String playerId;
   final int? betQuantity;
@@ -15,6 +17,7 @@ class Participant {
 
   static fromJson(String id, Map<String, dynamic> data) {
     return Participant(
+      id: id,
       gameId: data['gameId'],
       playerId: data['playerId'],
       betQuantity: data['betQuantity'],

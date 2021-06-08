@@ -12,6 +12,6 @@ class PlayerSelectionState with _$PlayerSelectionState {
   const factory PlayerSelectionState.checkingName(String name) =
       CheckingPlayerName;
   const factory PlayerSelectionState.nameChange(String name) = PlayerNameChange;
-  const factory PlayerSelectionState.playerCreated(String id) = PlayerCreated;
+  const factory PlayerSelectionState.playerCreated() = PlayerCreated;
   const factory PlayerSelectionState.playerExists(String id) = PlayerExists;
 }
