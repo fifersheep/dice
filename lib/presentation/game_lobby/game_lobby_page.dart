@@ -93,7 +93,10 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
   Widget _participant(ParticipatingPlayer participatingPlayer) => Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(participatingPlayer.player.name),
+          Text(
+            participatingPlayer.player.name,
+            style: TextStyle(fontSize: 21),
+          ),
           Padding(
             padding: const EdgeInsets.all(8),
             child: Icon(
