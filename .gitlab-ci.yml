@@ -28,6 +28,7 @@ deploy-web:
     - main
 
 deploy-functions:
+  image: node:10
   stage: deploy
   script:
     - cd functions
