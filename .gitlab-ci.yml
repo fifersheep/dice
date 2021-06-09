@@ -1,0 +1,41 @@
+stages:
+  - build
+  - deploy
+
+.flutter:
+  image: cirrusci/flutter:2.2.1
+  before_script:
+    - flutter packages get
+    - flutter clean
+
+build_web:
+  stage: build
+  extends: .flutter
+  script:
+    - flutter build web
+  artifacts:
+    paths:
+      - build/web
+
+deploy-web:
+  image: node:10
+  stage: deploy
+  script:
+    - npm i -g firebase-tools
+    - firebase use --token $FIREBASE_TOKEN
+    - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID" --non-interactive --token $FIREBASE_TOKEN --except functions
+  only:
+    - main
+
+deploy-functions:
+  stage: deploy
+  script:
+    - cd functions
+    - npm install
+    - cd ..
+    - firebase deploy --only functions --token $FIREBASE_TOKEN
+  only:
+    refs:
+      - main
+    changes:
+      - functions/**/*

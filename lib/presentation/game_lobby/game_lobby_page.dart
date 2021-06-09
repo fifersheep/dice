@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dice/data/model/participant.dart';
 import 'package:dice/domain/gameplay/gameplay_bloc.dart';
 import 'package:dice/domain/gameplay/gameplay_event.dart';
 import 'package:dice/domain/gameplay/gameplay_state.dart';
