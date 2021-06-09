@@ -3,8 +3,8 @@ class Participant {
     required this.id,
     required this.gameId,
     required this.playerId,
-    required this.betQuantity,
-    required this.betValue,
+    this.betQuantity,
+    this.betValue,
     required this.ready,
   });
 

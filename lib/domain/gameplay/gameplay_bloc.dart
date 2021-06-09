@@ -25,7 +25,7 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
   String? _currentPlayerId;
 
   @override
-  void onEvent(GameplayEvent event) {
+  void onEvent(GameplayEvent event) async {
     if (event is GameplayJoined) {
       _subscription?.cancel();
 
@@ -41,6 +41,11 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
                 participatingPlayers.whereType<ParticipatingPlayer>().toList()),
           )
           .listen((gameplay) => add(GameplayEvent.gameplayUpdated(gameplay)));
+
+      final currentPlayerId = await _getCurrentPlayerId();
+      if (currentPlayerId != null) {
+        _participantsRepository.addParticipant(event.gameId, currentPlayerId);
+      }
     } else if (event is ReadyTapped && state is GameInLobby) {
       final currentPlayerId = _currentPlayerId;
       if (currentPlayerId != null) {
