@@ -15,24 +15,13 @@ class FirebaseParticipantsRepository {
       .snapshots()
       .map((e) => e.docs.map((e) => e.data()).toList());
 
-  Future<bool> addParticipant(String gameId, String playerId) async {
-    final existing = await _participants
-        .where('gameId', isEqualTo: gameId)
-        .where('playerId', isEqualTo: playerId)
-        .get();
-
-    final shouldAdd = existing.docs.isEmpty;
-
-    if (shouldAdd) {
-      _participants.add(Participant(
-        id: '',
-        gameId: gameId,
-        playerId: playerId,
-        ready: false,
-      ));
-    }
-
-    return shouldAdd;
+  Future<void> addParticipant(String gameId, String playerId) async {
+    _participants.add(Participant(
+      id: '',
+      gameId: gameId,
+      playerId: playerId,
+      ready: false,
+    ));
   }
 
   Future<void> setParticipantReady(String id, bool isReady) =>

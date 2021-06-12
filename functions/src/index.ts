@@ -1,11 +1,28 @@
 import * as functions from "firebase-functions";
+import firebase from "firebase-admin";
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-export const helloWorld = functions.https.onRequest((request, response) => {
-  functions.logger.info("Hello logs!", {structuredData: true});
-  response.send("Hello from Firebase!");
-});
+firebase.initializeApp();
 
-// test CI/CD :facepalm:
+const db = firebase.firestore();
+
+export const joinGame = functions.firestore
+  .document("participants/{docId}")
+  .onCreate(async (change, _) => {
+    const data = change.data();
+
+    const preExistingDocs = db
+      .collection("participants")
+      .where("playerId", "==", data["playerId"])
+      .where("gameId", "==", data["gameId"])
+      .get();
+
+    const participants = (await preExistingDocs).docs;
+    const alreadyCreated = participants.length > 1;
+
+    if (alreadyCreated) {
+      change.ref.delete();
+      return preExistingDocs;
+    } else {
+      return change;
+    }
+  });
