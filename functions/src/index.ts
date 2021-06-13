@@ -26,3 +26,24 @@ export const joinGame = functions.firestore
       return change;
     }
   });
+
+export const startGame = functions.firestore
+  .document("participants/{docId}")
+  .onUpdate((change, context) => {
+    const gameId = change.after.data()["gameId"];
+    db.collection("participants")
+      .where("gameId", "==", gameId)
+      .get()
+      .then((participants) => {
+        const allParticipantsReady = participants.docs.every(
+          (participant) => participant.data()["ready"]
+        );
+        const enoughPlayers = participants.size > 1;
+
+        if (allParticipantsReady && enoughPlayers) {
+          db.collection("games").doc(gameId).update({
+            status: "Started",
+          });
+        }
+      });
+  });
