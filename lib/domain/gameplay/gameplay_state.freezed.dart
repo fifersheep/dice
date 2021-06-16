@@ -27,11 +27,13 @@ class _$GameplayStateTearOff {
   GameInLobby inLobby(
       {required bool currentPlayerReady,
       required String gameName,
-      required List<ParticipatingPlayer> participatingPlayers}) {
+      required List<ParticipatingPlayer> participatingPlayers,
+      required bool loading}) {
     return GameInLobby(
       currentPlayerReady: currentPlayerReady,
       gameName: gameName,
       participatingPlayers: participatingPlayers,
+      loading: loading,
     );
   }
 
@@ -57,7 +59,7 @@ mixin _$GameplayState {
     required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(bool currentPlayerReady, String gameName,
-            List<ParticipatingPlayer> participatingPlayers)
+            List<ParticipatingPlayer> participatingPlayers, bool loading)
         inLobby,
     required TResult Function(String currentPlayerId, String gameName,
             List<ParticipatingPlayer> participatingPlayers)
@@ -69,7 +71,7 @@ mixin _$GameplayState {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(bool currentPlayerReady, String gameName,
-            List<ParticipatingPlayer> participatingPlayers)?
+            List<ParticipatingPlayer> participatingPlayers, bool loading)?
         inLobby,
     TResult Function(String currentPlayerId, String gameName,
             List<ParticipatingPlayer> participatingPlayers)?
@@ -155,7 +157,7 @@ class _$GameLoading implements GameLoading {
     required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(bool currentPlayerReady, String gameName,
-            List<ParticipatingPlayer> participatingPlayers)
+            List<ParticipatingPlayer> participatingPlayers, bool loading)
         inLobby,
     required TResult Function(String currentPlayerId, String gameName,
             List<ParticipatingPlayer> participatingPlayers)
@@ -170,7 +172,7 @@ class _$GameLoading implements GameLoading {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(bool currentPlayerReady, String gameName,
-            List<ParticipatingPlayer> participatingPlayers)?
+            List<ParticipatingPlayer> participatingPlayers, bool loading)?
         inLobby,
     TResult Function(String currentPlayerId, String gameName,
             List<ParticipatingPlayer> participatingPlayers)?
@@ -254,7 +256,7 @@ class _$GameError implements GameError {
     required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(bool currentPlayerReady, String gameName,
-            List<ParticipatingPlayer> participatingPlayers)
+            List<ParticipatingPlayer> participatingPlayers, bool loading)
         inLobby,
     required TResult Function(String currentPlayerId, String gameName,
             List<ParticipatingPlayer> participatingPlayers)
@@ -269,7 +271,7 @@ class _$GameError implements GameError {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(bool currentPlayerReady, String gameName,
-            List<ParticipatingPlayer> participatingPlayers)?
+            List<ParticipatingPlayer> participatingPlayers, bool loading)?
         inLobby,
     TResult Function(String currentPlayerId, String gameName,
             List<ParticipatingPlayer> participatingPlayers)?
@@ -321,7 +323,8 @@ abstract class $GameInLobbyCopyWith<$Res> {
   $Res call(
       {bool currentPlayerReady,
       String gameName,
-      List<ParticipatingPlayer> participatingPlayers});
+      List<ParticipatingPlayer> participatingPlayers,
+      bool loading});
 }
 
 /// @nodoc
@@ -339,6 +342,7 @@ class _$GameInLobbyCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
     Object? currentPlayerReady = freezed,
     Object? gameName = freezed,
     Object? participatingPlayers = freezed,
+    Object? loading = freezed,
   }) {
     return _then(GameInLobby(
       currentPlayerReady: currentPlayerReady == freezed
@@ -353,6 +357,10 @@ class _$GameInLobbyCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
           ? _value.participatingPlayers
           : participatingPlayers // ignore: cast_nullable_to_non_nullable
               as List<ParticipatingPlayer>,
+      loading: loading == freezed
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -363,7 +371,8 @@ class _$GameInLobby implements GameInLobby {
   const _$GameInLobby(
       {required this.currentPlayerReady,
       required this.gameName,
-      required this.participatingPlayers});
+      required this.participatingPlayers,
+      required this.loading});
 
   @override
   final bool currentPlayerReady;
@@ -371,10 +380,12 @@ class _$GameInLobby implements GameInLobby {
   final String gameName;
   @override
   final List<ParticipatingPlayer> participatingPlayers;
+  @override
+  final bool loading;
 
   @override
   String toString() {
-    return 'GameplayState.inLobby(currentPlayerReady: $currentPlayerReady, gameName: $gameName, participatingPlayers: $participatingPlayers)';
+    return 'GameplayState.inLobby(currentPlayerReady: $currentPlayerReady, gameName: $gameName, participatingPlayers: $participatingPlayers, loading: $loading)';
   }
 
   @override
@@ -388,8 +399,10 @@ class _$GameInLobby implements GameInLobby {
                 const DeepCollectionEquality()
                     .equals(other.gameName, gameName)) &&
             (identical(other.participatingPlayers, participatingPlayers) ||
-                const DeepCollectionEquality()
-                    .equals(other.participatingPlayers, participatingPlayers)));
+                const DeepCollectionEquality().equals(
+                    other.participatingPlayers, participatingPlayers)) &&
+            (identical(other.loading, loading) ||
+                const DeepCollectionEquality().equals(other.loading, loading)));
   }
 
   @override
@@ -397,7 +410,8 @@ class _$GameInLobby implements GameInLobby {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(currentPlayerReady) ^
       const DeepCollectionEquality().hash(gameName) ^
-      const DeepCollectionEquality().hash(participatingPlayers);
+      const DeepCollectionEquality().hash(participatingPlayers) ^
+      const DeepCollectionEquality().hash(loading);
 
   @JsonKey(ignore: true)
   @override
@@ -410,13 +424,14 @@ class _$GameInLobby implements GameInLobby {
     required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(bool currentPlayerReady, String gameName,
-            List<ParticipatingPlayer> participatingPlayers)
+            List<ParticipatingPlayer> participatingPlayers, bool loading)
         inLobby,
     required TResult Function(String currentPlayerId, String gameName,
             List<ParticipatingPlayer> participatingPlayers)
         inPlay,
   }) {
-    return inLobby(currentPlayerReady, gameName, participatingPlayers);
+    return inLobby(
+        currentPlayerReady, gameName, participatingPlayers, this.loading);
   }
 
   @override
@@ -425,7 +440,7 @@ class _$GameInLobby implements GameInLobby {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(bool currentPlayerReady, String gameName,
-            List<ParticipatingPlayer> participatingPlayers)?
+            List<ParticipatingPlayer> participatingPlayers, bool loading)?
         inLobby,
     TResult Function(String currentPlayerId, String gameName,
             List<ParticipatingPlayer> participatingPlayers)?
@@ -433,7 +448,8 @@ class _$GameInLobby implements GameInLobby {
     required TResult orElse(),
   }) {
     if (inLobby != null) {
-      return inLobby(currentPlayerReady, gameName, participatingPlayers);
+      return inLobby(
+          currentPlayerReady, gameName, participatingPlayers, this.loading);
     }
     return orElse();
   }
@@ -469,12 +485,14 @@ abstract class GameInLobby implements GameplayState {
   const factory GameInLobby(
       {required bool currentPlayerReady,
       required String gameName,
-      required List<ParticipatingPlayer> participatingPlayers}) = _$GameInLobby;
+      required List<ParticipatingPlayer> participatingPlayers,
+      required bool loading}) = _$GameInLobby;
 
   bool get currentPlayerReady => throw _privateConstructorUsedError;
   String get gameName => throw _privateConstructorUsedError;
   List<ParticipatingPlayer> get participatingPlayers =>
       throw _privateConstructorUsedError;
+  bool get loading => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GameInLobbyCopyWith<GameInLobby> get copyWith =>
       throw _privateConstructorUsedError;
@@ -576,7 +594,7 @@ class _$GameInPlay implements GameInPlay {
     required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(bool currentPlayerReady, String gameName,
-            List<ParticipatingPlayer> participatingPlayers)
+            List<ParticipatingPlayer> participatingPlayers, bool loading)
         inLobby,
     required TResult Function(String currentPlayerId, String gameName,
             List<ParticipatingPlayer> participatingPlayers)
@@ -591,7 +609,7 @@ class _$GameInPlay implements GameInPlay {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(bool currentPlayerReady, String gameName,
-            List<ParticipatingPlayer> participatingPlayers)?
+            List<ParticipatingPlayer> participatingPlayers, bool loading)?
         inLobby,
     TResult Function(String currentPlayerId, String gameName,
             List<ParticipatingPlayer> participatingPlayers)?

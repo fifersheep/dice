@@ -31,8 +31,7 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
         bloc: bloc,
         builder: (context, snapshot) {
           if (snapshot is GameInLobby) {
-            return _lobby(snapshot.gameName, snapshot.participatingPlayers,
-                snapshot.currentPlayerReady);
+            return _lobby(snapshot);
           } else if (snapshot is GameInPlay) {
             return Center(
               child: Text('Game ${snapshot.gameName} is in play'),
@@ -47,14 +46,27 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
     );
   }
 
-  Widget _lobby(String name, List<ParticipatingPlayer> participatingPlayers,
-          bool currentPlayerReady) =>
-      Column(
+  Widget _lobby(GameInLobby state) {
+    if (state.loading) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(),
+            SizedBox(
+              height: 16,
+            ),
+            Text('Game starting...'),
+          ],
+        ),
+      );
+    } else {
+      return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            name,
+            state.gameName,
             style: TextStyle(fontSize: 48),
           ),
           SizedBox(height: 64),
@@ -63,7 +75,7 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
               constraints: BoxConstraints(maxWidth: 600),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
-                children: participatingPlayers
+                children: state.participatingPlayers
                     .map(
                       (p) => _participant(p),
                     )
@@ -76,10 +88,10 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
             child: GestureDetector(
               onTap: () => bloc.add(GameplayEvent.readyTapped()),
               child: Icon(
-                currentPlayerReady
+                state.currentPlayerReady
                     ? Icons.task_alt_outlined
                     : Icons.radio_button_unchecked_outlined,
-                color: currentPlayerReady
+                color: state.currentPlayerReady
                     ? ThemeColors.white
                     : ThemeColors.white25,
                 size: 100,
@@ -88,6 +100,8 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
           ),
         ],
       );
+    }
+  }
 
   Widget _participant(ParticipatingPlayer participatingPlayer) => Row(
         mainAxisSize: MainAxisSize.min,

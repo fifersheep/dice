@@ -69,14 +69,13 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
       final participatingPlayers = event.gameplay.participatingPlayers;
       if (game?.status == GameStatus.Created) {
         yield GameplayState.inLobby(
-          currentPlayerReady: participatingPlayers
-              .firstWhere(
-                  (element) => element.participant.playerId == currentPlayerId)
-              .participant
-              .ready,
-          gameName: game!.name,
-          participatingPlayers: participatingPlayers,
-        );
+            currentPlayerReady: participatingPlayers
+                .firstWhere((pp) => pp.participant.playerId == currentPlayerId)
+                .participant
+                .ready,
+            gameName: game!.name,
+            participatingPlayers: participatingPlayers,
+            loading: participatingPlayers.every((pp) => pp.participant.ready));
       } else if (game?.status == GameStatus.Started) {
         yield GameplayState.inPlay(
           currentPlayerId: currentPlayerId,
