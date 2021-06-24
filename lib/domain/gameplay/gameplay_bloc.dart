@@ -75,7 +75,8 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
                 .ready,
             gameName: game!.name,
             participatingPlayers: participatingPlayers,
-            loading: participatingPlayers.every((pp) => pp.participant.ready));
+            loading: participatingPlayers.length > 1 &&
+                participatingPlayers.every((pp) => pp.participant.ready));
       } else if (game?.status == GameStatus.Started) {
         yield GameplayState.inPlay(
           currentPlayerId: currentPlayerId,
