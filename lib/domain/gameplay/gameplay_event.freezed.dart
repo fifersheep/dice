@@ -22,7 +22,7 @@ class _$GameplayEventTearOff {
     );
   }
 
-  GameplayUpdated gameplayUpdated(Gameplay gameplay) {
+  GameplayUpdated gameplayUpdated(GameplayModel gameplay) {
     return GameplayUpdated(
       gameplay,
     );
@@ -41,14 +41,14 @@ mixin _$GameplayEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String gameId) joined,
-    required TResult Function(Gameplay gameplay) gameplayUpdated,
+    required TResult Function(GameplayModel gameplay) gameplayUpdated,
     required TResult Function() readyTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String gameId)? joined,
-    TResult Function(Gameplay gameplay)? gameplayUpdated,
+    TResult Function(GameplayModel gameplay)? gameplayUpdated,
     TResult Function()? readyTapped,
     required TResult orElse(),
   }) =>
@@ -153,7 +153,7 @@ class _$GameplayJoined implements GameplayJoined {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String gameId) joined,
-    required TResult Function(Gameplay gameplay) gameplayUpdated,
+    required TResult Function(GameplayModel gameplay) gameplayUpdated,
     required TResult Function() readyTapped,
   }) {
     return joined(gameId);
@@ -163,7 +163,7 @@ class _$GameplayJoined implements GameplayJoined {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String gameId)? joined,
-    TResult Function(Gameplay gameplay)? gameplayUpdated,
+    TResult Function(GameplayModel gameplay)? gameplayUpdated,
     TResult Function()? readyTapped,
     required TResult orElse(),
   }) {
@@ -212,7 +212,7 @@ abstract class $GameplayUpdatedCopyWith<$Res> {
   factory $GameplayUpdatedCopyWith(
           GameplayUpdated value, $Res Function(GameplayUpdated) then) =
       _$GameplayUpdatedCopyWithImpl<$Res>;
-  $Res call({Gameplay gameplay});
+  $Res call({GameplayModel gameplay});
 }
 
 /// @nodoc
@@ -234,7 +234,7 @@ class _$GameplayUpdatedCopyWithImpl<$Res>
       gameplay == freezed
           ? _value.gameplay
           : gameplay // ignore: cast_nullable_to_non_nullable
-              as Gameplay,
+              as GameplayModel,
     ));
   }
 }
@@ -245,7 +245,7 @@ class _$GameplayUpdated implements GameplayUpdated {
   const _$GameplayUpdated(this.gameplay);
 
   @override
-  final Gameplay gameplay;
+  final GameplayModel gameplay;
 
   @override
   String toString() {
@@ -274,7 +274,7 @@ class _$GameplayUpdated implements GameplayUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String gameId) joined,
-    required TResult Function(Gameplay gameplay) gameplayUpdated,
+    required TResult Function(GameplayModel gameplay) gameplayUpdated,
     required TResult Function() readyTapped,
   }) {
     return gameplayUpdated(gameplay);
@@ -284,7 +284,7 @@ class _$GameplayUpdated implements GameplayUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String gameId)? joined,
-    TResult Function(Gameplay gameplay)? gameplayUpdated,
+    TResult Function(GameplayModel gameplay)? gameplayUpdated,
     TResult Function()? readyTapped,
     required TResult orElse(),
   }) {
@@ -320,9 +320,9 @@ class _$GameplayUpdated implements GameplayUpdated {
 }
 
 abstract class GameplayUpdated implements GameplayEvent {
-  const factory GameplayUpdated(Gameplay gameplay) = _$GameplayUpdated;
+  const factory GameplayUpdated(GameplayModel gameplay) = _$GameplayUpdated;
 
-  Gameplay get gameplay => throw _privateConstructorUsedError;
+  GameplayModel get gameplay => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GameplayUpdatedCopyWith<GameplayUpdated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -368,7 +368,7 @@ class _$ReadyTapped implements ReadyTapped {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String gameId) joined,
-    required TResult Function(Gameplay gameplay) gameplayUpdated,
+    required TResult Function(GameplayModel gameplay) gameplayUpdated,
     required TResult Function() readyTapped,
   }) {
     return readyTapped();
@@ -378,7 +378,7 @@ class _$ReadyTapped implements ReadyTapped {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String gameId)? joined,
-    TResult Function(Gameplay gameplay)? gameplayUpdated,
+    TResult Function(GameplayModel gameplay)? gameplayUpdated,
     TResult Function()? readyTapped,
     required TResult orElse(),
   }) {

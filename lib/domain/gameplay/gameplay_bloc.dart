@@ -34,10 +34,10 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
           _participantsRepository.getParticipants(event.gameId);
 
       _subscription = gameStream
-          .combineLatest<List<ParticipatingPlayer?>, Gameplay>(
+          .combineLatest<List<ParticipatingPlayer?>, GameplayModel>(
             participantsStream
                 .asyncMap((participants) async => _players(participants)),
-            (game, participatingPlayers) => Gameplay(game,
+            (game, participatingPlayers) => GameplayModel(game,
                 participatingPlayers.whereType<ParticipatingPlayer>().toList()),
           )
           .listen((gameplay) => add(GameplayEvent.gameplayUpdated(gameplay)));
@@ -120,9 +120,9 @@ class ParticipatingPlayer {
   ParticipatingPlayer(this.player, this.participant);
 }
 
-class Gameplay {
+class GameplayModel {
   final Game? game;
   final List<ParticipatingPlayer> participatingPlayers;
 
-  Gameplay(this.game, this.participatingPlayers);
+  GameplayModel(this.game, this.participatingPlayers);
 }

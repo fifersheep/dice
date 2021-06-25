@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dice/presentation/game_lobby/game_lobby_page.dart';
+import 'package:dice/presentation/gameplay/game_lobby_page.dart';
 import 'package:dice/presentation/game_selection/game_selection_page.dart';
 import 'package:dice/presentation/player_selection/player_selection_page.dart';
 

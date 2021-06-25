@@ -1,53 +1,17 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:dice/domain/gameplay/gameplay_bloc.dart';
-import 'package:dice/domain/gameplay/gameplay_event.dart';
 import 'package:dice/domain/gameplay/gameplay_state.dart';
 import 'package:dice/presentation/constants/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-class GameLobbyPage extends StatefulWidget {
-  GameLobbyPage({@PathParam('id') required this.gameId});
+class GameLobby extends StatelessWidget {
+  const GameLobby(this.gameInLobby, this.onTapReady);
 
-  final String gameId;
-
-  @override
-  _GameLobbyPageState createState() => _GameLobbyPageState();
-}
-
-class _GameLobbyPageState extends State<GameLobbyPage> {
-  final bloc = GameplayBloc();
-
-  @override
-  void initState() {
-    bloc.add(GameplayEvent.joined(widget.gameId));
-    super.initState();
-  }
+  final GameInLobby gameInLobby;
+  final Function() onTapReady;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocBuilder(
-        bloc: bloc,
-        builder: (context, snapshot) {
-          if (snapshot is GameInLobby) {
-            return _lobby(snapshot);
-          } else if (snapshot is GameInPlay) {
-            return Center(
-              child: Text('Game ${snapshot.gameName} is in play'),
-            );
-          } else {
-            return Center(
-              child: Text('Game unavailable'),
-            );
-          }
-        },
-      ),
-    );
-  }
-
-  Widget _lobby(GameInLobby state) {
-    if (state.loading) {
+    if (gameInLobby.loading) {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +30,7 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            state.gameName,
+            gameInLobby.gameName,
             style: TextStyle(fontSize: 48),
           ),
           SizedBox(height: 64),
@@ -75,7 +39,7 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
               constraints: BoxConstraints(maxWidth: 600),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
-                children: state.participatingPlayers
+                children: gameInLobby.participatingPlayers
                     .map(
                       (p) => _participant(p),
                     )
@@ -86,12 +50,12 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 16),
             child: GestureDetector(
-              onTap: () => bloc.add(GameplayEvent.readyTapped()),
+              onTap: onTapReady,
               child: Icon(
-                state.currentPlayerReady
+                gameInLobby.currentPlayerReady
                     ? Icons.task_alt_outlined
                     : Icons.radio_button_unchecked_outlined,
-                color: state.currentPlayerReady
+                color: gameInLobby.currentPlayerReady
                     ? ThemeColors.white
                     : ThemeColors.white25,
                 size: 100,
@@ -124,10 +88,4 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
           ),
         ],
       );
-
-  @override
-  void dispose() {
-    bloc.close();
-    super.dispose();
-  }
 }
