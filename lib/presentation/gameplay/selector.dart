@@ -1,3 +1,4 @@
+import 'package:dice/presentation/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -49,7 +50,7 @@ class Selector extends StatelessWidget {
   Color _colorFor(BuildContext context, SelectorStatus status) {
     switch (status) {
       case SelectorStatus.Active:
-        return Theme.of(context).primaryColor;
+        return ThemeColors.textOnPrimary;
       case SelectorStatus.Error:
         return Colors.red;
       default:

@@ -1,3 +1,4 @@
+import 'package:dice/presentation/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'selector.dart';
@@ -49,7 +50,7 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
               widget.name,
               style: TextStyle(
                 fontSize: 24,
-                color: widget.isActive ? Theme.of(context).primaryColor : null,
+                color: widget.isActive ? ThemeColors.textOnPrimary : null,
               ),
             ),
           ),
