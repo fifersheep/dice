@@ -42,10 +42,46 @@ export const startGame = functions.firestore
       const enoughPlayers = participants.size > 1;
 
       if (allParticipantsReady && enoughPlayers) {
-        return firebase.firestore().collection("games").doc(gameId).update({
-          status: "Started",
+        const participantOrder = participants.docs.map((p) => p.id);
+        shuffle(participantOrder);
+
+        const batch = firebase.firestore().batch();
+
+        participants.docs.forEach((p) => {
+          batch.update(p.ref, {
+            ready: p.id == participantOrder[0],
+          });
         });
+
+        const setPlayerReady = batch.commit();
+
+        const startGame = firebase
+            .firestore()
+            .collection("games")
+            .doc(gameId)
+            .update({
+              status: "Started",
+              participantOrder: participantOrder,
+            });
+
+        return Promise.all([setPlayerReady, startGame]);
       } else {
         return Promise.resolve();
       }
     });
+
+const shuffle = (array: string[]) => {
+  let m = array.length;
+  let t;
+  let i;
+
+  while (m) {
+    i = Math.floor(Math.random() * m--);
+
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+
+  return array;
+};

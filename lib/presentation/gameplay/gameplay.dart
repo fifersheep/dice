@@ -13,7 +13,7 @@ class Gameplay extends StatelessWidget {
         children: gameInPlay.participatingPlayers
             .map((pp) => ParticipantDetails(
                   name: pp.player.name,
-                  isActive: true,
+                  isActive: pp.participant.ready,
                 ))
             .toList(),
       );
