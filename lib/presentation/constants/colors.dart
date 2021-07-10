@@ -16,6 +16,7 @@ class ThemeColors {
   static const Color textOnWhite = Color(0x96000000);
 
   // static const Color white = Color(0xFFFFFFFF);
+  static const Color white50 = Color(0x88FFFFFF);
   static const Color white25 = Color(0x40FFFFFF);
 
   static const Color black25 = Color(0x40000000);
