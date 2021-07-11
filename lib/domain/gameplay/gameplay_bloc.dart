@@ -78,12 +78,68 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
             loading: participatingPlayers.length > 1 &&
                 participatingPlayers.every((pp) => pp.participant.ready));
       } else if (game?.status == GameStatus.Started) {
+        // todo: make ordered
+        final slots = participantSlots(participatingPlayers);
+
+        final List<GameInPlayParticipant> leftSegment = [
+          slots.firstWhere((el) => el.slot == ParticipantSlot.TopLeft),
+          slots.firstWhere((el) => el.slot == ParticipantSlot.BottomLeft),
+        ];
+
+        final List<GameInPlayParticipant> rightSegment = [
+          slots.firstWhere((el) => el.slot == ParticipantSlot.TopRight),
+          slots.firstWhere((el) => el.slot == ParticipantSlot.BottomRight),
+        ];
+
         yield GameplayState.inPlay(
           currentPlayerId: currentPlayerId,
           gameName: game!.name,
-          participatingPlayers: participatingPlayers,
+          leftParticipants: leftSegment,
+          rightParticipants: rightSegment,
+          opposingParticipant:
+              slots.firstWhere((el) => el.slot == ParticipantSlot.Top),
+          currentParticipant:
+              slots.firstWhere((el) => el.slot == ParticipantSlot.Bottom),
         );
       }
+    }
+  }
+
+  String bet(int? betQuantity, int? betValue) {
+    if (betQuantity != null && betValue != null) {
+      return '$betQuantity - ${betValue}s';
+    } else {
+      return '-';
+    }
+  }
+
+  List<GameInPlayParticipant> participantSlots(
+          List<ParticipatingPlayer> orderedParticipants) =>
+      orderedParticipants
+          .asMap()
+          .entries
+          .map((pp) => GameInPlayParticipant(
+                pp.value.player.name,
+                bet(pp.value.participant.betQuantity,
+                    pp.value.participant.betValue),
+                slotForParticipant(pp.key, orderedParticipants.length),
+                false, // todo: make this work
+              ))
+          .toList();
+
+  ParticipantSlot slotForParticipant(int i, int n) {
+    if (i == 0) {
+      return ParticipantSlot.Bottom;
+    } else if (n > 2 && i == (n - 1)) {
+      return ParticipantSlot.BottomRight;
+    } else if (n > 2 && i == 1) {
+      return ParticipantSlot.BottomLeft;
+    } else if (n > 4 && i == 2) {
+      return ParticipantSlot.TopLeft;
+    } else if (n > 4 && i == (n - 2)) {
+      return ParticipantSlot.TopRight;
+    } else {
+      return ParticipantSlot.Top;
     }
   }
 
@@ -118,6 +174,17 @@ class ParticipatingPlayer {
   final Participant participant;
 
   ParticipatingPlayer(this.player, this.participant);
+}
+
+enum ParticipantSlot { BottomLeft, TopLeft, Top, TopRight, BottomRight, Bottom }
+
+class GameInPlayParticipant {
+  final String name;
+  final String bet;
+  final ParticipantSlot slot;
+  final bool isActive;
+
+  GameInPlayParticipant(this.name, this.bet, this.slot, this.isActive);
 }
 
 class GameplayModel {

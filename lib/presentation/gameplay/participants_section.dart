@@ -1,9 +1,22 @@
+import 'package:dice/domain/gameplay/gameplay_bloc.dart';
 import 'package:dice/presentation/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'participant_details.dart';
 
 class ParticipantsSection extends StatelessWidget {
+  ParticipantsSection(
+    this.currentParticipant,
+    this.opposingParticipant,
+    this.leftParticipants,
+    this.rightParticipants,
+  );
+
+  final GameInPlayParticipant currentParticipant;
+  final GameInPlayParticipant? opposingParticipant;
+  final List<GameInPlayParticipant> leftParticipants;
+  final List<GameInPlayParticipant> rightParticipants;
+
   @override
   Widget build(BuildContext context) => Container(
         decoration: BoxDecoration(border: Border.all(color: ThemeColors.white)),
@@ -17,34 +30,30 @@ class ParticipantsSection extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ParticipantDetails(
-                    name: "Player 1",
-                    currentBet: "5 - 7s",
-                    isActive: false,
-                  ),
-                  ParticipantDetails(
-                    name: "Player 2",
-                    currentBet: "5-7s",
-                    isActive: false,
-                  ),
-                ],
+                children: leftParticipants
+                    .map((e) => ParticipantDetails(
+                          name: e.name,
+                          currentBet: e.bet,
+                          isActive: e.isActive,
+                        ))
+                    .toList(),
               ),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                if (opposingParticipant != null)
+                  ParticipantDetails(
+                    name: opposingParticipant!.name,
+                    currentBet: opposingParticipant!.bet,
+                    isActive: opposingParticipant!.isActive,
+                  ),
                 ParticipantDetails(
-                  name: "Player 3",
-                  currentBet: "5-7s",
-                  isActive: false,
-                ),
-                ParticipantDetails(
-                  name: "Player 4",
-                  currentBet: "-",
+                  name: currentParticipant.name,
+                  currentBet: currentParticipant.bet,
                   size: 42,
-                  isActive: true,
+                  isActive: currentParticipant.isActive,
                 ),
               ],
             ),
@@ -53,18 +62,13 @@ class ParticipantsSection extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ParticipantDetails(
-                    name: "Player 5",
-                    currentBet: "-",
-                    isActive: false,
-                  ),
-                  ParticipantDetails(
-                    name: "Player 6",
-                    currentBet: "5-7s",
-                    isActive: false,
-                  ),
-                ],
+                children: rightParticipants
+                    .map((e) => ParticipantDetails(
+                          name: e.name,
+                          currentBet: e.bet,
+                          isActive: e.isActive,
+                        ))
+                    .toList(),
               ),
             )
           ],
