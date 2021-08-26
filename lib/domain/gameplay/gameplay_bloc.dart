@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:collection/collection.dart';
 import 'package:dice/data/model/participant.dart';
 import 'package:dice/data/model/player.dart';
 import 'package:dice/data/network/players_repository.dart';
@@ -30,15 +31,13 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
       _subscription?.cancel();
 
       final gameStream = _gameplayRepository.gameStream(event.gameId);
-      final participantsStream =
-          _participantsRepository.getParticipants(event.gameId);
+      final participantsStream = _participantsRepository.getParticipants(event.gameId);
 
       _subscription = gameStream
           .combineLatest<List<ParticipatingPlayer?>, GameplayModel>(
-            participantsStream
-                .asyncMap((participants) async => _players(participants)),
-            (game, participatingPlayers) => GameplayModel(game,
-                participatingPlayers.whereType<ParticipatingPlayer>().toList()),
+            participantsStream.asyncMap((participants) async => _players(participants)),
+            (game, participatingPlayers) =>
+                GameplayModel(game, participatingPlayers.whereType<ParticipatingPlayer>().toList()),
           )
           .listen((gameplay) => add(GameplayEvent.gameplayUpdated(gameplay)));
 
@@ -51,11 +50,9 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
       if (currentPlayerId != null) {
         final currentState = (state as GameInLobby);
         final currentParticipatingPlayer = currentState.participatingPlayers
-            .firstWhere((participatingPlayer) =>
-                participatingPlayer.player.id == currentPlayerId);
+            .firstWhere((participatingPlayer) => participatingPlayer.player.id == currentPlayerId);
         _participantsRepository.setParticipantReady(
-            currentParticipatingPlayer.participant.id,
-            !currentState.currentPlayerReady);
+            currentParticipatingPlayer.participant.id, !currentState.currentPlayerReady);
       }
     }
     super.onEvent(event);
@@ -69,37 +66,32 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
       final participatingPlayers = event.gameplay.participatingPlayers;
       if (game?.status == GameStatus.Created) {
         yield GameplayState.inLobby(
-            currentPlayerReady: participatingPlayers
-                .firstWhere((pp) => pp.participant.playerId == currentPlayerId)
-                .participant
-                .ready,
+            currentPlayerReady:
+                participatingPlayers.firstWhere((pp) => pp.participant.playerId == currentPlayerId).participant.ready,
             gameName: game!.name,
             participatingPlayers: participatingPlayers,
-            loading: participatingPlayers.length > 1 &&
-                participatingPlayers.every((pp) => pp.participant.ready));
+            loading: participatingPlayers.length > 1 && participatingPlayers.every((pp) => pp.participant.ready));
       } else if (game?.status == GameStatus.Started) {
         // todo: make ordered
         final slots = participantSlots(participatingPlayers);
 
         final List<GameInPlayParticipant> leftSegment = [
-          slots.firstWhere((el) => el.slot == ParticipantSlot.TopLeft),
-          slots.firstWhere((el) => el.slot == ParticipantSlot.BottomLeft),
-        ];
+          slots.firstWhereOrNull((el) => el.slot == ParticipantSlot.TopLeft),
+          slots.firstWhereOrNull((el) => el.slot == ParticipantSlot.BottomLeft),
+        ].whereNotNull().toList();
 
         final List<GameInPlayParticipant> rightSegment = [
-          slots.firstWhere((el) => el.slot == ParticipantSlot.TopRight),
-          slots.firstWhere((el) => el.slot == ParticipantSlot.BottomRight),
-        ];
+          slots.firstWhereOrNull((el) => el.slot == ParticipantSlot.TopRight),
+          slots.firstWhereOrNull((el) => el.slot == ParticipantSlot.BottomRight),
+        ].whereNotNull().toList();
 
         yield GameplayState.inPlay(
           currentPlayerId: currentPlayerId,
           gameName: game!.name,
           leftParticipants: leftSegment,
           rightParticipants: rightSegment,
-          opposingParticipant:
-              slots.firstWhere((el) => el.slot == ParticipantSlot.Top),
-          currentParticipant:
-              slots.firstWhere((el) => el.slot == ParticipantSlot.Bottom),
+          opposingParticipant: slots.firstWhere((el) => el.slot == ParticipantSlot.Top),
+          currentParticipant: slots.firstWhere((el) => el.slot == ParticipantSlot.Bottom),
         );
       }
     }
@@ -113,19 +105,16 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
     }
   }
 
-  List<GameInPlayParticipant> participantSlots(
-          List<ParticipatingPlayer> orderedParticipants) =>
-      orderedParticipants
-          .asMap()
-          .entries
-          .map((pp) => GameInPlayParticipant(
-                pp.value.player.name,
-                bet(pp.value.participant.betQuantity,
-                    pp.value.participant.betValue),
-                slotForParticipant(pp.key, orderedParticipants.length),
-                false, // todo: make this work
-              ))
-          .toList();
+  List<GameInPlayParticipant> participantSlots(List<ParticipatingPlayer> orderedParticipants) => orderedParticipants
+      .asMap()
+      .entries
+      .map((pp) => GameInPlayParticipant(
+            pp.value.player.name,
+            bet(pp.value.participant.betQuantity, pp.value.participant.betValue),
+            slotForParticipant(pp.key, orderedParticipants.length),
+            false, // todo: make this work
+          ))
+      .toList();
 
   ParticipantSlot slotForParticipant(int i, int n) {
     if (i == 0) {
@@ -149,8 +138,7 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
     return super.close();
   }
 
-  Future<List<ParticipatingPlayer?>> _players(
-      List<Participant> participants) async {
+  Future<List<ParticipatingPlayer?>> _players(List<Participant> participants) async {
     final futures = participants.map((participant) => _player(participant));
     return Future.wait(futures);
   }
@@ -162,8 +150,7 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
 
   Future<String?> _getCurrentPlayerId() async {
     if (_currentPlayerId == null) {
-      _currentPlayerId = await SharedPreferences.getInstance()
-          .then((prefs) => prefs.getString('currentPlayerId'));
+      _currentPlayerId = await SharedPreferences.getInstance().then((prefs) => prefs.getString('currentPlayerId'));
     }
     return _currentPlayerId;
   }
