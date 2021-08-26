@@ -73,7 +73,10 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
             loading: participatingPlayers.length > 1 && participatingPlayers.every((pp) => pp.participant.ready));
       } else if (game?.status == GameStatus.Started) {
         // todo: make ordered
-        final slots = participantSlots(participatingPlayers);
+        final currentPlayerIndex = participatingPlayers.indexWhere((element) => element.player.id == currentPlayerId);
+        final orderedParticipatingPlayers = participatingPlayers.sublist(currentPlayerIndex)
+          ..addAll(participatingPlayers.sublist(0, currentPlayerIndex));
+        final slots = participantSlots(orderedParticipatingPlayers);
 
         final List<GameInPlayParticipant> leftSegment = [
           slots.firstWhereOrNull((el) => el.slot == ParticipantSlot.TopLeft),
@@ -112,7 +115,7 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
             pp.value.player.name,
             bet(pp.value.participant.betQuantity, pp.value.participant.betValue),
             slotForParticipant(pp.key, orderedParticipants.length),
-            false, // todo: make this work
+            pp.value.participant.ready,
           ))
       .toList();
 
