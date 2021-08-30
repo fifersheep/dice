@@ -72,7 +72,6 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
             participatingPlayers: participatingPlayers,
             loading: participatingPlayers.length > 1 && participatingPlayers.every((pp) => pp.participant.ready));
       } else if (game?.status == GameStatus.Started) {
-        // todo: make ordered
         final currentPlayerIndex = participatingPlayers.indexWhere((element) => element.player.id == currentPlayerId);
         final orderedParticipatingPlayers = participatingPlayers.sublist(currentPlayerIndex)
           ..addAll(participatingPlayers.sublist(0, currentPlayerIndex));

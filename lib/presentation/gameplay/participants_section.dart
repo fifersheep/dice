@@ -6,12 +6,14 @@ import 'participant_details.dart';
 
 class ParticipantsSection extends StatelessWidget {
   ParticipantsSection(
+    this.height,
     this.currentParticipant,
     this.opposingParticipant,
     this.leftParticipants,
     this.rightParticipants,
   );
 
+  final double height;
   final GameInPlayParticipant currentParticipant;
   final GameInPlayParticipant? opposingParticipant;
   final List<GameInPlayParticipant> leftParticipants;
@@ -19,7 +21,7 @@ class ParticipantsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        decoration: BoxDecoration(border: Border.all(color: ThemeColors.white)),
+        height: height,
         padding: const EdgeInsets.all(16),
         child: Row(
           mainAxisSize: MainAxisSize.max,
