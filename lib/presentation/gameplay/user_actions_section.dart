@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'user_action/bet_user_action.dart';
+
 class UserActionsSection extends StatefulWidget {
   const UserActionsSection({Key? key, required this.height}) : super(key: key);
 
@@ -14,8 +16,6 @@ class _UserActionsSectionState extends State<UserActionsSection> {
   Widget build(BuildContext context) => Container(
         height: widget.height,
         padding: const EdgeInsets.all(16),
-        child: Center(
-          child: Text("Action!"),
-        ),
+        child: BetUserAction(),
       );
 }
