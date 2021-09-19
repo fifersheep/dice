@@ -1,5 +1,4 @@
 import 'package:dice/domain/gameplay/gameplay_bloc.dart';
-import 'package:dice/presentation/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'participant_details.dart';

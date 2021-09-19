@@ -15,7 +15,11 @@ import 'gameplay_event.dart';
 import 'gameplay_state.dart';
 
 class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
-  GameplayBloc() : super(GameplayState.loading());
+  GameplayBloc() : super(GameplayState.loading()) {
+    on<GameplayJoined>(_onGameplayJoined);
+    on<ReadyTapped>(_onReadyTapped);
+    on<GameplayUpdated>(_onGameplayUpdated);
+  }
 
   final _gameplayRepository = FirebaseGamesRepository();
   final _participantsRepository = FirebaseParticipantsRepository();
@@ -25,27 +29,28 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
 
   String? _currentPlayerId;
 
-  @override
-  void onEvent(GameplayEvent event) async {
-    if (event is GameplayJoined) {
-      _subscription?.cancel();
+  void _onGameplayJoined(GameplayJoined event, Emitter<GameplayState> emit) async {
+    _subscription?.cancel();
 
-      final gameStream = _gameplayRepository.gameStream(event.gameId);
-      final participantsStream = _participantsRepository.getParticipants(event.gameId);
+    final gameStream = _gameplayRepository.gameStream(event.gameId);
+    final participantsStream = _participantsRepository.getParticipants(event.gameId);
 
-      _subscription = gameStream
-          .combineLatest<List<ParticipatingPlayer?>, GameplayModel>(
-            participantsStream.asyncMap((participants) async => _players(participants)),
-            (game, participatingPlayers) =>
-                GameplayModel(game, participatingPlayers.whereType<ParticipatingPlayer>().toList()),
-          )
-          .listen((gameplay) => add(GameplayEvent.gameplayUpdated(gameplay)));
+    _subscription = gameStream
+        .combineLatest<List<ParticipatingPlayer?>, GameplayModel>(
+          participantsStream.asyncMap((participants) async => _players(participants)),
+          (game, participatingPlayers) =>
+              GameplayModel(game, participatingPlayers.whereType<ParticipatingPlayer>().toList()),
+        )
+        .listen((gameplay) => add(GameplayEvent.gameplayUpdated(gameplay)));
 
-      final currentPlayerId = await _getCurrentPlayerId();
-      if (currentPlayerId != null) {
-        _participantsRepository.addParticipant(event.gameId, currentPlayerId);
-      }
-    } else if (event is ReadyTapped && state is GameInLobby) {
+    final currentPlayerId = await _getCurrentPlayerId();
+    if (currentPlayerId != null) {
+      _participantsRepository.addParticipant(event.gameId, currentPlayerId);
+    }
+  }
+
+  void _onReadyTapped(ReadyTapped event, Emitter<GameplayState> emit) {
+    if (state is GameInLobby) {
       final currentPlayerId = _currentPlayerId;
       if (currentPlayerId != null) {
         final currentState = (state as GameInLobby);
@@ -55,22 +60,20 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
             currentParticipatingPlayer.participant.id, !currentState.currentPlayerReady);
       }
     }
-    super.onEvent(event);
   }
 
-  @override
-  Stream<GameplayState> mapEventToState(GameplayEvent event) async* {
+  void _onGameplayUpdated(GameplayUpdated event, Emitter<GameplayState> emit) async {
     final currentPlayerId = await _getCurrentPlayerId();
     if (event is GameplayUpdated && currentPlayerId != null) {
       final game = event.gameplay.game;
       final participatingPlayers = event.gameplay.participatingPlayers;
       if (game?.status == GameStatus.Created) {
-        yield GameplayState.inLobby(
+        emit(GameplayState.inLobby(
             currentPlayerReady:
                 participatingPlayers.firstWhere((pp) => pp.participant.playerId == currentPlayerId).participant.ready,
             gameName: game!.name,
             participatingPlayers: participatingPlayers,
-            loading: participatingPlayers.length > 1 && participatingPlayers.every((pp) => pp.participant.ready));
+            loading: participatingPlayers.length > 1 && participatingPlayers.every((pp) => pp.participant.ready)));
       } else if (game?.status == GameStatus.Started) {
         final currentPlayerIndex = participatingPlayers.indexWhere((element) => element.player.id == currentPlayerId);
         final orderedParticipatingPlayers = participatingPlayers.sublist(currentPlayerIndex)
@@ -87,14 +90,14 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
           slots.firstWhereOrNull((el) => el.slot == ParticipantSlot.BottomRight),
         ].whereNotNull().toList();
 
-        yield GameplayState.inPlay(
+        emit(GameplayState.inPlay(
           currentPlayerId: currentPlayerId,
           gameName: game!.name,
           leftParticipants: leftSegment,
           rightParticipants: rightSegment,
           opposingParticipant: slots.firstWhere((el) => el.slot == ParticipantSlot.Top),
           currentParticipant: slots.firstWhere((el) => el.slot == ParticipantSlot.Bottom),
-        );
+        ));
       }
     }
   }

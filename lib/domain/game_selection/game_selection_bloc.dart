@@ -9,49 +9,53 @@ class GameSelectionBloc extends Bloc<GameSelectionEvent, GameSelectionState> {
       : super(GameSelectionState.nameChange(
           gameName: "",
           validation: GameSelectionValidation.Invalid,
-        ));
+        )) {
+    on<GameNameChanged>(_onGameNameChanged);
+    on<CreateGamePressed>(_onCreateGamePressed);
+    on<JoinGamePressed>(_onJoinGamePressed);
+  }
 
   final repository = FirebaseGamesRepository();
 
-  @override
-  Stream<GameSelectionState> mapEventToState(GameSelectionEvent event) async* {
-    if (event is GameNameChanged) {
-      if (event.gameName.length < 5) {
-        yield GameSelectionState.nameChange(
-          gameName: event.gameName,
-          validation: GameSelectionValidation.Invalid,
-        );
-      } else {
-        yield GameSelectionState.nameChange(
-          gameName: event.gameName,
-          validation: GameSelectionValidation.Awaiting,
-        );
-        final game = await repository.getGame(event.gameName);
-        if (game != null) {
-          final validation = game.status == GameStatus.Created
-              ? GameSelectionValidation.Joinable
-              : GameSelectionValidation.Unjoinable;
-          yield GameSelectionState.nameChange(
-            gameName: event.gameName,
-            validation: validation,
-          );
-        } else {
-          yield GameSelectionState.nameChange(
-            gameName: event.gameName,
-            validation: GameSelectionValidation.Available,
-          );
-        }
-      }
-    } else if (event is CreateGamePressed) {
-      final game = await repository.createGame(event.gameName);
-      if (game != null) {
-        yield GameSelectionState.gameSelected(game.id);
-      }
-    } else if (event is JoinGamePressed) {
+  void _onGameNameChanged(GameNameChanged event, Emitter<GameSelectionState> emit) async {
+    if (event.gameName.length < 5) {
+      emit(GameSelectionState.nameChange(
+        gameName: event.gameName,
+        validation: GameSelectionValidation.Invalid,
+      ));
+    } else {
+      emit(GameSelectionState.nameChange(
+        gameName: event.gameName,
+        validation: GameSelectionValidation.Awaiting,
+      ));
       final game = await repository.getGame(event.gameName);
       if (game != null) {
-        yield GameSelectionState.gameSelected(game.id);
+        final validation =
+            game.status == GameStatus.Created ? GameSelectionValidation.Joinable : GameSelectionValidation.Unjoinable;
+        emit(GameSelectionState.nameChange(
+          gameName: event.gameName,
+          validation: validation,
+        ));
+      } else {
+        emit(GameSelectionState.nameChange(
+          gameName: event.gameName,
+          validation: GameSelectionValidation.Available,
+        ));
       }
+    }
+  }
+
+  void _onCreateGamePressed(CreateGamePressed event, Emitter<GameSelectionState> emit) async {
+    final game = await repository.createGame(event.gameName);
+    if (game != null) {
+      emit(GameSelectionState.gameSelected(game.id));
+    }
+  }
+
+  void _onJoinGamePressed(JoinGamePressed event, Emitter<GameSelectionState> emit) async {
+    final game = await repository.getGame(event.gameName);
+    if (game != null) {
+      emit(GameSelectionState.gameSelected(game.id));
     }
   }
 }
