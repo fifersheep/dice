@@ -21,6 +21,7 @@ class Gameplay extends StatelessWidget {
             ),
             UserActionsSection(
               height: constraints.maxHeight * 0.6,
+              isActive: gameInPlay.currentParticipant.isActive,
             ),
           ],
         ),
