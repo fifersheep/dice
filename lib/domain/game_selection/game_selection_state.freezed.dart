@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'game_selection_state.dart';
 
@@ -45,6 +47,13 @@ mixin _$GameSelectionState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String gameName, GameSelectionValidation validation)?
+        nameChange,
+    TResult Function(String gameId)? gameSelected,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String gameName, GameSelectionValidation validation)?
         nameChange,
@@ -56,6 +65,12 @@ mixin _$GameSelectionState {
   TResult map<TResult extends Object?>({
     required TResult Function(GameSelectionTitleChange value) nameChange,
     required TResult Function(GameSelected value) gameSelected,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameSelectionTitleChange value)? nameChange,
+    TResult Function(GameSelected value)? gameSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -141,20 +156,18 @@ class _$GameSelectionTitleChange implements GameSelectionTitleChange {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameSelectionTitleChange &&
-            (identical(other.gameName, gameName) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameName, gameName)) &&
-            (identical(other.validation, validation) ||
-                const DeepCollectionEquality()
-                    .equals(other.validation, validation)));
+        (other.runtimeType == runtimeType &&
+            other is GameSelectionTitleChange &&
+            const DeepCollectionEquality().equals(other.gameName, gameName) &&
+            const DeepCollectionEquality()
+                .equals(other.validation, validation));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(gameName) ^
-      const DeepCollectionEquality().hash(validation);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(gameName),
+      const DeepCollectionEquality().hash(validation));
 
   @JsonKey(ignore: true)
   @override
@@ -171,6 +184,16 @@ class _$GameSelectionTitleChange implements GameSelectionTitleChange {
     required TResult Function(String gameId) gameSelected,
   }) {
     return nameChange(gameName, validation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String gameName, GameSelectionValidation validation)?
+        nameChange,
+    TResult Function(String gameId)? gameSelected,
+  }) {
+    return nameChange?.call(gameName, validation);
   }
 
   @override
@@ -198,6 +221,15 @@ class _$GameSelectionTitleChange implements GameSelectionTitleChange {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameSelectionTitleChange value)? nameChange,
+    TResult Function(GameSelected value)? gameSelected,
+  }) {
+    return nameChange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GameSelectionTitleChange value)? nameChange,
     TResult Function(GameSelected value)? gameSelected,
@@ -216,8 +248,8 @@ abstract class GameSelectionTitleChange implements GameSelectionState {
           required GameSelectionValidation validation}) =
       _$GameSelectionTitleChange;
 
-  String get gameName => throw _privateConstructorUsedError;
-  GameSelectionValidation get validation => throw _privateConstructorUsedError;
+  String get gameName;
+  GameSelectionValidation get validation;
   @JsonKey(ignore: true)
   $GameSelectionTitleChangeCopyWith<GameSelectionTitleChange> get copyWith =>
       throw _privateConstructorUsedError;
@@ -271,14 +303,14 @@ class _$GameSelected implements GameSelected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameSelected &&
-            (identical(other.gameId, gameId) ||
-                const DeepCollectionEquality().equals(other.gameId, gameId)));
+        (other.runtimeType == runtimeType &&
+            other is GameSelected &&
+            const DeepCollectionEquality().equals(other.gameId, gameId));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameId);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(gameId));
 
   @JsonKey(ignore: true)
   @override
@@ -294,6 +326,16 @@ class _$GameSelected implements GameSelected {
     required TResult Function(String gameId) gameSelected,
   }) {
     return gameSelected(gameId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String gameName, GameSelectionValidation validation)?
+        nameChange,
+    TResult Function(String gameId)? gameSelected,
+  }) {
+    return gameSelected?.call(gameId);
   }
 
   @override
@@ -321,6 +363,15 @@ class _$GameSelected implements GameSelected {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameSelectionTitleChange value)? nameChange,
+    TResult Function(GameSelected value)? gameSelected,
+  }) {
+    return gameSelected?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GameSelectionTitleChange value)? nameChange,
     TResult Function(GameSelected value)? gameSelected,
@@ -336,7 +387,7 @@ class _$GameSelected implements GameSelected {
 abstract class GameSelected implements GameSelectionState {
   const factory GameSelected(String gameId) = _$GameSelected;
 
-  String get gameId => throw _privateConstructorUsedError;
+  String get gameId;
   @JsonKey(ignore: true)
   $GameSelectedCopyWith<GameSelected> get copyWith =>
       throw _privateConstructorUsedError;

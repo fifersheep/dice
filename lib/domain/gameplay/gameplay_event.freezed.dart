@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'gameplay_event.dart';
 
@@ -46,6 +48,13 @@ mixin _$GameplayEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String gameId)? joined,
+    TResult Function(GameplayModel gameplay)? gameplayUpdated,
+    TResult Function()? readyTapped,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String gameId)? joined,
     TResult Function(GameplayModel gameplay)? gameplayUpdated,
@@ -58,6 +67,13 @@ mixin _$GameplayEvent {
     required TResult Function(GameplayJoined value) joined,
     required TResult Function(GameplayUpdated value) gameplayUpdated,
     required TResult Function(ReadyTapped value) readyTapped,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameplayJoined value)? joined,
+    TResult Function(GameplayUpdated value)? gameplayUpdated,
+    TResult Function(ReadyTapped value)? readyTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -135,14 +151,14 @@ class _$GameplayJoined implements GameplayJoined {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameplayJoined &&
-            (identical(other.gameId, gameId) ||
-                const DeepCollectionEquality().equals(other.gameId, gameId)));
+        (other.runtimeType == runtimeType &&
+            other is GameplayJoined &&
+            const DeepCollectionEquality().equals(other.gameId, gameId));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameId);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(gameId));
 
   @JsonKey(ignore: true)
   @override
@@ -157,6 +173,16 @@ class _$GameplayJoined implements GameplayJoined {
     required TResult Function() readyTapped,
   }) {
     return joined(gameId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String gameId)? joined,
+    TResult Function(GameplayModel gameplay)? gameplayUpdated,
+    TResult Function()? readyTapped,
+  }) {
+    return joined?.call(gameId);
   }
 
   @override
@@ -185,6 +211,16 @@ class _$GameplayJoined implements GameplayJoined {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameplayJoined value)? joined,
+    TResult Function(GameplayUpdated value)? gameplayUpdated,
+    TResult Function(ReadyTapped value)? readyTapped,
+  }) {
+    return joined?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GameplayJoined value)? joined,
     TResult Function(GameplayUpdated value)? gameplayUpdated,
@@ -201,7 +237,7 @@ class _$GameplayJoined implements GameplayJoined {
 abstract class GameplayJoined implements GameplayEvent {
   const factory GameplayJoined(String gameId) = _$GameplayJoined;
 
-  String get gameId => throw _privateConstructorUsedError;
+  String get gameId;
   @JsonKey(ignore: true)
   $GameplayJoinedCopyWith<GameplayJoined> get copyWith =>
       throw _privateConstructorUsedError;
@@ -255,15 +291,14 @@ class _$GameplayUpdated implements GameplayUpdated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameplayUpdated &&
-            (identical(other.gameplay, gameplay) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameplay, gameplay)));
+        (other.runtimeType == runtimeType &&
+            other is GameplayUpdated &&
+            const DeepCollectionEquality().equals(other.gameplay, gameplay));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameplay);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(gameplay));
 
   @JsonKey(ignore: true)
   @override
@@ -278,6 +313,16 @@ class _$GameplayUpdated implements GameplayUpdated {
     required TResult Function() readyTapped,
   }) {
     return gameplayUpdated(gameplay);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String gameId)? joined,
+    TResult Function(GameplayModel gameplay)? gameplayUpdated,
+    TResult Function()? readyTapped,
+  }) {
+    return gameplayUpdated?.call(gameplay);
   }
 
   @override
@@ -306,6 +351,16 @@ class _$GameplayUpdated implements GameplayUpdated {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameplayJoined value)? joined,
+    TResult Function(GameplayUpdated value)? gameplayUpdated,
+    TResult Function(ReadyTapped value)? readyTapped,
+  }) {
+    return gameplayUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GameplayJoined value)? joined,
     TResult Function(GameplayUpdated value)? gameplayUpdated,
@@ -322,7 +377,7 @@ class _$GameplayUpdated implements GameplayUpdated {
 abstract class GameplayUpdated implements GameplayEvent {
   const factory GameplayUpdated(GameplayModel gameplay) = _$GameplayUpdated;
 
-  GameplayModel get gameplay => throw _privateConstructorUsedError;
+  GameplayModel get gameplay;
   @JsonKey(ignore: true)
   $GameplayUpdatedCopyWith<GameplayUpdated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -358,7 +413,8 @@ class _$ReadyTapped implements ReadyTapped {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ReadyTapped);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ReadyTapped);
   }
 
   @override
@@ -372,6 +428,16 @@ class _$ReadyTapped implements ReadyTapped {
     required TResult Function() readyTapped,
   }) {
     return readyTapped();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String gameId)? joined,
+    TResult Function(GameplayModel gameplay)? gameplayUpdated,
+    TResult Function()? readyTapped,
+  }) {
+    return readyTapped?.call();
   }
 
   @override
@@ -396,6 +462,16 @@ class _$ReadyTapped implements ReadyTapped {
     required TResult Function(ReadyTapped value) readyTapped,
   }) {
     return readyTapped(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameplayJoined value)? joined,
+    TResult Function(GameplayUpdated value)? gameplayUpdated,
+    TResult Function(ReadyTapped value)? readyTapped,
+  }) {
+    return readyTapped?.call(this);
   }
 
   @override

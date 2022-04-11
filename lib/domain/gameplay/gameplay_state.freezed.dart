@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'gameplay_state.dart';
 
@@ -78,6 +80,23 @@ mixin _$GameplayState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function(bool currentPlayerReady, String gameName,
+            List<ParticipatingPlayer> participatingPlayers, bool loading)?
+        inLobby,
+    TResult Function(
+            String currentPlayerId,
+            String gameName,
+            List<GameInPlayParticipant> leftParticipants,
+            List<GameInPlayParticipant> rightParticipants,
+            GameInPlayParticipant? opposingParticipant,
+            GameInPlayParticipant currentParticipant)?
+        inPlay,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
@@ -101,6 +120,14 @@ mixin _$GameplayState {
     required TResult Function(GameError value) error,
     required TResult Function(GameInLobby value) inLobby,
     required TResult Function(GameInPlay value) inPlay,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameLoading value)? loading,
+    TResult Function(GameError value)? error,
+    TResult Function(GameInLobby value)? inLobby,
+    TResult Function(GameInPlay value)? inPlay,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -161,7 +188,8 @@ class _$GameLoading implements GameLoading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GameLoading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is GameLoading);
   }
 
   @override
@@ -185,6 +213,26 @@ class _$GameLoading implements GameLoading {
         inPlay,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function(bool currentPlayerReady, String gameName,
+            List<ParticipatingPlayer> participatingPlayers, bool loading)?
+        inLobby,
+    TResult Function(
+            String currentPlayerId,
+            String gameName,
+            List<GameInPlayParticipant> leftParticipants,
+            List<GameInPlayParticipant> rightParticipants,
+            GameInPlayParticipant? opposingParticipant,
+            GameInPlayParticipant currentParticipant)?
+        inPlay,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -220,6 +268,17 @@ class _$GameLoading implements GameLoading {
     required TResult Function(GameInPlay value) inPlay,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameLoading value)? loading,
+    TResult Function(GameError value)? error,
+    TResult Function(GameInLobby value)? inLobby,
+    TResult Function(GameInPlay value)? inPlay,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -270,7 +329,8 @@ class _$GameError implements GameError {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GameError);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is GameError);
   }
 
   @override
@@ -294,6 +354,26 @@ class _$GameError implements GameError {
         inPlay,
   }) {
     return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function(bool currentPlayerReady, String gameName,
+            List<ParticipatingPlayer> participatingPlayers, bool loading)?
+        inLobby,
+    TResult Function(
+            String currentPlayerId,
+            String gameName,
+            List<GameInPlayParticipant> leftParticipants,
+            List<GameInPlayParticipant> rightParticipants,
+            GameInPlayParticipant? opposingParticipant,
+            GameInPlayParticipant currentParticipant)?
+        inPlay,
+  }) {
+    return error?.call();
   }
 
   @override
@@ -329,6 +409,17 @@ class _$GameError implements GameError {
     required TResult Function(GameInPlay value) inPlay,
   }) {
     return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameLoading value)? loading,
+    TResult Function(GameError value)? error,
+    TResult Function(GameInLobby value)? inLobby,
+    TResult Function(GameInPlay value)? inPlay,
+  }) {
+    return error?.call(this);
   }
 
   @override
@@ -427,27 +518,23 @@ class _$GameInLobby implements GameInLobby {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameInLobby &&
-            (identical(other.currentPlayerReady, currentPlayerReady) ||
-                const DeepCollectionEquality()
-                    .equals(other.currentPlayerReady, currentPlayerReady)) &&
-            (identical(other.gameName, gameName) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameName, gameName)) &&
-            (identical(other.participatingPlayers, participatingPlayers) ||
-                const DeepCollectionEquality().equals(
-                    other.participatingPlayers, participatingPlayers)) &&
-            (identical(other.loading, loading) ||
-                const DeepCollectionEquality().equals(other.loading, loading)));
+        (other.runtimeType == runtimeType &&
+            other is GameInLobby &&
+            const DeepCollectionEquality()
+                .equals(other.currentPlayerReady, currentPlayerReady) &&
+            const DeepCollectionEquality().equals(other.gameName, gameName) &&
+            const DeepCollectionEquality()
+                .equals(other.participatingPlayers, participatingPlayers) &&
+            const DeepCollectionEquality().equals(other.loading, loading));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(currentPlayerReady) ^
-      const DeepCollectionEquality().hash(gameName) ^
-      const DeepCollectionEquality().hash(participatingPlayers) ^
-      const DeepCollectionEquality().hash(loading);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(currentPlayerReady),
+      const DeepCollectionEquality().hash(gameName),
+      const DeepCollectionEquality().hash(participatingPlayers),
+      const DeepCollectionEquality().hash(loading));
 
   @JsonKey(ignore: true)
   @override
@@ -472,6 +559,27 @@ class _$GameInLobby implements GameInLobby {
         inPlay,
   }) {
     return inLobby(
+        currentPlayerReady, gameName, participatingPlayers, this.loading);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function(bool currentPlayerReady, String gameName,
+            List<ParticipatingPlayer> participatingPlayers, bool loading)?
+        inLobby,
+    TResult Function(
+            String currentPlayerId,
+            String gameName,
+            List<GameInPlayParticipant> leftParticipants,
+            List<GameInPlayParticipant> rightParticipants,
+            GameInPlayParticipant? opposingParticipant,
+            GameInPlayParticipant currentParticipant)?
+        inPlay,
+  }) {
+    return inLobby?.call(
         currentPlayerReady, gameName, participatingPlayers, this.loading);
   }
 
@@ -513,6 +621,17 @@ class _$GameInLobby implements GameInLobby {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameLoading value)? loading,
+    TResult Function(GameError value)? error,
+    TResult Function(GameInLobby value)? inLobby,
+    TResult Function(GameInPlay value)? inPlay,
+  }) {
+    return inLobby?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GameLoading value)? loading,
     TResult Function(GameError value)? error,
@@ -534,11 +653,10 @@ abstract class GameInLobby implements GameplayState {
       required List<ParticipatingPlayer> participatingPlayers,
       required bool loading}) = _$GameInLobby;
 
-  bool get currentPlayerReady => throw _privateConstructorUsedError;
-  String get gameName => throw _privateConstructorUsedError;
-  List<ParticipatingPlayer> get participatingPlayers =>
-      throw _privateConstructorUsedError;
-  bool get loading => throw _privateConstructorUsedError;
+  bool get currentPlayerReady;
+  String get gameName;
+  List<ParticipatingPlayer> get participatingPlayers;
+  bool get loading;
   @JsonKey(ignore: true)
   $GameInLobbyCopyWith<GameInLobby> get copyWith =>
       throw _privateConstructorUsedError;
@@ -637,36 +755,30 @@ class _$GameInPlay implements GameInPlay {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameInPlay &&
-            (identical(other.currentPlayerId, currentPlayerId) ||
-                const DeepCollectionEquality()
-                    .equals(other.currentPlayerId, currentPlayerId)) &&
-            (identical(other.gameName, gameName) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameName, gameName)) &&
-            (identical(other.leftParticipants, leftParticipants) ||
-                const DeepCollectionEquality()
-                    .equals(other.leftParticipants, leftParticipants)) &&
-            (identical(other.rightParticipants, rightParticipants) ||
-                const DeepCollectionEquality()
-                    .equals(other.rightParticipants, rightParticipants)) &&
-            (identical(other.opposingParticipant, opposingParticipant) ||
-                const DeepCollectionEquality()
-                    .equals(other.opposingParticipant, opposingParticipant)) &&
-            (identical(other.currentParticipant, currentParticipant) ||
-                const DeepCollectionEquality()
-                    .equals(other.currentParticipant, currentParticipant)));
+        (other.runtimeType == runtimeType &&
+            other is GameInPlay &&
+            const DeepCollectionEquality()
+                .equals(other.currentPlayerId, currentPlayerId) &&
+            const DeepCollectionEquality().equals(other.gameName, gameName) &&
+            const DeepCollectionEquality()
+                .equals(other.leftParticipants, leftParticipants) &&
+            const DeepCollectionEquality()
+                .equals(other.rightParticipants, rightParticipants) &&
+            const DeepCollectionEquality()
+                .equals(other.opposingParticipant, opposingParticipant) &&
+            const DeepCollectionEquality()
+                .equals(other.currentParticipant, currentParticipant));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(currentPlayerId) ^
-      const DeepCollectionEquality().hash(gameName) ^
-      const DeepCollectionEquality().hash(leftParticipants) ^
-      const DeepCollectionEquality().hash(rightParticipants) ^
-      const DeepCollectionEquality().hash(opposingParticipant) ^
-      const DeepCollectionEquality().hash(currentParticipant);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(currentPlayerId),
+      const DeepCollectionEquality().hash(gameName),
+      const DeepCollectionEquality().hash(leftParticipants),
+      const DeepCollectionEquality().hash(rightParticipants),
+      const DeepCollectionEquality().hash(opposingParticipant),
+      const DeepCollectionEquality().hash(currentParticipant));
 
   @JsonKey(ignore: true)
   @override
@@ -691,6 +803,27 @@ class _$GameInPlay implements GameInPlay {
         inPlay,
   }) {
     return inPlay(currentPlayerId, gameName, leftParticipants,
+        rightParticipants, opposingParticipant, currentParticipant);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function(bool currentPlayerReady, String gameName,
+            List<ParticipatingPlayer> participatingPlayers, bool loading)?
+        inLobby,
+    TResult Function(
+            String currentPlayerId,
+            String gameName,
+            List<GameInPlayParticipant> leftParticipants,
+            List<GameInPlayParticipant> rightParticipants,
+            GameInPlayParticipant? opposingParticipant,
+            GameInPlayParticipant currentParticipant)?
+        inPlay,
+  }) {
+    return inPlay?.call(currentPlayerId, gameName, leftParticipants,
         rightParticipants, opposingParticipant, currentParticipant);
   }
 
@@ -732,6 +865,17 @@ class _$GameInPlay implements GameInPlay {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameLoading value)? loading,
+    TResult Function(GameError value)? error,
+    TResult Function(GameInLobby value)? inLobby,
+    TResult Function(GameInPlay value)? inPlay,
+  }) {
+    return inPlay?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GameLoading value)? loading,
     TResult Function(GameError value)? error,
@@ -755,16 +899,12 @@ abstract class GameInPlay implements GameplayState {
       required GameInPlayParticipant? opposingParticipant,
       required GameInPlayParticipant currentParticipant}) = _$GameInPlay;
 
-  String get currentPlayerId => throw _privateConstructorUsedError;
-  String get gameName => throw _privateConstructorUsedError;
-  List<GameInPlayParticipant> get leftParticipants =>
-      throw _privateConstructorUsedError;
-  List<GameInPlayParticipant> get rightParticipants =>
-      throw _privateConstructorUsedError;
-  GameInPlayParticipant? get opposingParticipant =>
-      throw _privateConstructorUsedError;
-  GameInPlayParticipant get currentParticipant =>
-      throw _privateConstructorUsedError;
+  String get currentPlayerId;
+  String get gameName;
+  List<GameInPlayParticipant> get leftParticipants;
+  List<GameInPlayParticipant> get rightParticipants;
+  GameInPlayParticipant? get opposingParticipant;
+  GameInPlayParticipant get currentParticipant;
   @JsonKey(ignore: true)
   $GameInPlayCopyWith<GameInPlay> get copyWith =>
       throw _privateConstructorUsedError;

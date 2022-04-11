@@ -3,7 +3,6 @@ import 'package:dice/domain/game_selection/game_selection_bloc.dart';
 import 'package:dice/domain/game_selection/game_selection_event.dart';
 import 'package:dice/domain/game_selection/game_selection_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GameSelectionPage extends StatefulWidget {
@@ -80,8 +79,7 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
                 return _checkingGame();
               } else if (state.validation == GameSelectionValidation.Joinable) {
                 return _joinGame(state.gameName);
-              } else if (state.validation ==
-                  GameSelectionValidation.Unjoinable) {
+              } else if (state.validation == GameSelectionValidation.Unjoinable) {
                 return _alreadyStarted();
               } else {
                 return _noActions();

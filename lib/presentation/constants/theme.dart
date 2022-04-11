@@ -7,8 +7,6 @@ class AppTheme {
 
   static ThemeData get defaultTheme => ThemeData(
         brightness: Brightness.dark,
-        primarySwatch: ThemeColors.white,
-        accentColor: ThemeColors.secondary[300],
         scaffoldBackgroundColor: ThemeColors.primary,
         typography: Typography.material2018(),
         dividerColor: Colors.grey,
@@ -26,8 +24,7 @@ class AppTheme {
             ),
             backgroundColor: MaterialStateProperty.resolveWith<Color>(
               (states) {
-                if (states.contains(MaterialState.disabled))
-                  return ThemeColors.white[50]!;
+                if (states.contains(MaterialState.disabled)) return ThemeColors.white[50]!;
                 return ThemeColors.white; // Use the component's default.
               },
             ),
@@ -35,6 +32,12 @@ class AppTheme {
               (_) => ThemeColors.green,
             ),
           ),
+        ),
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: ThemeColors.white,
+          brightness: Brightness.dark,
+        ).copyWith(
+          secondary: ThemeColors.secondary[300],
         ),
       );
 }

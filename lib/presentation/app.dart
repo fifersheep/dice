@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'constants/theme.dart';
 import 'routes/routes.gr.dart';

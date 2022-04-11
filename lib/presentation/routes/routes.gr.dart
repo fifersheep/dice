@@ -1,65 +1,72 @@
+// **************************************************************************
+// AutoRouteGenerator
+// **************************************************************************
+
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
 // AutoRouteGenerator
 // **************************************************************************
+//
+// ignore_for_file: type=lint
 
-import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/material.dart' as _i2;
-import 'package:flutter/widgets.dart' as _i6;
+import 'package:auto_route/auto_route.dart' as _i4;
+import 'package:flutter/material.dart' as _i5;
 
-import '../game_selection/game_selection_page.dart' as _i4;
-import '../gameplay/game_lobby_page.dart' as _i5;
-import '../player_selection/player_selection_page.dart' as _i3;
+import '../game_selection/game_selection_page.dart' as _i2;
+import '../gameplay/game_lobby_page.dart' as _i3;
+import '../player_selection/player_selection_page.dart' as _i1;
 
-class AppRouter extends _i1.RootStackRouter {
-  AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
+class AppRouter extends _i4.RootStackRouter {
+  AppRouter([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i1.PageFactory> pagesMap = {
-    PlayerSelectionRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i3.PlayerSelectionPage();
-        }),
-    GameSelectionRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (data) {
-          final args = data.argsAs<GameSelectionRouteArgs>(
-              orElse: () => const GameSelectionRouteArgs());
-          return _i4.GameSelectionPage(key: args.key);
-        }),
-    GameLobbyRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (data) {
-          final pathParams = data.pathParams;
-          final args = data.argsAs<GameLobbyRouteArgs>(
-              orElse: () =>
-                  GameLobbyRouteArgs(gameId: pathParams.getString('id')));
-          return _i5.GameLobbyPage(gameId: args.gameId);
-        })
+  final Map<String, _i4.PageFactory> pagesMap = {
+    PlayerSelectionRoute.name: (routeData) {
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i1.PlayerSelectionPage());
+    },
+    GameSelectionRoute.name: (routeData) {
+      final args = routeData.argsAs<GameSelectionRouteArgs>(
+          orElse: () => const GameSelectionRouteArgs());
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i2.GameSelectionPage(key: args.key));
+    },
+    GameLobbyRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<GameLobbyRouteArgs>(
+          orElse: () => GameLobbyRouteArgs(gameId: pathParams.getString('id')));
+      return _i4.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i3.GameLobbyPage(gameId: args.gameId));
+    }
   };
 
   @override
-  List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig('/#redirect',
+  List<_i4.RouteConfig> get routes => [
+        _i4.RouteConfig('/#redirect',
             path: '/', redirectTo: '/player', fullMatch: true),
-        _i1.RouteConfig(PlayerSelectionRoute.name, path: '/player'),
-        _i1.RouteConfig(GameSelectionRoute.name, path: '/games'),
-        _i1.RouteConfig(GameLobbyRoute.name, path: '/games/:id')
+        _i4.RouteConfig(PlayerSelectionRoute.name, path: '/player'),
+        _i4.RouteConfig(GameSelectionRoute.name, path: '/games'),
+        _i4.RouteConfig(GameLobbyRoute.name, path: '/games/:id')
       ];
 }
 
-class PlayerSelectionRoute extends _i1.PageRouteInfo {
-  const PlayerSelectionRoute() : super(name, path: '/player');
+/// generated route for
+/// [_i1.PlayerSelectionPage]
+class PlayerSelectionRoute extends _i4.PageRouteInfo<void> {
+  const PlayerSelectionRoute()
+      : super(PlayerSelectionRoute.name, path: '/player');
 
   static const String name = 'PlayerSelectionRoute';
 }
 
-class GameSelectionRoute extends _i1.PageRouteInfo<GameSelectionRouteArgs> {
-  GameSelectionRoute({_i6.Key? key})
-      : super(name, path: '/games', args: GameSelectionRouteArgs(key: key));
+/// generated route for
+/// [_i2.GameSelectionPage]
+class GameSelectionRoute extends _i4.PageRouteInfo<GameSelectionRouteArgs> {
+  GameSelectionRoute({_i5.Key? key})
+      : super(GameSelectionRoute.name,
+            path: '/games', args: GameSelectionRouteArgs(key: key));
 
   static const String name = 'GameSelectionRoute';
 }
@@ -67,12 +74,19 @@ class GameSelectionRoute extends _i1.PageRouteInfo<GameSelectionRouteArgs> {
 class GameSelectionRouteArgs {
   const GameSelectionRouteArgs({this.key});
 
-  final _i6.Key? key;
+  final _i5.Key? key;
+
+  @override
+  String toString() {
+    return 'GameSelectionRouteArgs{key: $key}';
+  }
 }
 
-class GameLobbyRoute extends _i1.PageRouteInfo<GameLobbyRouteArgs> {
+/// generated route for
+/// [_i3.GameLobbyPage]
+class GameLobbyRoute extends _i4.PageRouteInfo<GameLobbyRouteArgs> {
   GameLobbyRoute({required String gameId})
-      : super(name,
+      : super(GameLobbyRoute.name,
             path: '/games/:id',
             args: GameLobbyRouteArgs(gameId: gameId),
             rawPathParams: {'id': gameId});
@@ -84,4 +98,9 @@ class GameLobbyRouteArgs {
   const GameLobbyRouteArgs({required this.gameId});
 
   final String gameId;
+
+  @override
+  String toString() {
+    return 'GameLobbyRouteArgs{gameId: $gameId}';
+  }
 }

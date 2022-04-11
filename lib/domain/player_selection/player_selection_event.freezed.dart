@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'player_selection_event.dart';
 
@@ -46,6 +48,13 @@ mixin _$PlayerSelectionEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String name)? nameChanged,
+    TResult Function(String name)? createPlayerPressed,
+    TResult Function()? checkForCurrentPlayer,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String name)? nameChanged,
     TResult Function(String name)? createPlayerPressed,
@@ -59,6 +68,13 @@ mixin _$PlayerSelectionEvent {
     required TResult Function(CreatePlayerPressed value) createPlayerPressed,
     required TResult Function(CheckForCurrentPlayer value)
         checkForCurrentPlayer,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PlayerNameChanged value)? nameChanged,
+    TResult Function(CreatePlayerPressed value)? createPlayerPressed,
+    TResult Function(CheckForCurrentPlayer value)? checkForCurrentPlayer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -146,14 +162,14 @@ class _$PlayerNameChanged
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PlayerNameChanged &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+        (other.runtimeType == runtimeType &&
+            other is PlayerNameChanged &&
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(name);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override
@@ -168,6 +184,16 @@ class _$PlayerNameChanged
     required TResult Function() checkForCurrentPlayer,
   }) {
     return nameChanged(name);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String name)? nameChanged,
+    TResult Function(String name)? createPlayerPressed,
+    TResult Function()? checkForCurrentPlayer,
+  }) {
+    return nameChanged?.call(name);
   }
 
   @override
@@ -197,6 +223,16 @@ class _$PlayerNameChanged
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PlayerNameChanged value)? nameChanged,
+    TResult Function(CreatePlayerPressed value)? createPlayerPressed,
+    TResult Function(CheckForCurrentPlayer value)? checkForCurrentPlayer,
+  }) {
+    return nameChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PlayerNameChanged value)? nameChanged,
     TResult Function(CreatePlayerPressed value)? createPlayerPressed,
@@ -213,7 +249,7 @@ class _$PlayerNameChanged
 abstract class PlayerNameChanged implements PlayerSelectionEvent {
   const factory PlayerNameChanged(String name) = _$PlayerNameChanged;
 
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @JsonKey(ignore: true)
   $PlayerNameChangedCopyWith<PlayerNameChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -278,14 +314,14 @@ class _$CreatePlayerPressed
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CreatePlayerPressed &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+        (other.runtimeType == runtimeType &&
+            other is CreatePlayerPressed &&
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(name);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override
@@ -300,6 +336,16 @@ class _$CreatePlayerPressed
     required TResult Function() checkForCurrentPlayer,
   }) {
     return createPlayerPressed(name);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String name)? nameChanged,
+    TResult Function(String name)? createPlayerPressed,
+    TResult Function()? checkForCurrentPlayer,
+  }) {
+    return createPlayerPressed?.call(name);
   }
 
   @override
@@ -329,6 +375,16 @@ class _$CreatePlayerPressed
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PlayerNameChanged value)? nameChanged,
+    TResult Function(CreatePlayerPressed value)? createPlayerPressed,
+    TResult Function(CheckForCurrentPlayer value)? checkForCurrentPlayer,
+  }) {
+    return createPlayerPressed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PlayerNameChanged value)? nameChanged,
     TResult Function(CreatePlayerPressed value)? createPlayerPressed,
@@ -345,7 +401,7 @@ class _$CreatePlayerPressed
 abstract class CreatePlayerPressed implements PlayerSelectionEvent {
   const factory CreatePlayerPressed(String name) = _$CreatePlayerPressed;
 
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @JsonKey(ignore: true)
   $CreatePlayerPressedCopyWith<CreatePlayerPressed> get copyWith =>
       throw _privateConstructorUsedError;
@@ -392,7 +448,8 @@ class _$CheckForCurrentPlayer
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is CheckForCurrentPlayer);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CheckForCurrentPlayer);
   }
 
   @override
@@ -406,6 +463,16 @@ class _$CheckForCurrentPlayer
     required TResult Function() checkForCurrentPlayer,
   }) {
     return checkForCurrentPlayer();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String name)? nameChanged,
+    TResult Function(String name)? createPlayerPressed,
+    TResult Function()? checkForCurrentPlayer,
+  }) {
+    return checkForCurrentPlayer?.call();
   }
 
   @override
@@ -431,6 +498,16 @@ class _$CheckForCurrentPlayer
         checkForCurrentPlayer,
   }) {
     return checkForCurrentPlayer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PlayerNameChanged value)? nameChanged,
+    TResult Function(CreatePlayerPressed value)? createPlayerPressed,
+    TResult Function(CheckForCurrentPlayer value)? checkForCurrentPlayer,
+  }) {
+    return checkForCurrentPlayer?.call(this);
   }
 
   @override

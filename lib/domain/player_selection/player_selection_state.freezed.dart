@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'player_selection_state.dart';
 
@@ -72,6 +74,17 @@ mixin _$PlayerSelectionState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? nameInvalid,
+    TResult Function(String name)? nameAvailable,
+    TResult Function(String name)? nameUnavailable,
+    TResult Function(String name)? checkingName,
+    TResult Function(String name)? nameChange,
+    TResult Function()? playerCreated,
+    TResult Function(String id)? playerExists,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? nameInvalid,
     TResult Function(String name)? nameAvailable,
@@ -92,6 +105,17 @@ mixin _$PlayerSelectionState {
     required TResult Function(PlayerNameChange value) nameChange,
     required TResult Function(PlayerCreated value) playerCreated,
     required TResult Function(PlayerExists value) playerExists,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PlayerNameInvalid value)? nameInvalid,
+    TResult Function(PlayerNameAvailable value)? nameAvailable,
+    TResult Function(PlayerNameUnavailable value)? nameUnavailable,
+    TResult Function(CheckingPlayerName value)? checkingName,
+    TResult Function(PlayerNameChange value)? nameChange,
+    TResult Function(PlayerCreated value)? playerCreated,
+    TResult Function(PlayerExists value)? playerExists,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -156,7 +180,8 @@ class _$PlayerNameInvalid implements PlayerNameInvalid {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is PlayerNameInvalid);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is PlayerNameInvalid);
   }
 
   @override
@@ -174,6 +199,20 @@ class _$PlayerNameInvalid implements PlayerNameInvalid {
     required TResult Function(String id) playerExists,
   }) {
     return nameInvalid();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? nameInvalid,
+    TResult Function(String name)? nameAvailable,
+    TResult Function(String name)? nameUnavailable,
+    TResult Function(String name)? checkingName,
+    TResult Function(String name)? nameChange,
+    TResult Function()? playerCreated,
+    TResult Function(String id)? playerExists,
+  }) {
+    return nameInvalid?.call();
   }
 
   @override
@@ -206,6 +245,20 @@ class _$PlayerNameInvalid implements PlayerNameInvalid {
     required TResult Function(PlayerExists value) playerExists,
   }) {
     return nameInvalid(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PlayerNameInvalid value)? nameInvalid,
+    TResult Function(PlayerNameAvailable value)? nameAvailable,
+    TResult Function(PlayerNameUnavailable value)? nameUnavailable,
+    TResult Function(CheckingPlayerName value)? checkingName,
+    TResult Function(PlayerNameChange value)? nameChange,
+    TResult Function(PlayerCreated value)? playerCreated,
+    TResult Function(PlayerExists value)? playerExists,
+  }) {
+    return nameInvalid?.call(this);
   }
 
   @override
@@ -279,14 +332,14 @@ class _$PlayerNameAvailable implements PlayerNameAvailable {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PlayerNameAvailable &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+        (other.runtimeType == runtimeType &&
+            other is PlayerNameAvailable &&
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(name);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override
@@ -305,6 +358,20 @@ class _$PlayerNameAvailable implements PlayerNameAvailable {
     required TResult Function(String id) playerExists,
   }) {
     return nameAvailable(name);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? nameInvalid,
+    TResult Function(String name)? nameAvailable,
+    TResult Function(String name)? nameUnavailable,
+    TResult Function(String name)? checkingName,
+    TResult Function(String name)? nameChange,
+    TResult Function()? playerCreated,
+    TResult Function(String id)? playerExists,
+  }) {
+    return nameAvailable?.call(name);
   }
 
   @override
@@ -341,6 +408,20 @@ class _$PlayerNameAvailable implements PlayerNameAvailable {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PlayerNameInvalid value)? nameInvalid,
+    TResult Function(PlayerNameAvailable value)? nameAvailable,
+    TResult Function(PlayerNameUnavailable value)? nameUnavailable,
+    TResult Function(CheckingPlayerName value)? checkingName,
+    TResult Function(PlayerNameChange value)? nameChange,
+    TResult Function(PlayerCreated value)? playerCreated,
+    TResult Function(PlayerExists value)? playerExists,
+  }) {
+    return nameAvailable?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PlayerNameInvalid value)? nameInvalid,
     TResult Function(PlayerNameAvailable value)? nameAvailable,
@@ -361,7 +442,7 @@ class _$PlayerNameAvailable implements PlayerNameAvailable {
 abstract class PlayerNameAvailable implements PlayerSelectionState {
   const factory PlayerNameAvailable(String name) = _$PlayerNameAvailable;
 
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @JsonKey(ignore: true)
   $PlayerNameAvailableCopyWith<PlayerNameAvailable> get copyWith =>
       throw _privateConstructorUsedError;
@@ -415,14 +496,14 @@ class _$PlayerNameUnavailable implements PlayerNameUnavailable {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PlayerNameUnavailable &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+        (other.runtimeType == runtimeType &&
+            other is PlayerNameUnavailable &&
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(name);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override
@@ -442,6 +523,20 @@ class _$PlayerNameUnavailable implements PlayerNameUnavailable {
     required TResult Function(String id) playerExists,
   }) {
     return nameUnavailable(name);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? nameInvalid,
+    TResult Function(String name)? nameAvailable,
+    TResult Function(String name)? nameUnavailable,
+    TResult Function(String name)? checkingName,
+    TResult Function(String name)? nameChange,
+    TResult Function()? playerCreated,
+    TResult Function(String id)? playerExists,
+  }) {
+    return nameUnavailable?.call(name);
   }
 
   @override
@@ -478,6 +573,20 @@ class _$PlayerNameUnavailable implements PlayerNameUnavailable {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PlayerNameInvalid value)? nameInvalid,
+    TResult Function(PlayerNameAvailable value)? nameAvailable,
+    TResult Function(PlayerNameUnavailable value)? nameUnavailable,
+    TResult Function(CheckingPlayerName value)? checkingName,
+    TResult Function(PlayerNameChange value)? nameChange,
+    TResult Function(PlayerCreated value)? playerCreated,
+    TResult Function(PlayerExists value)? playerExists,
+  }) {
+    return nameUnavailable?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PlayerNameInvalid value)? nameInvalid,
     TResult Function(PlayerNameAvailable value)? nameAvailable,
@@ -498,7 +607,7 @@ class _$PlayerNameUnavailable implements PlayerNameUnavailable {
 abstract class PlayerNameUnavailable implements PlayerSelectionState {
   const factory PlayerNameUnavailable(String name) = _$PlayerNameUnavailable;
 
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @JsonKey(ignore: true)
   $PlayerNameUnavailableCopyWith<PlayerNameUnavailable> get copyWith =>
       throw _privateConstructorUsedError;
@@ -552,14 +661,14 @@ class _$CheckingPlayerName implements CheckingPlayerName {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CheckingPlayerName &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+        (other.runtimeType == runtimeType &&
+            other is CheckingPlayerName &&
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(name);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override
@@ -578,6 +687,20 @@ class _$CheckingPlayerName implements CheckingPlayerName {
     required TResult Function(String id) playerExists,
   }) {
     return checkingName(name);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? nameInvalid,
+    TResult Function(String name)? nameAvailable,
+    TResult Function(String name)? nameUnavailable,
+    TResult Function(String name)? checkingName,
+    TResult Function(String name)? nameChange,
+    TResult Function()? playerCreated,
+    TResult Function(String id)? playerExists,
+  }) {
+    return checkingName?.call(name);
   }
 
   @override
@@ -614,6 +737,20 @@ class _$CheckingPlayerName implements CheckingPlayerName {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PlayerNameInvalid value)? nameInvalid,
+    TResult Function(PlayerNameAvailable value)? nameAvailable,
+    TResult Function(PlayerNameUnavailable value)? nameUnavailable,
+    TResult Function(CheckingPlayerName value)? checkingName,
+    TResult Function(PlayerNameChange value)? nameChange,
+    TResult Function(PlayerCreated value)? playerCreated,
+    TResult Function(PlayerExists value)? playerExists,
+  }) {
+    return checkingName?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PlayerNameInvalid value)? nameInvalid,
     TResult Function(PlayerNameAvailable value)? nameAvailable,
@@ -634,7 +771,7 @@ class _$CheckingPlayerName implements CheckingPlayerName {
 abstract class CheckingPlayerName implements PlayerSelectionState {
   const factory CheckingPlayerName(String name) = _$CheckingPlayerName;
 
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @JsonKey(ignore: true)
   $CheckingPlayerNameCopyWith<CheckingPlayerName> get copyWith =>
       throw _privateConstructorUsedError;
@@ -688,14 +825,14 @@ class _$PlayerNameChange implements PlayerNameChange {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PlayerNameChange &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+        (other.runtimeType == runtimeType &&
+            other is PlayerNameChange &&
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(name);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override
@@ -714,6 +851,20 @@ class _$PlayerNameChange implements PlayerNameChange {
     required TResult Function(String id) playerExists,
   }) {
     return nameChange(name);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? nameInvalid,
+    TResult Function(String name)? nameAvailable,
+    TResult Function(String name)? nameUnavailable,
+    TResult Function(String name)? checkingName,
+    TResult Function(String name)? nameChange,
+    TResult Function()? playerCreated,
+    TResult Function(String id)? playerExists,
+  }) {
+    return nameChange?.call(name);
   }
 
   @override
@@ -750,6 +901,20 @@ class _$PlayerNameChange implements PlayerNameChange {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PlayerNameInvalid value)? nameInvalid,
+    TResult Function(PlayerNameAvailable value)? nameAvailable,
+    TResult Function(PlayerNameUnavailable value)? nameUnavailable,
+    TResult Function(CheckingPlayerName value)? checkingName,
+    TResult Function(PlayerNameChange value)? nameChange,
+    TResult Function(PlayerCreated value)? playerCreated,
+    TResult Function(PlayerExists value)? playerExists,
+  }) {
+    return nameChange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PlayerNameInvalid value)? nameInvalid,
     TResult Function(PlayerNameAvailable value)? nameAvailable,
@@ -770,7 +935,7 @@ class _$PlayerNameChange implements PlayerNameChange {
 abstract class PlayerNameChange implements PlayerSelectionState {
   const factory PlayerNameChange(String name) = _$PlayerNameChange;
 
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @JsonKey(ignore: true)
   $PlayerNameChangeCopyWith<PlayerNameChange> get copyWith =>
       throw _privateConstructorUsedError;
@@ -807,7 +972,8 @@ class _$PlayerCreated implements PlayerCreated {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is PlayerCreated);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is PlayerCreated);
   }
 
   @override
@@ -825,6 +991,20 @@ class _$PlayerCreated implements PlayerCreated {
     required TResult Function(String id) playerExists,
   }) {
     return playerCreated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? nameInvalid,
+    TResult Function(String name)? nameAvailable,
+    TResult Function(String name)? nameUnavailable,
+    TResult Function(String name)? checkingName,
+    TResult Function(String name)? nameChange,
+    TResult Function()? playerCreated,
+    TResult Function(String id)? playerExists,
+  }) {
+    return playerCreated?.call();
   }
 
   @override
@@ -857,6 +1037,20 @@ class _$PlayerCreated implements PlayerCreated {
     required TResult Function(PlayerExists value) playerExists,
   }) {
     return playerCreated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PlayerNameInvalid value)? nameInvalid,
+    TResult Function(PlayerNameAvailable value)? nameAvailable,
+    TResult Function(PlayerNameUnavailable value)? nameUnavailable,
+    TResult Function(CheckingPlayerName value)? checkingName,
+    TResult Function(PlayerNameChange value)? nameChange,
+    TResult Function(PlayerCreated value)? playerCreated,
+    TResult Function(PlayerExists value)? playerExists,
+  }) {
+    return playerCreated?.call(this);
   }
 
   @override
@@ -930,14 +1124,14 @@ class _$PlayerExists implements PlayerExists {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PlayerExists &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+        (other.runtimeType == runtimeType &&
+            other is PlayerExists &&
+            const DeepCollectionEquality().equals(other.id, id));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(id));
 
   @JsonKey(ignore: true)
   @override
@@ -956,6 +1150,20 @@ class _$PlayerExists implements PlayerExists {
     required TResult Function(String id) playerExists,
   }) {
     return playerExists(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? nameInvalid,
+    TResult Function(String name)? nameAvailable,
+    TResult Function(String name)? nameUnavailable,
+    TResult Function(String name)? checkingName,
+    TResult Function(String name)? nameChange,
+    TResult Function()? playerCreated,
+    TResult Function(String id)? playerExists,
+  }) {
+    return playerExists?.call(id);
   }
 
   @override
@@ -992,6 +1200,20 @@ class _$PlayerExists implements PlayerExists {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PlayerNameInvalid value)? nameInvalid,
+    TResult Function(PlayerNameAvailable value)? nameAvailable,
+    TResult Function(PlayerNameUnavailable value)? nameUnavailable,
+    TResult Function(CheckingPlayerName value)? checkingName,
+    TResult Function(PlayerNameChange value)? nameChange,
+    TResult Function(PlayerCreated value)? playerCreated,
+    TResult Function(PlayerExists value)? playerExists,
+  }) {
+    return playerExists?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PlayerNameInvalid value)? nameInvalid,
     TResult Function(PlayerNameAvailable value)? nameAvailable,
@@ -1012,7 +1234,7 @@ class _$PlayerExists implements PlayerExists {
 abstract class PlayerExists implements PlayerSelectionState {
   const factory PlayerExists(String id) = _$PlayerExists;
 
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @JsonKey(ignore: true)
   $PlayerExistsCopyWith<PlayerExists> get copyWith =>
       throw _privateConstructorUsedError;

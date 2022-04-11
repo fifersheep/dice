@@ -64,7 +64,7 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
 
   void _onGameplayUpdated(GameplayUpdated event, Emitter<GameplayState> emit) async {
     final currentPlayerId = await _getCurrentPlayerId();
-    if (event is GameplayUpdated && currentPlayerId != null) {
+    if (currentPlayerId != null) {
       final game = event.gameplay.game;
       final participatingPlayers = event.gameplay.participatingPlayers;
       if (game?.status == GameStatus.Created) {

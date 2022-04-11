@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'game_selection_event.dart';
 
@@ -50,6 +52,13 @@ mixin _$GameSelectionEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String gameName)? gameNameChanged,
+    TResult Function(String gameName)? createGamePressed,
+    TResult Function(String gameName)? joinGamePressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String gameName)? gameNameChanged,
     TResult Function(String gameName)? createGamePressed,
@@ -62,6 +71,13 @@ mixin _$GameSelectionEvent {
     required TResult Function(GameNameChanged value) gameNameChanged,
     required TResult Function(CreateGamePressed value) createGamePressed,
     required TResult Function(JoinGamePressed value) joinGamePressed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameNameChanged value)? gameNameChanged,
+    TResult Function(CreateGamePressed value)? createGamePressed,
+    TResult Function(JoinGamePressed value)? joinGamePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -168,15 +184,14 @@ class _$GameNameChanged
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GameNameChanged &&
-            (identical(other.gameName, gameName) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameName, gameName)));
+        (other.runtimeType == runtimeType &&
+            other is GameNameChanged &&
+            const DeepCollectionEquality().equals(other.gameName, gameName));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameName);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(gameName));
 
   @JsonKey(ignore: true)
   @override
@@ -191,6 +206,16 @@ class _$GameNameChanged
     required TResult Function(String gameName) joinGamePressed,
   }) {
     return gameNameChanged(gameName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String gameName)? gameNameChanged,
+    TResult Function(String gameName)? createGamePressed,
+    TResult Function(String gameName)? joinGamePressed,
+  }) {
+    return gameNameChanged?.call(gameName);
   }
 
   @override
@@ -219,6 +244,16 @@ class _$GameNameChanged
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameNameChanged value)? gameNameChanged,
+    TResult Function(CreateGamePressed value)? createGamePressed,
+    TResult Function(JoinGamePressed value)? joinGamePressed,
+  }) {
+    return gameNameChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GameNameChanged value)? gameNameChanged,
     TResult Function(CreateGamePressed value)? createGamePressed,
@@ -236,7 +271,7 @@ abstract class GameNameChanged implements GameSelectionEvent {
   const factory GameNameChanged(String gameName) = _$GameNameChanged;
 
   @override
-  String get gameName => throw _privateConstructorUsedError;
+  String get gameName;
   @override
   @JsonKey(ignore: true)
   $GameNameChangedCopyWith<GameNameChanged> get copyWith =>
@@ -303,15 +338,14 @@ class _$CreateGamePressed
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CreateGamePressed &&
-            (identical(other.gameName, gameName) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameName, gameName)));
+        (other.runtimeType == runtimeType &&
+            other is CreateGamePressed &&
+            const DeepCollectionEquality().equals(other.gameName, gameName));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameName);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(gameName));
 
   @JsonKey(ignore: true)
   @override
@@ -326,6 +360,16 @@ class _$CreateGamePressed
     required TResult Function(String gameName) joinGamePressed,
   }) {
     return createGamePressed(gameName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String gameName)? gameNameChanged,
+    TResult Function(String gameName)? createGamePressed,
+    TResult Function(String gameName)? joinGamePressed,
+  }) {
+    return createGamePressed?.call(gameName);
   }
 
   @override
@@ -354,6 +398,16 @@ class _$CreateGamePressed
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameNameChanged value)? gameNameChanged,
+    TResult Function(CreateGamePressed value)? createGamePressed,
+    TResult Function(JoinGamePressed value)? joinGamePressed,
+  }) {
+    return createGamePressed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GameNameChanged value)? gameNameChanged,
     TResult Function(CreateGamePressed value)? createGamePressed,
@@ -371,7 +425,7 @@ abstract class CreateGamePressed implements GameSelectionEvent {
   const factory CreateGamePressed(String gameName) = _$CreateGamePressed;
 
   @override
-  String get gameName => throw _privateConstructorUsedError;
+  String get gameName;
   @override
   @JsonKey(ignore: true)
   $CreateGamePressedCopyWith<CreateGamePressed> get copyWith =>
@@ -438,15 +492,14 @@ class _$JoinGamePressed
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is JoinGamePressed &&
-            (identical(other.gameName, gameName) ||
-                const DeepCollectionEquality()
-                    .equals(other.gameName, gameName)));
+        (other.runtimeType == runtimeType &&
+            other is JoinGamePressed &&
+            const DeepCollectionEquality().equals(other.gameName, gameName));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gameName);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(gameName));
 
   @JsonKey(ignore: true)
   @override
@@ -461,6 +514,16 @@ class _$JoinGamePressed
     required TResult Function(String gameName) joinGamePressed,
   }) {
     return joinGamePressed(gameName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String gameName)? gameNameChanged,
+    TResult Function(String gameName)? createGamePressed,
+    TResult Function(String gameName)? joinGamePressed,
+  }) {
+    return joinGamePressed?.call(gameName);
   }
 
   @override
@@ -489,6 +552,16 @@ class _$JoinGamePressed
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GameNameChanged value)? gameNameChanged,
+    TResult Function(CreateGamePressed value)? createGamePressed,
+    TResult Function(JoinGamePressed value)? joinGamePressed,
+  }) {
+    return joinGamePressed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GameNameChanged value)? gameNameChanged,
     TResult Function(CreateGamePressed value)? createGamePressed,
@@ -506,7 +579,7 @@ abstract class JoinGamePressed implements GameSelectionEvent {
   const factory JoinGamePressed(String gameName) = _$JoinGamePressed;
 
   @override
-  String get gameName => throw _privateConstructorUsedError;
+  String get gameName;
   @override
   @JsonKey(ignore: true)
   $JoinGamePressedCopyWith<JoinGamePressed> get copyWith =>
