@@ -3,7 +3,7 @@ stages:
   - deploy
 
 .flutter:
-  image: cirrusci/flutter:2.2.1
+  image: cirrusci/flutter:2.10.4
   before_script:
     - flutter packages get
     - flutter clean
