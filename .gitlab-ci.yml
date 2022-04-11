@@ -18,7 +18,7 @@ build_web:
       - build/web
 
 deploy-web:
-  image: node:10
+  image: node:12
   stage: deploy
   script:
     - npm i -g firebase-tools
