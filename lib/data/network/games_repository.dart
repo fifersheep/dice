@@ -1,25 +1,54 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dice/data/model/game.dart';
+import 'package:dice/data/network/supabase_client_extensions.dart';
 
-class FirebaseGamesRepository {
-  final _games =
-      FirebaseFirestore.instance.collection('games').withConverter<Game>(
-            fromFirestore: (snapshot, _) =>
-                Game.fromJson(snapshot.id, snapshot.data()!),
-            toFirestore: (game, _) => game.toJson(),
-          );
+abstract class GamesRepository {
+  static GamesRepository? _instance;
+
+  GamesRepository._();
+
+  factory GamesRepository() {
+    if (_instance == null) {
+      _instance = SupabaseGamesRepository();
+    }
+    return _instance!;
+  }
+
+  Future<int?> createGame(String name);
+  Future<bool> isGameJoinable(String name);
+  Future<Game?> getGame(String name);
+  Stream<Game?> gameStream(int id);
+}
+
+class SupabaseGamesRepository extends GamesRepository {
+  SupabaseGamesRepository._() : super._();
+
+  factory SupabaseGamesRepository() => SupabaseGamesRepository._();
 
   // todo: don't set the status client-side, use cloud functions
-  Future<Game?> createGame(String gameName) => _games
-      .add(Game(id: '', name: gameName, status: GameStatus.Created))
-      .then((documentSnapshot) => documentSnapshot.get())
-      .then((game) => game.data());
+  @override
+  Future<int?> createGame(String name) =>
+      SupabaseClientExtensions.instance.rpc('add_game', params: {'name': name}).execute().then((value) => value.data);
 
-  Future<Game?> getGame(String gameName) =>
-      _games.where('name', isEqualTo: gameName).limit(1).get().then((snapshot) {
-        return snapshot.size > 0 ? snapshot.docs[0].data() : null;
-      });
+  @override
+  Future<bool> isGameJoinable(String name) => SupabaseClientExtensions.instance
+      .rpc('is_game_joinable', params: {'name': name})
+      .execute()
+      .then((value) => value.data);
 
-  Stream<Game?> gameStream(String gameId) =>
-      _games.doc(gameId).snapshots().map((e) => e.data());
+  @override
+  Future<Game?> getGame(String name) => SupabaseClientExtensions.instance
+      .from('games')
+      .select()
+      .eq('name', name)
+      .limit(1)
+      .execute()
+      .then((value) => value.data.isNotEmpty ? value.data.map((item) => Game.fromJson(item)).toList()[0] : null);
+
+  @override
+  Stream<Game?> gameStream(int id) => SupabaseClientExtensions.instance
+      .from('games:id=eq.$id')
+      .stream(['id'])
+      .limit(1)
+      .execute()
+      .asyncMap((data) => data.isNotEmpty ? data.map((item) => Game.fromJson(item)).toList()[0] : null);
 }

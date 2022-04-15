@@ -12,11 +12,11 @@ class PlayerSelectionBloc extends Bloc<PlayerSelectionEvent, PlayerSelectionStat
     on<CreatePlayerPressed>(_onCreatePlayerPressed);
   }
 
-  final repository = FirebasePlayersRepository();
+  final repository = PlayersRepository();
 
   Future<void> _onCheckForCurrentPlayer(CheckForCurrentPlayer event, Emitter<PlayerSelectionState> emit) async {
     final prefs = await SharedPreferences.getInstance();
-    final currentPlayerId = prefs.getString('currentPlayerId');
+    final currentPlayerId = prefs.getInt('currentPlayerId');
     if (currentPlayerId != null) {
       emit(PlayerSelectionState.playerExists(currentPlayerId));
     } else {
@@ -28,20 +28,20 @@ class PlayerSelectionBloc extends Bloc<PlayerSelectionEvent, PlayerSelectionStat
     if (event.name.length < 5) {
       emit(PlayerSelectionState.nameInvalid());
     } else {
-      final player = await repository.searchPlayer(event.name);
-      if (player == null) {
-        emit(PlayerSelectionState.nameAvailable(event.name));
-      } else {
+      final playerExists = await repository.doesPlayerExist(event.name);
+      if (playerExists) {
         emit(PlayerSelectionState.nameUnavailable(event.name));
+      } else {
+        emit(PlayerSelectionState.nameAvailable(event.name));
       }
     }
   }
 
   Future<void> _onCreatePlayerPressed(CreatePlayerPressed event, Emitter<PlayerSelectionState> emit) async {
-    final player = await repository.createPlayer(event.name);
-    if (player != null) {
+    final playerId = await repository.createPlayer(event.name);
+    if (playerId != null) {
       SharedPreferences.getInstance().then((prefs) async {
-        await prefs.setString('currentPlayerId', player.id);
+        await prefs.setInt('currentPlayerId', playerId);
       });
       emit(PlayerSelectionState.playerCreated());
     }

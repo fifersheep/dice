@@ -11,7 +11,7 @@ import 'gameplay.dart';
 class GameLobbyPage extends StatefulWidget {
   GameLobbyPage({@PathParam('id') required this.gameId});
 
-  final String gameId;
+  final int gameId;
 
   @override
   _GameLobbyPageState createState() => _GameLobbyPageState();
@@ -33,8 +33,7 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
         bloc: bloc,
         builder: (context, snapshot) {
           if (snapshot is GameInLobby) {
-            return GameLobby(
-                snapshot, () => bloc.add(GameplayEvent.readyTapped()));
+            return GameLobby(snapshot, () => bloc.add(GameplayEvent.readyTapped()));
           } else if (snapshot is GameInPlay) {
             return Gameplay(snapshot);
           } else {

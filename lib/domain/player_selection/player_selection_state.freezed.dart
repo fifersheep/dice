@@ -50,7 +50,7 @@ class _$PlayerSelectionStateTearOff {
     return const PlayerCreated();
   }
 
-  PlayerExists playerExists(String id) {
+  PlayerExists playerExists(int id) {
     return PlayerExists(
       id,
     );
@@ -70,7 +70,7 @@ mixin _$PlayerSelectionState {
     required TResult Function(String name) checkingName,
     required TResult Function(String name) nameChange,
     required TResult Function() playerCreated,
-    required TResult Function(String id) playerExists,
+    required TResult Function(int id) playerExists,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,7 +81,7 @@ mixin _$PlayerSelectionState {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -92,7 +92,7 @@ mixin _$PlayerSelectionState {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -196,7 +196,7 @@ class _$PlayerNameInvalid implements PlayerNameInvalid {
     required TResult Function(String name) checkingName,
     required TResult Function(String name) nameChange,
     required TResult Function() playerCreated,
-    required TResult Function(String id) playerExists,
+    required TResult Function(int id) playerExists,
   }) {
     return nameInvalid();
   }
@@ -210,7 +210,7 @@ class _$PlayerNameInvalid implements PlayerNameInvalid {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
   }) {
     return nameInvalid?.call();
   }
@@ -224,7 +224,7 @@ class _$PlayerNameInvalid implements PlayerNameInvalid {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
     required TResult orElse(),
   }) {
     if (nameInvalid != null) {
@@ -355,7 +355,7 @@ class _$PlayerNameAvailable implements PlayerNameAvailable {
     required TResult Function(String name) checkingName,
     required TResult Function(String name) nameChange,
     required TResult Function() playerCreated,
-    required TResult Function(String id) playerExists,
+    required TResult Function(int id) playerExists,
   }) {
     return nameAvailable(name);
   }
@@ -369,7 +369,7 @@ class _$PlayerNameAvailable implements PlayerNameAvailable {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
   }) {
     return nameAvailable?.call(name);
   }
@@ -383,7 +383,7 @@ class _$PlayerNameAvailable implements PlayerNameAvailable {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
     required TResult orElse(),
   }) {
     if (nameAvailable != null) {
@@ -520,7 +520,7 @@ class _$PlayerNameUnavailable implements PlayerNameUnavailable {
     required TResult Function(String name) checkingName,
     required TResult Function(String name) nameChange,
     required TResult Function() playerCreated,
-    required TResult Function(String id) playerExists,
+    required TResult Function(int id) playerExists,
   }) {
     return nameUnavailable(name);
   }
@@ -534,7 +534,7 @@ class _$PlayerNameUnavailable implements PlayerNameUnavailable {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
   }) {
     return nameUnavailable?.call(name);
   }
@@ -548,7 +548,7 @@ class _$PlayerNameUnavailable implements PlayerNameUnavailable {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
     required TResult orElse(),
   }) {
     if (nameUnavailable != null) {
@@ -684,7 +684,7 @@ class _$CheckingPlayerName implements CheckingPlayerName {
     required TResult Function(String name) checkingName,
     required TResult Function(String name) nameChange,
     required TResult Function() playerCreated,
-    required TResult Function(String id) playerExists,
+    required TResult Function(int id) playerExists,
   }) {
     return checkingName(name);
   }
@@ -698,7 +698,7 @@ class _$CheckingPlayerName implements CheckingPlayerName {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
   }) {
     return checkingName?.call(name);
   }
@@ -712,7 +712,7 @@ class _$CheckingPlayerName implements CheckingPlayerName {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
     required TResult orElse(),
   }) {
     if (checkingName != null) {
@@ -848,7 +848,7 @@ class _$PlayerNameChange implements PlayerNameChange {
     required TResult Function(String name) checkingName,
     required TResult Function(String name) nameChange,
     required TResult Function() playerCreated,
-    required TResult Function(String id) playerExists,
+    required TResult Function(int id) playerExists,
   }) {
     return nameChange(name);
   }
@@ -862,7 +862,7 @@ class _$PlayerNameChange implements PlayerNameChange {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
   }) {
     return nameChange?.call(name);
   }
@@ -876,7 +876,7 @@ class _$PlayerNameChange implements PlayerNameChange {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
     required TResult orElse(),
   }) {
     if (nameChange != null) {
@@ -988,7 +988,7 @@ class _$PlayerCreated implements PlayerCreated {
     required TResult Function(String name) checkingName,
     required TResult Function(String name) nameChange,
     required TResult Function() playerCreated,
-    required TResult Function(String id) playerExists,
+    required TResult Function(int id) playerExists,
   }) {
     return playerCreated();
   }
@@ -1002,7 +1002,7 @@ class _$PlayerCreated implements PlayerCreated {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
   }) {
     return playerCreated?.call();
   }
@@ -1016,7 +1016,7 @@ class _$PlayerCreated implements PlayerCreated {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
     required TResult orElse(),
   }) {
     if (playerCreated != null) {
@@ -1081,7 +1081,7 @@ abstract class $PlayerExistsCopyWith<$Res> {
   factory $PlayerExistsCopyWith(
           PlayerExists value, $Res Function(PlayerExists) then) =
       _$PlayerExistsCopyWithImpl<$Res>;
-  $Res call({String id});
+  $Res call({int id});
 }
 
 /// @nodoc
@@ -1103,7 +1103,7 @@ class _$PlayerExistsCopyWithImpl<$Res>
       id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
@@ -1114,7 +1114,7 @@ class _$PlayerExists implements PlayerExists {
   const _$PlayerExists(this.id);
 
   @override
-  final String id;
+  final int id;
 
   @override
   String toString() {
@@ -1147,7 +1147,7 @@ class _$PlayerExists implements PlayerExists {
     required TResult Function(String name) checkingName,
     required TResult Function(String name) nameChange,
     required TResult Function() playerCreated,
-    required TResult Function(String id) playerExists,
+    required TResult Function(int id) playerExists,
   }) {
     return playerExists(id);
   }
@@ -1161,7 +1161,7 @@ class _$PlayerExists implements PlayerExists {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
   }) {
     return playerExists?.call(id);
   }
@@ -1175,7 +1175,7 @@ class _$PlayerExists implements PlayerExists {
     TResult Function(String name)? checkingName,
     TResult Function(String name)? nameChange,
     TResult Function()? playerCreated,
-    TResult Function(String id)? playerExists,
+    TResult Function(int id)? playerExists,
     required TResult orElse(),
   }) {
     if (playerExists != null) {
@@ -1232,9 +1232,9 @@ class _$PlayerExists implements PlayerExists {
 }
 
 abstract class PlayerExists implements PlayerSelectionState {
-  const factory PlayerExists(String id) = _$PlayerExists;
+  const factory PlayerExists(int id) = _$PlayerExists;
 
-  String get id;
+  int get id;
   @JsonKey(ignore: true)
   $PlayerExistsCopyWith<PlayerExists> get copyWith =>
       throw _privateConstructorUsedError;

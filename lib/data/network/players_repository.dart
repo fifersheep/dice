@@ -1,28 +1,46 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dice/data/model/player.dart';
+import 'package:dice/data/network/supabase_client_extensions.dart';
 
-class FirebasePlayersRepository {
-  final _players =
-      FirebaseFirestore.instance.collection('players').withConverter<Player>(
-            fromFirestore: (snapshot, _) =>
-                Player.fromJson(snapshot.id, snapshot.data()!),
-            toFirestore: (player, _) => player.toJson(),
-          );
+abstract class PlayersRepository {
+  static PlayersRepository? _instance;
 
-  Future<Player?> createPlayer(String playerName) => _players
-      .add(Player(id: '', name: playerName))
-      .then((snapshot) => snapshot.get())
-      .then((player) => player.data());
+  PlayersRepository._();
 
-  Future<Player?> searchPlayer(String name) => _players
-      .where('name', isEqualTo: name)
+  factory PlayersRepository() {
+    if (_instance == null) {
+      _instance = SupabasePlayersRepository();
+    }
+    return _instance!;
+  }
+
+  Future<int?> createPlayer(String playerName);
+  Future<bool> doesPlayerExist(String name);
+  Future<Player?> getPlayer(int id);
+}
+
+class SupabasePlayersRepository extends PlayersRepository {
+  SupabasePlayersRepository._() : super._();
+
+  factory SupabasePlayersRepository() => SupabasePlayersRepository._();
+
+  @override
+  Future<int?> createPlayer(String playerName) => SupabaseClientExtensions.instance
+      .rpc('add_player', params: {'name': playerName})
+      .execute()
+      .then((value) => value.data);
+
+  @override
+  Future<bool> doesPlayerExist(String name) => SupabaseClientExtensions.instance
+      .rpc('does_player_exist', params: {'name': name})
+      .execute()
+      .then((value) => value.data);
+
+  @override
+  Future<Player?> getPlayer(int id) => SupabaseClientExtensions.instance
+      .from('players')
+      .select()
+      .eq('id', id)
       .limit(1)
-      .get()
-      .then((snapshot) => snapshot.size > 0 ? snapshot.docs[0].data() : null);
-
-  Future<Player?> getPlayer(String id) =>
-      _players.doc(id).get().then((snapshot) => snapshot.data());
-
-  Stream<Player?> playersStream(String playerId) =>
-      _players.doc(playerId).snapshots().map((e) => e.data());
+      .execute()
+      .then((value) => value.data.isNotEmpty ? value.data.map((item) => Player.fromJson(item)).toList()[0] : null);
 }

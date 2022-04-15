@@ -40,19 +40,19 @@ class _$GameplayStateTearOff {
   }
 
   GameInPlay inPlay(
-      {required String currentPlayerId,
+      {required int currentPlayerId,
       required String gameName,
-      required List<GameInPlayParticipant> leftParticipants,
-      required List<GameInPlayParticipant> rightParticipants,
-      required GameInPlayParticipant? opposingParticipant,
-      required GameInPlayParticipant currentParticipant}) {
+      required List<GameInPlayParticipation> leftParticipations,
+      required List<GameInPlayParticipation> rightParticipations,
+      required GameInPlayParticipation? opposingParticipation,
+      required GameInPlayParticipation currentParticipation}) {
     return GameInPlay(
       currentPlayerId: currentPlayerId,
       gameName: gameName,
-      leftParticipants: leftParticipants,
-      rightParticipants: rightParticipants,
-      opposingParticipant: opposingParticipant,
-      currentParticipant: currentParticipant,
+      leftParticipations: leftParticipations,
+      rightParticipations: rightParticipations,
+      opposingParticipation: opposingParticipation,
+      currentParticipation: currentParticipation,
     );
   }
 }
@@ -70,12 +70,12 @@ mixin _$GameplayState {
             List<ParticipatingPlayer> participatingPlayers, bool loading)
         inLobby,
     required TResult Function(
-            String currentPlayerId,
+            int currentPlayerId,
             String gameName,
-            List<GameInPlayParticipant> leftParticipants,
-            List<GameInPlayParticipant> rightParticipants,
-            GameInPlayParticipant? opposingParticipant,
-            GameInPlayParticipant currentParticipant)
+            List<GameInPlayParticipation> leftParticipations,
+            List<GameInPlayParticipation> rightParticipations,
+            GameInPlayParticipation? opposingParticipation,
+            GameInPlayParticipation currentParticipation)
         inPlay,
   }) =>
       throw _privateConstructorUsedError;
@@ -87,12 +87,12 @@ mixin _$GameplayState {
             List<ParticipatingPlayer> participatingPlayers, bool loading)?
         inLobby,
     TResult Function(
-            String currentPlayerId,
+            int currentPlayerId,
             String gameName,
-            List<GameInPlayParticipant> leftParticipants,
-            List<GameInPlayParticipant> rightParticipants,
-            GameInPlayParticipant? opposingParticipant,
-            GameInPlayParticipant currentParticipant)?
+            List<GameInPlayParticipation> leftParticipations,
+            List<GameInPlayParticipation> rightParticipations,
+            GameInPlayParticipation? opposingParticipation,
+            GameInPlayParticipation currentParticipation)?
         inPlay,
   }) =>
       throw _privateConstructorUsedError;
@@ -104,12 +104,12 @@ mixin _$GameplayState {
             List<ParticipatingPlayer> participatingPlayers, bool loading)?
         inLobby,
     TResult Function(
-            String currentPlayerId,
+            int currentPlayerId,
             String gameName,
-            List<GameInPlayParticipant> leftParticipants,
-            List<GameInPlayParticipant> rightParticipants,
-            GameInPlayParticipant? opposingParticipant,
-            GameInPlayParticipant currentParticipant)?
+            List<GameInPlayParticipation> leftParticipations,
+            List<GameInPlayParticipation> rightParticipations,
+            GameInPlayParticipation? opposingParticipation,
+            GameInPlayParticipation currentParticipation)?
         inPlay,
     required TResult orElse(),
   }) =>
@@ -204,12 +204,12 @@ class _$GameLoading implements GameLoading {
             List<ParticipatingPlayer> participatingPlayers, bool loading)
         inLobby,
     required TResult Function(
-            String currentPlayerId,
+            int currentPlayerId,
             String gameName,
-            List<GameInPlayParticipant> leftParticipants,
-            List<GameInPlayParticipant> rightParticipants,
-            GameInPlayParticipant? opposingParticipant,
-            GameInPlayParticipant currentParticipant)
+            List<GameInPlayParticipation> leftParticipations,
+            List<GameInPlayParticipation> rightParticipations,
+            GameInPlayParticipation? opposingParticipation,
+            GameInPlayParticipation currentParticipation)
         inPlay,
   }) {
     return loading();
@@ -224,12 +224,12 @@ class _$GameLoading implements GameLoading {
             List<ParticipatingPlayer> participatingPlayers, bool loading)?
         inLobby,
     TResult Function(
-            String currentPlayerId,
+            int currentPlayerId,
             String gameName,
-            List<GameInPlayParticipant> leftParticipants,
-            List<GameInPlayParticipant> rightParticipants,
-            GameInPlayParticipant? opposingParticipant,
-            GameInPlayParticipant currentParticipant)?
+            List<GameInPlayParticipation> leftParticipations,
+            List<GameInPlayParticipation> rightParticipations,
+            GameInPlayParticipation? opposingParticipation,
+            GameInPlayParticipation currentParticipation)?
         inPlay,
   }) {
     return loading?.call();
@@ -244,12 +244,12 @@ class _$GameLoading implements GameLoading {
             List<ParticipatingPlayer> participatingPlayers, bool loading)?
         inLobby,
     TResult Function(
-            String currentPlayerId,
+            int currentPlayerId,
             String gameName,
-            List<GameInPlayParticipant> leftParticipants,
-            List<GameInPlayParticipant> rightParticipants,
-            GameInPlayParticipant? opposingParticipant,
-            GameInPlayParticipant currentParticipant)?
+            List<GameInPlayParticipation> leftParticipations,
+            List<GameInPlayParticipation> rightParticipations,
+            GameInPlayParticipation? opposingParticipation,
+            GameInPlayParticipation currentParticipation)?
         inPlay,
     required TResult orElse(),
   }) {
@@ -345,12 +345,12 @@ class _$GameError implements GameError {
             List<ParticipatingPlayer> participatingPlayers, bool loading)
         inLobby,
     required TResult Function(
-            String currentPlayerId,
+            int currentPlayerId,
             String gameName,
-            List<GameInPlayParticipant> leftParticipants,
-            List<GameInPlayParticipant> rightParticipants,
-            GameInPlayParticipant? opposingParticipant,
-            GameInPlayParticipant currentParticipant)
+            List<GameInPlayParticipation> leftParticipations,
+            List<GameInPlayParticipation> rightParticipations,
+            GameInPlayParticipation? opposingParticipation,
+            GameInPlayParticipation currentParticipation)
         inPlay,
   }) {
     return error();
@@ -365,12 +365,12 @@ class _$GameError implements GameError {
             List<ParticipatingPlayer> participatingPlayers, bool loading)?
         inLobby,
     TResult Function(
-            String currentPlayerId,
+            int currentPlayerId,
             String gameName,
-            List<GameInPlayParticipant> leftParticipants,
-            List<GameInPlayParticipant> rightParticipants,
-            GameInPlayParticipant? opposingParticipant,
-            GameInPlayParticipant currentParticipant)?
+            List<GameInPlayParticipation> leftParticipations,
+            List<GameInPlayParticipation> rightParticipations,
+            GameInPlayParticipation? opposingParticipation,
+            GameInPlayParticipation currentParticipation)?
         inPlay,
   }) {
     return error?.call();
@@ -385,12 +385,12 @@ class _$GameError implements GameError {
             List<ParticipatingPlayer> participatingPlayers, bool loading)?
         inLobby,
     TResult Function(
-            String currentPlayerId,
+            int currentPlayerId,
             String gameName,
-            List<GameInPlayParticipant> leftParticipants,
-            List<GameInPlayParticipant> rightParticipants,
-            GameInPlayParticipant? opposingParticipant,
-            GameInPlayParticipant currentParticipant)?
+            List<GameInPlayParticipation> leftParticipations,
+            List<GameInPlayParticipation> rightParticipations,
+            GameInPlayParticipation? opposingParticipation,
+            GameInPlayParticipation currentParticipation)?
         inPlay,
     required TResult orElse(),
   }) {
@@ -550,12 +550,12 @@ class _$GameInLobby implements GameInLobby {
             List<ParticipatingPlayer> participatingPlayers, bool loading)
         inLobby,
     required TResult Function(
-            String currentPlayerId,
+            int currentPlayerId,
             String gameName,
-            List<GameInPlayParticipant> leftParticipants,
-            List<GameInPlayParticipant> rightParticipants,
-            GameInPlayParticipant? opposingParticipant,
-            GameInPlayParticipant currentParticipant)
+            List<GameInPlayParticipation> leftParticipations,
+            List<GameInPlayParticipation> rightParticipations,
+            GameInPlayParticipation? opposingParticipation,
+            GameInPlayParticipation currentParticipation)
         inPlay,
   }) {
     return inLobby(
@@ -571,12 +571,12 @@ class _$GameInLobby implements GameInLobby {
             List<ParticipatingPlayer> participatingPlayers, bool loading)?
         inLobby,
     TResult Function(
-            String currentPlayerId,
+            int currentPlayerId,
             String gameName,
-            List<GameInPlayParticipant> leftParticipants,
-            List<GameInPlayParticipant> rightParticipants,
-            GameInPlayParticipant? opposingParticipant,
-            GameInPlayParticipant currentParticipant)?
+            List<GameInPlayParticipation> leftParticipations,
+            List<GameInPlayParticipation> rightParticipations,
+            GameInPlayParticipation? opposingParticipation,
+            GameInPlayParticipation currentParticipation)?
         inPlay,
   }) {
     return inLobby?.call(
@@ -592,12 +592,12 @@ class _$GameInLobby implements GameInLobby {
             List<ParticipatingPlayer> participatingPlayers, bool loading)?
         inLobby,
     TResult Function(
-            String currentPlayerId,
+            int currentPlayerId,
             String gameName,
-            List<GameInPlayParticipant> leftParticipants,
-            List<GameInPlayParticipant> rightParticipants,
-            GameInPlayParticipant? opposingParticipant,
-            GameInPlayParticipant currentParticipant)?
+            List<GameInPlayParticipation> leftParticipations,
+            List<GameInPlayParticipation> rightParticipations,
+            GameInPlayParticipation? opposingParticipation,
+            GameInPlayParticipation currentParticipation)?
         inPlay,
     required TResult orElse(),
   }) {
@@ -668,12 +668,12 @@ abstract class $GameInPlayCopyWith<$Res> {
           GameInPlay value, $Res Function(GameInPlay) then) =
       _$GameInPlayCopyWithImpl<$Res>;
   $Res call(
-      {String currentPlayerId,
+      {int currentPlayerId,
       String gameName,
-      List<GameInPlayParticipant> leftParticipants,
-      List<GameInPlayParticipant> rightParticipants,
-      GameInPlayParticipant? opposingParticipant,
-      GameInPlayParticipant currentParticipant});
+      List<GameInPlayParticipation> leftParticipations,
+      List<GameInPlayParticipation> rightParticipations,
+      GameInPlayParticipation? opposingParticipation,
+      GameInPlayParticipation currentParticipation});
 }
 
 /// @nodoc
@@ -689,36 +689,36 @@ class _$GameInPlayCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
   $Res call({
     Object? currentPlayerId = freezed,
     Object? gameName = freezed,
-    Object? leftParticipants = freezed,
-    Object? rightParticipants = freezed,
-    Object? opposingParticipant = freezed,
-    Object? currentParticipant = freezed,
+    Object? leftParticipations = freezed,
+    Object? rightParticipations = freezed,
+    Object? opposingParticipation = freezed,
+    Object? currentParticipation = freezed,
   }) {
     return _then(GameInPlay(
       currentPlayerId: currentPlayerId == freezed
           ? _value.currentPlayerId
           : currentPlayerId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       gameName: gameName == freezed
           ? _value.gameName
           : gameName // ignore: cast_nullable_to_non_nullable
               as String,
-      leftParticipants: leftParticipants == freezed
-          ? _value.leftParticipants
-          : leftParticipants // ignore: cast_nullable_to_non_nullable
-              as List<GameInPlayParticipant>,
-      rightParticipants: rightParticipants == freezed
-          ? _value.rightParticipants
-          : rightParticipants // ignore: cast_nullable_to_non_nullable
-              as List<GameInPlayParticipant>,
-      opposingParticipant: opposingParticipant == freezed
-          ? _value.opposingParticipant
-          : opposingParticipant // ignore: cast_nullable_to_non_nullable
-              as GameInPlayParticipant?,
-      currentParticipant: currentParticipant == freezed
-          ? _value.currentParticipant
-          : currentParticipant // ignore: cast_nullable_to_non_nullable
-              as GameInPlayParticipant,
+      leftParticipations: leftParticipations == freezed
+          ? _value.leftParticipations
+          : leftParticipations // ignore: cast_nullable_to_non_nullable
+              as List<GameInPlayParticipation>,
+      rightParticipations: rightParticipations == freezed
+          ? _value.rightParticipations
+          : rightParticipations // ignore: cast_nullable_to_non_nullable
+              as List<GameInPlayParticipation>,
+      opposingParticipation: opposingParticipation == freezed
+          ? _value.opposingParticipation
+          : opposingParticipation // ignore: cast_nullable_to_non_nullable
+              as GameInPlayParticipation?,
+      currentParticipation: currentParticipation == freezed
+          ? _value.currentParticipation
+          : currentParticipation // ignore: cast_nullable_to_non_nullable
+              as GameInPlayParticipation,
     ));
   }
 }
@@ -729,27 +729,27 @@ class _$GameInPlay implements GameInPlay {
   const _$GameInPlay(
       {required this.currentPlayerId,
       required this.gameName,
-      required this.leftParticipants,
-      required this.rightParticipants,
-      required this.opposingParticipant,
-      required this.currentParticipant});
+      required this.leftParticipations,
+      required this.rightParticipations,
+      required this.opposingParticipation,
+      required this.currentParticipation});
 
   @override
-  final String currentPlayerId;
+  final int currentPlayerId;
   @override
   final String gameName;
   @override
-  final List<GameInPlayParticipant> leftParticipants;
+  final List<GameInPlayParticipation> leftParticipations;
   @override
-  final List<GameInPlayParticipant> rightParticipants;
+  final List<GameInPlayParticipation> rightParticipations;
   @override
-  final GameInPlayParticipant? opposingParticipant;
+  final GameInPlayParticipation? opposingParticipation;
   @override
-  final GameInPlayParticipant currentParticipant;
+  final GameInPlayParticipation currentParticipation;
 
   @override
   String toString() {
-    return 'GameplayState.inPlay(currentPlayerId: $currentPlayerId, gameName: $gameName, leftParticipants: $leftParticipants, rightParticipants: $rightParticipants, opposingParticipant: $opposingParticipant, currentParticipant: $currentParticipant)';
+    return 'GameplayState.inPlay(currentPlayerId: $currentPlayerId, gameName: $gameName, leftParticipations: $leftParticipations, rightParticipations: $rightParticipations, opposingParticipation: $opposingParticipation, currentParticipation: $currentParticipation)';
   }
 
   @override
@@ -761,13 +761,13 @@ class _$GameInPlay implements GameInPlay {
                 .equals(other.currentPlayerId, currentPlayerId) &&
             const DeepCollectionEquality().equals(other.gameName, gameName) &&
             const DeepCollectionEquality()
-                .equals(other.leftParticipants, leftParticipants) &&
+                .equals(other.leftParticipations, leftParticipations) &&
             const DeepCollectionEquality()
-                .equals(other.rightParticipants, rightParticipants) &&
+                .equals(other.rightParticipations, rightParticipations) &&
             const DeepCollectionEquality()
-                .equals(other.opposingParticipant, opposingParticipant) &&
+                .equals(other.opposingParticipation, opposingParticipation) &&
             const DeepCollectionEquality()
-                .equals(other.currentParticipant, currentParticipant));
+                .equals(other.currentParticipation, currentParticipation));
   }
 
   @override
@@ -775,10 +775,10 @@ class _$GameInPlay implements GameInPlay {
       runtimeType,
       const DeepCollectionEquality().hash(currentPlayerId),
       const DeepCollectionEquality().hash(gameName),
-      const DeepCollectionEquality().hash(leftParticipants),
-      const DeepCollectionEquality().hash(rightParticipants),
-      const DeepCollectionEquality().hash(opposingParticipant),
-      const DeepCollectionEquality().hash(currentParticipant));
+      const DeepCollectionEquality().hash(leftParticipations),
+      const DeepCollectionEquality().hash(rightParticipations),
+      const DeepCollectionEquality().hash(opposingParticipation),
+      const DeepCollectionEquality().hash(currentParticipation));
 
   @JsonKey(ignore: true)
   @override
@@ -794,16 +794,16 @@ class _$GameInPlay implements GameInPlay {
             List<ParticipatingPlayer> participatingPlayers, bool loading)
         inLobby,
     required TResult Function(
-            String currentPlayerId,
+            int currentPlayerId,
             String gameName,
-            List<GameInPlayParticipant> leftParticipants,
-            List<GameInPlayParticipant> rightParticipants,
-            GameInPlayParticipant? opposingParticipant,
-            GameInPlayParticipant currentParticipant)
+            List<GameInPlayParticipation> leftParticipations,
+            List<GameInPlayParticipation> rightParticipations,
+            GameInPlayParticipation? opposingParticipation,
+            GameInPlayParticipation currentParticipation)
         inPlay,
   }) {
-    return inPlay(currentPlayerId, gameName, leftParticipants,
-        rightParticipants, opposingParticipant, currentParticipant);
+    return inPlay(currentPlayerId, gameName, leftParticipations,
+        rightParticipations, opposingParticipation, currentParticipation);
   }
 
   @override
@@ -815,16 +815,16 @@ class _$GameInPlay implements GameInPlay {
             List<ParticipatingPlayer> participatingPlayers, bool loading)?
         inLobby,
     TResult Function(
-            String currentPlayerId,
+            int currentPlayerId,
             String gameName,
-            List<GameInPlayParticipant> leftParticipants,
-            List<GameInPlayParticipant> rightParticipants,
-            GameInPlayParticipant? opposingParticipant,
-            GameInPlayParticipant currentParticipant)?
+            List<GameInPlayParticipation> leftParticipations,
+            List<GameInPlayParticipation> rightParticipations,
+            GameInPlayParticipation? opposingParticipation,
+            GameInPlayParticipation currentParticipation)?
         inPlay,
   }) {
-    return inPlay?.call(currentPlayerId, gameName, leftParticipants,
-        rightParticipants, opposingParticipant, currentParticipant);
+    return inPlay?.call(currentPlayerId, gameName, leftParticipations,
+        rightParticipations, opposingParticipation, currentParticipation);
   }
 
   @override
@@ -836,18 +836,18 @@ class _$GameInPlay implements GameInPlay {
             List<ParticipatingPlayer> participatingPlayers, bool loading)?
         inLobby,
     TResult Function(
-            String currentPlayerId,
+            int currentPlayerId,
             String gameName,
-            List<GameInPlayParticipant> leftParticipants,
-            List<GameInPlayParticipant> rightParticipants,
-            GameInPlayParticipant? opposingParticipant,
-            GameInPlayParticipant currentParticipant)?
+            List<GameInPlayParticipation> leftParticipations,
+            List<GameInPlayParticipation> rightParticipations,
+            GameInPlayParticipation? opposingParticipation,
+            GameInPlayParticipation currentParticipation)?
         inPlay,
     required TResult orElse(),
   }) {
     if (inPlay != null) {
-      return inPlay(currentPlayerId, gameName, leftParticipants,
-          rightParticipants, opposingParticipant, currentParticipant);
+      return inPlay(currentPlayerId, gameName, leftParticipations,
+          rightParticipations, opposingParticipation, currentParticipation);
     }
     return orElse();
   }
@@ -892,19 +892,19 @@ class _$GameInPlay implements GameInPlay {
 
 abstract class GameInPlay implements GameplayState {
   const factory GameInPlay(
-      {required String currentPlayerId,
+      {required int currentPlayerId,
       required String gameName,
-      required List<GameInPlayParticipant> leftParticipants,
-      required List<GameInPlayParticipant> rightParticipants,
-      required GameInPlayParticipant? opposingParticipant,
-      required GameInPlayParticipant currentParticipant}) = _$GameInPlay;
+      required List<GameInPlayParticipation> leftParticipations,
+      required List<GameInPlayParticipation> rightParticipations,
+      required GameInPlayParticipation? opposingParticipation,
+      required GameInPlayParticipation currentParticipation}) = _$GameInPlay;
 
-  String get currentPlayerId;
+  int get currentPlayerId;
   String get gameName;
-  List<GameInPlayParticipant> get leftParticipants;
-  List<GameInPlayParticipant> get rightParticipants;
-  GameInPlayParticipant? get opposingParticipant;
-  GameInPlayParticipant get currentParticipant;
+  List<GameInPlayParticipation> get leftParticipations;
+  List<GameInPlayParticipation> get rightParticipations;
+  GameInPlayParticipation? get opposingParticipation;
+  GameInPlayParticipation get currentParticipation;
   @JsonKey(ignore: true)
   $GameInPlayCopyWith<GameInPlay> get copyWith =>
       throw _privateConstructorUsedError;

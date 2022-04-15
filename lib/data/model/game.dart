@@ -9,7 +9,7 @@ class Game {
   final String name;
   final GameStatus status;
 
-  static fromJson(String id, Map<String, dynamic> data) {
+  static Game fromJson(Map<String, dynamic> data) {
     final statuses = {
       'Created': GameStatus.Created,
       'Started': GameStatus.Started,
@@ -17,7 +17,7 @@ class Game {
     };
 
     return Game(
-      id: id,
+      id: "${data['id']}",
       name: data['name'],
       status: statuses[data['status']] ?? GameStatus.Ended,
     );
