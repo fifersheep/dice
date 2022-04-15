@@ -2,14 +2,14 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:collection/collection.dart';
-import 'package:dice/data/model/participant.dart';
+import 'package:dice/data/model/participation.dart';
 import 'package:dice/data/model/player.dart';
 import 'package:dice/data/network/players_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:dice/data/model/game.dart';
 import 'package:dice/data/network/games_repository.dart';
-import 'package:dice/data/network/participants_repository.dart';
+import 'package:dice/data/network/participations_repository.dart';
 
 import 'gameplay_event.dart';
 import 'gameplay_state.dart';
@@ -21,23 +21,23 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
     on<GameplayUpdated>(_onGameplayUpdated);
   }
 
-  final _gameplayRepository = FirebaseGamesRepository();
-  final _participantsRepository = FirebaseParticipantsRepository();
-  final _playersRepository = FirebasePlayersRepository();
+  final _gameplayRepository = GamesRepository();
+  final _participationsRepository = ParticipationsRepository();
+  final _playersRepository = PlayersRepository();
 
   StreamSubscription? _subscription;
 
-  String? _currentPlayerId;
+  int? _currentPlayerId;
 
   void _onGameplayJoined(GameplayJoined event, Emitter<GameplayState> emit) async {
     _subscription?.cancel();
 
     final gameStream = _gameplayRepository.gameStream(event.gameId);
-    final participantsStream = _participantsRepository.getParticipants(event.gameId);
+    final participationsStream = _participationsRepository.getParticipations(event.gameId);
 
     _subscription = gameStream
         .combineLatest<List<ParticipatingPlayer?>, GameplayModel>(
-          participantsStream.asyncMap((participants) async => _players(participants)),
+          participationsStream.asyncMap((participations) async => _players(participations)),
           (game, participatingPlayers) =>
               GameplayModel(game, participatingPlayers.whereType<ParticipatingPlayer>().toList()),
         )
@@ -45,7 +45,7 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
 
     final currentPlayerId = await _getCurrentPlayerId();
     if (currentPlayerId != null) {
-      _participantsRepository.addParticipant(event.gameId, currentPlayerId);
+      _participationsRepository.addParticipation(event.gameId, currentPlayerId);
     }
   }
 
@@ -56,8 +56,11 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
         final currentState = (state as GameInLobby);
         final currentParticipatingPlayer = currentState.participatingPlayers
             .firstWhere((participatingPlayer) => participatingPlayer.player.id == currentPlayerId);
-        _participantsRepository.setParticipantReady(
-            currentParticipatingPlayer.participant.id, !currentState.currentPlayerReady);
+        _participationsRepository.setParticipationReady(
+          currentParticipatingPlayer.participation.gameId,
+          currentParticipatingPlayer.participation.playerId,
+          !currentState.currentPlayerReady,
+        );
       }
     }
   }
@@ -69,34 +72,37 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
       final participatingPlayers = event.gameplay.participatingPlayers;
       if (game?.status == GameStatus.Created) {
         emit(GameplayState.inLobby(
-            currentPlayerReady:
-                participatingPlayers.firstWhere((pp) => pp.participant.playerId == currentPlayerId).participant.ready,
+            currentPlayerReady: participatingPlayers
+                .firstWhere((pp) => pp.participation.playerId == currentPlayerId)
+                .participation
+                .playeReady,
             gameName: game!.name,
             participatingPlayers: participatingPlayers,
-            loading: participatingPlayers.length > 1 && participatingPlayers.every((pp) => pp.participant.ready)));
+            loading:
+                participatingPlayers.length > 1 && participatingPlayers.every((pp) => pp.participation.playeReady)));
       } else if (game?.status == GameStatus.Started) {
         final currentPlayerIndex = participatingPlayers.indexWhere((element) => element.player.id == currentPlayerId);
         final orderedParticipatingPlayers = participatingPlayers.sublist(currentPlayerIndex)
           ..addAll(participatingPlayers.sublist(0, currentPlayerIndex));
-        final slots = participantSlots(orderedParticipatingPlayers);
+        final slots = participationSlots(orderedParticipatingPlayers);
 
-        final List<GameInPlayParticipant> leftSegment = [
-          slots.firstWhereOrNull((el) => el.slot == ParticipantSlot.TopLeft),
-          slots.firstWhereOrNull((el) => el.slot == ParticipantSlot.BottomLeft),
+        final List<GameInPlayParticipation> leftSegment = [
+          slots.firstWhereOrNull((el) => el.slot == ParticipationSlot.TopLeft),
+          slots.firstWhereOrNull((el) => el.slot == ParticipationSlot.BottomLeft),
         ].whereNotNull().toList();
 
-        final List<GameInPlayParticipant> rightSegment = [
-          slots.firstWhereOrNull((el) => el.slot == ParticipantSlot.TopRight),
-          slots.firstWhereOrNull((el) => el.slot == ParticipantSlot.BottomRight),
+        final List<GameInPlayParticipation> rightSegment = [
+          slots.firstWhereOrNull((el) => el.slot == ParticipationSlot.TopRight),
+          slots.firstWhereOrNull((el) => el.slot == ParticipationSlot.BottomRight),
         ].whereNotNull().toList();
 
         emit(GameplayState.inPlay(
           currentPlayerId: currentPlayerId,
           gameName: game!.name,
-          leftParticipants: leftSegment,
-          rightParticipants: rightSegment,
-          opposingParticipant: slots.firstWhere((el) => el.slot == ParticipantSlot.Top),
-          currentParticipant: slots.firstWhere((el) => el.slot == ParticipantSlot.Bottom),
+          leftParticipations: leftSegment,
+          rightParticipations: rightSegment,
+          opposingParticipation: slots.firstWhere((el) => el.slot == ParticipationSlot.Top),
+          currentParticipation: slots.firstWhere((el) => el.slot == ParticipationSlot.Bottom),
         ));
       }
     }
@@ -110,30 +116,31 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
     }
   }
 
-  List<GameInPlayParticipant> participantSlots(List<ParticipatingPlayer> orderedParticipants) => orderedParticipants
-      .asMap()
-      .entries
-      .map((pp) => GameInPlayParticipant(
-            pp.value.player.name,
-            bet(pp.value.participant.betQuantity, pp.value.participant.betValue),
-            slotForParticipant(pp.key, orderedParticipants.length),
-            pp.value.participant.ready,
-          ))
-      .toList();
+  List<GameInPlayParticipation> participationSlots(List<ParticipatingPlayer> orderedParticipations) =>
+      orderedParticipations
+          .asMap()
+          .entries
+          .map((pp) => GameInPlayParticipation(
+                pp.value.player.name,
+                bet(pp.value.participation.betQuantity, pp.value.participation.betValue),
+                slotForParticipation(pp.key, orderedParticipations.length),
+                pp.value.participation.playeReady,
+              ))
+          .toList();
 
-  ParticipantSlot slotForParticipant(int i, int n) {
+  ParticipationSlot slotForParticipation(int i, int n) {
     if (i == 0) {
-      return ParticipantSlot.Bottom;
+      return ParticipationSlot.Bottom;
     } else if (n > 2 && i == (n - 1)) {
-      return ParticipantSlot.BottomRight;
+      return ParticipationSlot.BottomRight;
     } else if (n > 2 && i == 1) {
-      return ParticipantSlot.BottomLeft;
+      return ParticipationSlot.BottomLeft;
     } else if (n > 4 && i == 2) {
-      return ParticipantSlot.TopLeft;
+      return ParticipationSlot.TopLeft;
     } else if (n > 4 && i == (n - 2)) {
-      return ParticipantSlot.TopRight;
+      return ParticipationSlot.TopRight;
     } else {
-      return ParticipantSlot.Top;
+      return ParticipationSlot.Top;
     }
   }
 
@@ -143,19 +150,19 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
     return super.close();
   }
 
-  Future<List<ParticipatingPlayer?>> _players(List<Participant> participants) async {
-    final futures = participants.map((participant) => _player(participant));
+  Future<List<ParticipatingPlayer?>> _players(List<Participation> participations) async {
+    final futures = participations.map((participation) => _player(participation));
     return Future.wait(futures);
   }
 
-  Future<ParticipatingPlayer?> _player(Participant participant) async {
-    final player = await _playersRepository.getPlayer(participant.playerId);
-    return player != null ? ParticipatingPlayer(player, participant) : null;
+  Future<ParticipatingPlayer?> _player(Participation participation) async {
+    final player = await _playersRepository.getPlayer(participation.playerId);
+    return player != null ? ParticipatingPlayer(player, participation) : null;
   }
 
-  Future<String?> _getCurrentPlayerId() async {
+  Future<int?> _getCurrentPlayerId() async {
     if (_currentPlayerId == null) {
-      _currentPlayerId = await SharedPreferences.getInstance().then((prefs) => prefs.getString('currentPlayerId'));
+      _currentPlayerId = await SharedPreferences.getInstance().then((prefs) => prefs.getInt('currentPlayerId'));
     }
     return _currentPlayerId;
   }
@@ -163,20 +170,20 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
 
 class ParticipatingPlayer {
   final Player player;
-  final Participant participant;
+  final Participation participation;
 
-  ParticipatingPlayer(this.player, this.participant);
+  ParticipatingPlayer(this.player, this.participation);
 }
 
-enum ParticipantSlot { BottomLeft, TopLeft, Top, TopRight, BottomRight, Bottom }
+enum ParticipationSlot { BottomLeft, TopLeft, Top, TopRight, BottomRight, Bottom }
 
-class GameInPlayParticipant {
+class GameInPlayParticipation {
   final String name;
   final String bet;
-  final ParticipantSlot slot;
+  final ParticipationSlot slot;
   final bool isActive;
 
-  GameInPlayParticipant(this.name, this.bet, this.slot, this.isActive);
+  GameInPlayParticipation(this.name, this.bet, this.slot, this.isActive);
 }
 
 class GameplayModel {

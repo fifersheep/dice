@@ -41,7 +41,7 @@ class GameLobby extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: gameInLobby.participatingPlayers
                     .map(
-                      (p) => _participant(p),
+                      (p) => _participation(p),
                     )
                     .toList(),
               ),
@@ -52,12 +52,8 @@ class GameLobby extends StatelessWidget {
             child: GestureDetector(
               onTap: onTapReady,
               child: Icon(
-                gameInLobby.currentPlayerReady
-                    ? Icons.task_alt_outlined
-                    : Icons.radio_button_unchecked_outlined,
-                color: gameInLobby.currentPlayerReady
-                    ? ThemeColors.white
-                    : ThemeColors.white25,
+                gameInLobby.currentPlayerReady ? Icons.task_alt_outlined : Icons.radio_button_unchecked_outlined,
+                color: gameInLobby.currentPlayerReady ? ThemeColors.white : ThemeColors.white25,
                 size: 100,
               ),
             ),
@@ -67,7 +63,7 @@ class GameLobby extends StatelessWidget {
     }
   }
 
-  Widget _participant(ParticipatingPlayer participatingPlayer) => Row(
+  Widget _participation(ParticipatingPlayer participatingPlayer) => Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
@@ -77,12 +73,10 @@ class GameLobby extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8),
             child: Icon(
-              participatingPlayer.participant.ready
+              participatingPlayer.participation.playeReady
                   ? Icons.task_alt_outlined
                   : Icons.radio_button_unchecked_outlined,
-              color: participatingPlayer.participant.ready
-                  ? ThemeColors.white
-                  : ThemeColors.white25,
+              color: participatingPlayer.participation.playeReady ? ThemeColors.white : ThemeColors.white25,
               size: 30,
             ),
           ),

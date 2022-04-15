@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$GameplayEventTearOff {
   const _$GameplayEventTearOff();
 
-  GameplayJoined joined(String gameId) {
+  GameplayJoined joined(int gameId) {
     return GameplayJoined(
       gameId,
     );
@@ -42,21 +42,21 @@ const $GameplayEvent = _$GameplayEventTearOff();
 mixin _$GameplayEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String gameId) joined,
+    required TResult Function(int gameId) joined,
     required TResult Function(GameplayModel gameplay) gameplayUpdated,
     required TResult Function() readyTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String gameId)? joined,
+    TResult Function(int gameId)? joined,
     TResult Function(GameplayModel gameplay)? gameplayUpdated,
     TResult Function()? readyTapped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String gameId)? joined,
+    TResult Function(int gameId)? joined,
     TResult Function(GameplayModel gameplay)? gameplayUpdated,
     TResult Function()? readyTapped,
     required TResult orElse(),
@@ -108,7 +108,7 @@ abstract class $GameplayJoinedCopyWith<$Res> {
   factory $GameplayJoinedCopyWith(
           GameplayJoined value, $Res Function(GameplayJoined) then) =
       _$GameplayJoinedCopyWithImpl<$Res>;
-  $Res call({String gameId});
+  $Res call({int gameId});
 }
 
 /// @nodoc
@@ -130,7 +130,7 @@ class _$GameplayJoinedCopyWithImpl<$Res>
       gameId == freezed
           ? _value.gameId
           : gameId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
@@ -141,7 +141,7 @@ class _$GameplayJoined implements GameplayJoined {
   const _$GameplayJoined(this.gameId);
 
   @override
-  final String gameId;
+  final int gameId;
 
   @override
   String toString() {
@@ -168,7 +168,7 @@ class _$GameplayJoined implements GameplayJoined {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String gameId) joined,
+    required TResult Function(int gameId) joined,
     required TResult Function(GameplayModel gameplay) gameplayUpdated,
     required TResult Function() readyTapped,
   }) {
@@ -178,7 +178,7 @@ class _$GameplayJoined implements GameplayJoined {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String gameId)? joined,
+    TResult Function(int gameId)? joined,
     TResult Function(GameplayModel gameplay)? gameplayUpdated,
     TResult Function()? readyTapped,
   }) {
@@ -188,7 +188,7 @@ class _$GameplayJoined implements GameplayJoined {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String gameId)? joined,
+    TResult Function(int gameId)? joined,
     TResult Function(GameplayModel gameplay)? gameplayUpdated,
     TResult Function()? readyTapped,
     required TResult orElse(),
@@ -235,9 +235,9 @@ class _$GameplayJoined implements GameplayJoined {
 }
 
 abstract class GameplayJoined implements GameplayEvent {
-  const factory GameplayJoined(String gameId) = _$GameplayJoined;
+  const factory GameplayJoined(int gameId) = _$GameplayJoined;
 
-  String get gameId;
+  int get gameId;
   @JsonKey(ignore: true)
   $GameplayJoinedCopyWith<GameplayJoined> get copyWith =>
       throw _privateConstructorUsedError;
@@ -308,7 +308,7 @@ class _$GameplayUpdated implements GameplayUpdated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String gameId) joined,
+    required TResult Function(int gameId) joined,
     required TResult Function(GameplayModel gameplay) gameplayUpdated,
     required TResult Function() readyTapped,
   }) {
@@ -318,7 +318,7 @@ class _$GameplayUpdated implements GameplayUpdated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String gameId)? joined,
+    TResult Function(int gameId)? joined,
     TResult Function(GameplayModel gameplay)? gameplayUpdated,
     TResult Function()? readyTapped,
   }) {
@@ -328,7 +328,7 @@ class _$GameplayUpdated implements GameplayUpdated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String gameId)? joined,
+    TResult Function(int gameId)? joined,
     TResult Function(GameplayModel gameplay)? gameplayUpdated,
     TResult Function()? readyTapped,
     required TResult orElse(),
@@ -423,7 +423,7 @@ class _$ReadyTapped implements ReadyTapped {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String gameId) joined,
+    required TResult Function(int gameId) joined,
     required TResult Function(GameplayModel gameplay) gameplayUpdated,
     required TResult Function() readyTapped,
   }) {
@@ -433,7 +433,7 @@ class _$ReadyTapped implements ReadyTapped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String gameId)? joined,
+    TResult Function(int gameId)? joined,
     TResult Function(GameplayModel gameplay)? gameplayUpdated,
     TResult Function()? readyTapped,
   }) {
@@ -443,7 +443,7 @@ class _$ReadyTapped implements ReadyTapped {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String gameId)? joined,
+    TResult Function(int gameId)? joined,
     TResult Function(GameplayModel gameplay)? gameplayUpdated,
     TResult Function()? readyTapped,
     required TResult orElse(),

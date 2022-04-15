@@ -36,7 +36,7 @@ class AppRouter extends _i4.RootStackRouter {
     GameLobbyRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<GameLobbyRouteArgs>(
-          orElse: () => GameLobbyRouteArgs(gameId: pathParams.getString('id')));
+          orElse: () => GameLobbyRouteArgs(gameId: pathParams.getInt('id')));
       return _i4.MaterialPageX<dynamic>(
           routeData: routeData, child: _i3.GameLobbyPage(gameId: args.gameId));
     }
@@ -85,7 +85,7 @@ class GameSelectionRouteArgs {
 /// generated route for
 /// [_i3.GameLobbyPage]
 class GameLobbyRoute extends _i4.PageRouteInfo<GameLobbyRouteArgs> {
-  GameLobbyRoute({required String gameId})
+  GameLobbyRoute({required int gameId})
       : super(GameLobbyRoute.name,
             path: '/games/:id',
             args: GameLobbyRouteArgs(gameId: gameId),
@@ -97,7 +97,7 @@ class GameLobbyRoute extends _i4.PageRouteInfo<GameLobbyRouteArgs> {
 class GameLobbyRouteArgs {
   const GameLobbyRouteArgs({required this.gameId});
 
-  final String gameId;
+  final int gameId;
 
   @override
   String toString() {

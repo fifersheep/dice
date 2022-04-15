@@ -4,12 +4,12 @@ class Player {
     required this.name,
   });
 
-  final String id;
+  final int id;
   final String name;
 
-  static fromJson(String id, Map<String, dynamic> data) {
+  static Player fromJson(Map<String, dynamic> data) {
     return Player(
-      id: id,
+      id: data['id'],
       name: data['name'],
     );
   }

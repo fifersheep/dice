@@ -1,8 +1,8 @@
 import 'package:dice/presentation/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-class ParticipantDetails extends StatelessWidget {
-  const ParticipantDetails({
+class ParticipationDetails extends StatelessWidget {
+  const ParticipationDetails({
     required this.name,
     required this.currentBet,
     this.size = 24,

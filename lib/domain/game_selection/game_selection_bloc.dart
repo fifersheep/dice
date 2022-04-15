@@ -15,7 +15,7 @@ class GameSelectionBloc extends Bloc<GameSelectionEvent, GameSelectionState> {
     on<JoinGamePressed>(_onJoinGamePressed);
   }
 
-  final repository = FirebaseGamesRepository();
+  final repository = GamesRepository();
 
   void _onGameNameChanged(GameNameChanged event, Emitter<GameSelectionState> emit) async {
     if (event.gameName.length < 5) {
@@ -46,9 +46,9 @@ class GameSelectionBloc extends Bloc<GameSelectionEvent, GameSelectionState> {
   }
 
   void _onCreateGamePressed(CreateGamePressed event, Emitter<GameSelectionState> emit) async {
-    final game = await repository.createGame(event.gameName);
-    if (game != null) {
-      emit(GameSelectionState.gameSelected(game.id));
+    final gameId = await repository.createGame(event.gameName);
+    if (gameId != null) {
+      emit(GameSelectionState.gameSelected("$gameId"));
     }
   }
 

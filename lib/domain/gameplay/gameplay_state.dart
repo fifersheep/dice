@@ -3,11 +3,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'gameplay_state.freezed.dart';
 
-class LobbyParticipantInfo {
+class LobbyParticipationInfo {
   final String name;
   final bool ready;
 
-  LobbyParticipantInfo(this.name, this.ready);
+  LobbyParticipationInfo(this.name, this.ready);
 }
 
 @freezed
@@ -23,11 +23,11 @@ class GameplayState with _$GameplayState {
   }) = GameInLobby;
 
   const factory GameplayState.inPlay({
-    required String currentPlayerId,
+    required int currentPlayerId,
     required String gameName,
-    required List<GameInPlayParticipant> leftParticipants,
-    required List<GameInPlayParticipant> rightParticipants,
-    required GameInPlayParticipant? opposingParticipant,
-    required GameInPlayParticipant currentParticipant,
+    required List<GameInPlayParticipation> leftParticipations,
+    required List<GameInPlayParticipation> rightParticipations,
+    required GameInPlayParticipation? opposingParticipation,
+    required GameInPlayParticipation currentParticipation,
   }) = GameInPlay;
 }
