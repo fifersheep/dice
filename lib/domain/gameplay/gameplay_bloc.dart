@@ -32,6 +32,11 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
   void _onGameplayJoined(GameplayJoined event, Emitter<GameplayState> emit) async {
     _subscription?.cancel();
 
+    final currentPlayerId = await _getCurrentPlayerId();
+    if (currentPlayerId != null) {
+      await _participationsRepository.addParticipation(event.gameId, currentPlayerId);
+    }
+
     final gameStream = _gameplayRepository.gameStream(event.gameId);
     final participationsStream = _participationsRepository.getParticipations(event.gameId);
 
@@ -42,11 +47,6 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
               GameplayModel(game, participatingPlayers.whereType<ParticipatingPlayer>().toList()),
         )
         .listen((gameplay) => add(GameplayEvent.gameplayUpdated(gameplay)));
-
-    final currentPlayerId = await _getCurrentPlayerId();
-    if (currentPlayerId != null) {
-      _participationsRepository.addParticipation(event.gameId, currentPlayerId);
-    }
   }
 
   void _onReadyTapped(ReadyTapped event, Emitter<GameplayState> emit) {
