@@ -25,7 +25,7 @@ deploy-web:
   script:
     - npm i -g firebase-tools
     - firebase use --token $FIREBASE_TOKEN
-    - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID, sbu $SUPABASE_URL" --non-interactive --token $FIREBASE_TOKEN --except functions
+    - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID" --non-interactive --token $FIREBASE_TOKEN --except functions
   only:
     - main
 
