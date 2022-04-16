@@ -15,8 +15,3 @@ It's really a sample app for playing with a Supabase backend, but might as well 
    1. `SUPABASE_ANON_KEY` for release build token, from the console
    1. `SUPABASE_DEV_URL` for debug build URL, from the output of `supabase start`
    1. `SUPABASE_DEV_ANON_KEY` for debug build token, from the output of `supabase start`
-
-## Outdated
-
-Start the Firestore emulator
-`firebase emulators:start`
