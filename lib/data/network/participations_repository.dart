@@ -41,15 +41,10 @@ class SupabaseParticipationsRepository extends ParticipationsRepository {
       ).execute();
 
   @override
-  Future<void> setParticipationReady(int gameId, int playerId, bool isReady) => SupabaseClientExtensions.instance
-      .from('participations')
-      .update(
-        {
-          'player_ready': isReady,
-        },
-        returning: ReturningOption.minimal,
-      )
-      .eq('game_id', gameId)
-      .eq('player_id', playerId)
-      .execute();
+  Future<void> setParticipationReady(int gameId, int playerId, bool isReady) =>
+      SupabaseClientExtensions.instance.rpc('set_player_ready', params: {
+        'game_id': gameId,
+        'player_id': playerId,
+        'player_ready': isReady,
+      }).execute();
 }
