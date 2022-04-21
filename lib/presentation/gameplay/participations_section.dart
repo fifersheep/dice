@@ -19,60 +19,64 @@ class ParticipationsSection extends StatelessWidget {
   final List<GameInPlayParticipation> rightParticipations;
 
   @override
-  Widget build(BuildContext context) => Container(
-        height: height,
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 64),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: leftParticipations
-                    .map((e) => ParticipationDetails(
-                          name: e.name,
-                          currentBet: e.bet,
-                          isActive: e.isActive,
-                        ))
-                    .toList(),
-              ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                if (opposingParticipation != null)
-                  ParticipationDetails(
-                    name: opposingParticipation!.name,
-                    currentBet: opposingParticipation!.bet,
-                    isActive: opposingParticipation!.isActive,
-                  ),
-                ParticipationDetails(
-                  name: currentParticipation.name,
-                  currentBet: currentParticipation.bet,
-                  size: 42,
-                  isActive: currentParticipation.isActive,
+  Widget build(BuildContext context) => Center(
+        child: Container(
+          height: height,
+          padding: const EdgeInsets.all(16),
+          constraints: BoxConstraints(maxWidth: 800),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 64),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: leftParticipations
+                      .map((e) => ParticipationDetails(
+                            name: e.name,
+                            currentBet: e.bet,
+                            isActive: e.isActive,
+                          ))
+                      .toList(),
                 ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 64),
-              child: Column(
+              ),
+              Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: rightParticipations
-                    .map((e) => ParticipationDetails(
-                          name: e.name,
-                          currentBet: e.bet,
-                          isActive: e.isActive,
-                        ))
-                    .toList(),
+                children: [
+                  if (opposingParticipation != null)
+                    ParticipationDetails(
+                      name: opposingParticipation!.name,
+                      currentBet: opposingParticipation!.bet,
+                      isActive: opposingParticipation!.isActive,
+                    ),
+                  Spacer(),
+                  ParticipationDetails(
+                    name: currentParticipation.name,
+                    currentBet: currentParticipation.bet,
+                    size: 42,
+                    isActive: currentParticipation.isActive,
+                  ),
+                ],
               ),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.only(top: 64),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: rightParticipations
+                      .map((e) => ParticipationDetails(
+                            name: e.name,
+                            currentBet: e.bet,
+                            isActive: e.isActive,
+                          ))
+                      .toList(),
+                ),
+              )
+            ],
+          ),
         ),
       );
 }

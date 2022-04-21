@@ -101,7 +101,7 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
           gameName: game!.name,
           leftParticipations: leftSegment,
           rightParticipations: rightSegment,
-          opposingParticipation: slots.firstWhere((el) => el.slot == ParticipationSlot.Top),
+          opposingParticipation: slots.firstWhereOrNull((el) => el.slot == ParticipationSlot.Top),
           currentParticipation: slots.firstWhere((el) => el.slot == ParticipationSlot.Bottom),
         ));
       }
