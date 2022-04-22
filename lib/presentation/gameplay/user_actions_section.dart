@@ -1,7 +1,6 @@
+import 'package:dice/presentation/gameplay/user_action/bet_user_action.dart';
 import 'package:dice/presentation/gameplay/user_action/no_user_action.dart';
 import 'package:flutter/material.dart';
-
-import 'user_action/bet_user_action.dart';
 
 class UserActionsSection extends StatefulWidget {
   const UserActionsSection({Key? key, required this.height, required this.isActive}) : super(key: key);
