@@ -84,7 +84,7 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
         final currentPlayerIndex = participatingPlayers.indexWhere((element) => element.player.id == currentPlayerId);
         final orderedParticipatingPlayers = participatingPlayers.sublist(currentPlayerIndex)
           ..addAll(participatingPlayers.sublist(0, currentPlayerIndex));
-        final slots = participationSlots(orderedParticipatingPlayers);
+        final slots = participationSlots(orderedParticipatingPlayers, game?.currentPlayerId);
 
         final List<GameInPlayParticipation> leftSegment = [
           slots.firstWhereOrNull((el) => el.slot == ParticipationSlot.TopLeft),
@@ -116,7 +116,8 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
     }
   }
 
-  List<GameInPlayParticipation> participationSlots(List<ParticipatingPlayer> orderedParticipations) =>
+  List<GameInPlayParticipation> participationSlots(
+          List<ParticipatingPlayer> orderedParticipations, int? gameCurrentPlayerId) =>
       orderedParticipations
           .asMap()
           .entries
@@ -124,7 +125,7 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
                 pp.value.player.name,
                 bet(pp.value.participation.betQuantity, pp.value.participation.betValue),
                 slotForParticipation(pp.key, orderedParticipations.length),
-                pp.value.participation.playeReady,
+                pp.value.player.id == gameCurrentPlayerId,
               ))
           .toList();
 
