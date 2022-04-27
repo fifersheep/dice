@@ -3,25 +3,25 @@ returns void
 language plpgsql
 as $$
 declare
-  _participation_order bigint[];
-  _current_participation_id bigint;
-  _current_participation_index int;
-  _next_participation_id bigint;
+  _player_order bigint[];
+  _current_player_id bigint;
+  _current_player_index int;
+  _next_player_id bigint;
 begin
-  select participation_order, current_participation_id
-  into _participation_order, _current_participation_id
+  select player_order, current_player_id
+  into _player_order, _current_player_id
   from games
   where games.id = cycle_next_turn.game_id;
   
-  _current_participation_index := (select array_position(_participation_order, _current_participation_id));
-  _next_participation_id = _participation_order[_current_participation_index + 1];
+  _current_player_index := (select array_position(_player_order, _current_player_id));
+  _next_player_id = _player_order[_current_player_index + 1];
 
-  if (_next_participation_id is null) then
-    _next_participation_id := _participation_order[1];
+  if (_next_player_id is null) then
+    _next_player_id := _player_order[1];
   end if;
 
   update games
-  set current_participation_id = _next_participation_id
+  set current_player_id = _next_player_id
   where id = cycle_next_turn.game_id;
 end;
 $$;

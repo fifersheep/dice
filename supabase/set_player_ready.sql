@@ -5,7 +5,7 @@ as $$
 declare
   _enough_participants boolean := false;
   _all_players_ready boolean := false;
-  _participation_order bigint[];
+  _player_order bigint[];
 begin
   update participations
   set player_ready = set_player_ready.player_ready
@@ -20,7 +20,7 @@ begin
   _all_players_ready := not exists (select from participations where participations.player_ready = false);
 
   select array(select participations.player_id
-    into _participation_order
+    into _player_order
     from participations
     where participations.game_id = set_player_ready.game_id
     order by random());
@@ -28,8 +28,8 @@ begin
   if (_enough_participants and _all_players_ready) then
     update games
     set status = 'Started',
-    participation_order = _participation_order,
-    current_participation_id = _participation_order[1]
+    player_order = _player_order,
+    current_player_id = _player_order[1]
     where id = set_player_ready.game_id;
   end if;
 end;
