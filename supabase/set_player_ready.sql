@@ -32,9 +32,9 @@ begin
     current_player_id = _player_order[1]
     where id = set_player_ready.game_id;
 
-    update participations
-    set dice = (ARRAY[ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6)])
-    where participations.game_id = set_player_ready.game_id;
+    update private_participations
+    set dice = (array[ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6)])
+    where private_participations.game_id = set_player_ready.game_id;
   end if;
 end;
 $$;

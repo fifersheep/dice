@@ -22,9 +22,21 @@ create table public.participations (
     game_id bigint not null,
     player_id bigint not null,
     player_ready boolean not null default false,
-    dice smallint ARRAY,
     bet_quantity smallint,
     bet_value smallint,
+    primary key (game_id, player_id),
+    constraint fk_game_id
+        foreign key(game_id)
+        references games(id),
+    constraint fk_player_id
+        foreign key(player_id)
+        references players(id)
+);
+
+create table public.private_participations (
+    game_id bigint not null,
+    player_id bigint not null,
+    dice smallint array not null default array[]::smallint[],
     primary key (game_id, player_id),
     constraint fk_game_id
         foreign key(game_id)
@@ -47,10 +59,14 @@ comment on column games.current_player_id is 'The currently active player id for
 comment on table players is 'All players in all games.';
 comment on column players.name is 'A player name.';
 
-comment on table participations is 'Participations - a player in a particular game and their dice details.';
+comment on table participations is 'Participations - a player in a particular game and their public play details.';
 comment on column participations.game_id is 'The game id that this participation is for.';
 comment on column participations.player_id is 'The player id for this participation.';
 comment on column participations.player_ready is 'Whether this player is ready for this participation.';
-comment on column participations.dice is 'The player dice for this participation.';
 comment on column participations.bet_quantity is 'The current bet quantity for this participation.';
 comment on column participations.bet_value is 'The current bet value this participation.';
+
+comment on table private_participations is 'Private Participations - a player in a particular game and their private play details.';
+comment on column private_participations.game_id is 'The game id that this participation is for.';
+comment on column private_participations.player_id is 'The player id for this participation.';
+comment on column private_participations.dice is 'The player dice for this participation.';
