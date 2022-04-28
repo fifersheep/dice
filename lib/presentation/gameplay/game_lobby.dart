@@ -73,10 +73,10 @@ class GameLobby extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8),
             child: Icon(
-              participatingPlayer.participation.playeReady
+              participatingPlayer.participation.playerReady
                   ? Icons.task_alt_outlined
                   : Icons.radio_button_unchecked_outlined,
-              color: participatingPlayer.participation.playeReady ? ThemeColors.white : ThemeColors.white25,
+              color: participatingPlayer.participation.playerReady ? ThemeColors.white : ThemeColors.white25,
               size: 30,
             ),
           ),

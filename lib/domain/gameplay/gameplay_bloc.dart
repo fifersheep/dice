@@ -75,11 +75,11 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
             currentPlayerReady: participatingPlayers
                 .firstWhere((pp) => pp.participation.playerId == currentPlayerId)
                 .participation
-                .playeReady,
+                .playerReady,
             gameName: game!.name,
             participatingPlayers: participatingPlayers,
             loading:
-                participatingPlayers.length > 1 && participatingPlayers.every((pp) => pp.participation.playeReady)));
+                participatingPlayers.length > 1 && participatingPlayers.every((pp) => pp.participation.playerReady)));
       } else if (game?.status == GameStatus.Started) {
         final currentPlayerIndex = participatingPlayers.indexWhere((element) => element.player.id == currentPlayerId);
         final orderedParticipatingPlayers = participatingPlayers.sublist(currentPlayerIndex)
