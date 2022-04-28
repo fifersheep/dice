@@ -2,14 +2,14 @@ class Participation {
   Participation({
     required this.gameId,
     required this.playerId,
-    required this.playeReady,
+    required this.playerReady,
     this.betQuantity,
     this.betValue,
   });
 
   final int gameId;
   final int playerId;
-  final bool playeReady;
+  final bool playerReady;
   final int? betQuantity;
   final int? betValue;
 
@@ -17,7 +17,7 @@ class Participation {
     return Participation(
       gameId: data['game_id'],
       playerId: data['player_id'],
-      playeReady: data['player_ready'],
+      playerReady: data['player_ready'],
       betQuantity: data['bet_quantity'],
       betValue: data['bet_value'],
     );
@@ -26,7 +26,7 @@ class Participation {
   toJson() => {
         'game_id': gameId,
         'player_id': playerId,
-        'player_ready': playeReady,
+        'player_ready': playerReady,
         'bet_quantity': betQuantity,
         'bet_value': betValue,
       };
