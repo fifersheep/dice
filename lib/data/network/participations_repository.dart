@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dice/data/model/participation.dart';
 import 'package:dice/data/network/supabase_client_extensions.dart';
 import 'package:supabase/supabase.dart';

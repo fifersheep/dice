@@ -22,6 +22,7 @@ create table public.participations (
     game_id bigint not null,
     player_id bigint not null,
     player_ready boolean not null default false,
+    dice smallint ARRAY,
     bet_quantity smallint,
     bet_value smallint,
     primary key (game_id, player_id),
@@ -47,8 +48,9 @@ comment on table players is 'All players in all games.';
 comment on column players.name is 'A player name.';
 
 comment on table participations is 'Participations - a player in a particular game and their dice details.';
-comment on column participations.game_id is 'The game id for which this participation is playing.';
+comment on column participations.game_id is 'The game id that this participation is for.';
 comment on column participations.player_id is 'The player id for this participation.';
 comment on column participations.player_ready is 'Whether this player is ready for this participation.';
+comment on column participations.dice is 'The player dice for this participation.';
 comment on column participations.bet_quantity is 'The current bet quantity for this participation.';
 comment on column participations.bet_value is 'The current bet value this participation.';

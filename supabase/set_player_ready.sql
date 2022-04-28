@@ -18,19 +18,23 @@ begin
   and participations.game_id = set_player_ready.game_id;
 
   _all_players_ready := not exists (select from participations where participations.player_ready = false);
-
-  select array(select participations.player_id
+  
+  if (_enough_participants and _all_players_ready) then
+    select array(select participations.player_id
     into _player_order
     from participations
     where participations.game_id = set_player_ready.game_id
     order by random());
-  
-  if (_enough_participants and _all_players_ready) then
+
     update games
     set status = 'Started',
     player_order = _player_order,
     current_player_id = _player_order[1]
     where id = set_player_ready.game_id;
+
+    update participations
+    set dice = (ARRAY[ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6)])
+    where participations.game_id = set_player_ready.game_id;
   end if;
 end;
 $$;
