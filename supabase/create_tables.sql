@@ -1,4 +1,12 @@
-drop type public.game_statuses;
+create schema if not exists private;
+
+drop table if exists private.game_participation_uuids;
+drop table if exists private.participation_dice;
+drop table if exists public.participations;
+drop table if exists public.games;
+drop table if exists public.players;
+drop type if exists public.game_statuses;
+
 create type public.game_statuses as enum (
     'Created',
     'Started',
@@ -33,17 +41,18 @@ create table public.participations (
         references players(id)
 );
 
-create table public.private_participations (
+create table private.participation_dice (
+    id uuid primary key default uuid_generate_v4(),
+    dice smallint array not null default array[]::smallint[]
+);
+
+create table private.game_participation_uuids (
     game_id bigint not null,
-    player_id bigint not null,
-    dice smallint array not null default array[]::smallint[],
-    primary key (game_id, player_id),
-    constraint fk_game_id
-        foreign key(game_id)
-        references games(id),
-    constraint fk_player_id
-        foreign key(player_id)
-        references players(id)
+    participation_dice_id uuid not null,
+    primary key (game_id, participation_dice_id),
+    constraint fk_participation_dice_id
+        foreign key(participation_dice_id)
+        references private.participation_dice(id)
 );
 
 alter publication supabase_realtime add table games;
@@ -59,14 +68,17 @@ comment on column games.current_player_id is 'The currently active player id for
 comment on table players is 'All players in all games.';
 comment on column players.name is 'A player name.';
 
-comment on table participations is 'Participations - a player in a particular game and their public play details.';
-comment on column participations.game_id is 'The game id that this participation is for.';
-comment on column participations.player_id is 'The player id for this participation.';
-comment on column participations.player_ready is 'Whether this player is ready for this participation.';
-comment on column participations.bet_quantity is 'The current bet quantity for this participation.';
-comment on column participations.bet_value is 'The current bet value this participation.';
+comment on table public.participations is 'Participations - a player in a particular game and their public play details.';
+comment on column public.participations.game_id is 'The game id that this participation is for.';
+comment on column public.participations.player_id is 'The player id for this participation.';
+comment on column public.participations.player_ready is 'Whether this player is ready for this participation.';
+comment on column public.participations.bet_quantity is 'The current bet quantity for this participation.';
+comment on column public.participations.bet_value is 'The current bet value this participation.';
 
-comment on table private_participations is 'Private Participations - a player in a particular game and their private play details.';
-comment on column private_participations.game_id is 'The game id that this participation is for.';
-comment on column private_participations.player_id is 'The player id for this participation.';
-comment on column private_participations.dice is 'The player dice for this participation.';
+comment on table private.participation_dice is 'Participation Dice - a player in a particular game and their private play details.';
+comment on column private.participation_dice.id is 'A unique id for this participation.';
+comment on column private.participation_dice.dice is 'The player dice for this participation.';
+
+comment on table private.game_participation_uuids is 'Game Participation UUIDs - mapping participations UUIDs to game ids.';
+comment on column private.game_participation_uuids.game_id is 'The game id associated with the participations UUID.';
+comment on column private.game_participation_uuids.participation_dice_id is 'The participation dice id.';

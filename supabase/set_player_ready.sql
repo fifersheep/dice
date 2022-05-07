@@ -6,6 +6,7 @@ declare
   _enough_participants boolean := false;
   _all_players_ready boolean := false;
   _player_order bigint[];
+  _participation_dice_id uuid;
 begin
   update participations
   set player_ready = set_player_ready.player_ready
@@ -20,22 +21,30 @@ begin
   _all_players_ready := not exists (select from participations where participations.player_ready = false);
   
   if (_enough_participants and _all_players_ready) then
+    -- randomly decide on a player order for this game
     select array(select participations.player_id
     into _player_order
     from participations
     where participations.game_id = set_player_ready.game_id
     order by random());
 
+    -- change the status of the game to Started, set the player order and current player
     update games
     set status = 'Started',
     player_order = _player_order,
     current_player_id = _player_order[1]
     where id = set_player_ready.game_id;
 
-    update private_participations
-    set dice = (array[ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6)])
-    where private_participations.game_id = set_player_ready.game_id;
+    -- for each participations uuid, roll 5 dice
+    for _participation_dice_id in
+      select participation_dice_id
+      from private.game_participation_uuids
+      where game_participation_uuids.game_id = set_player_ready.game_id
+    loop
+      update private.participation_dice
+      set dice = (array[ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6)])
+      where private.participation_dice.id = _participation_dice_id;
+    end loop;
   end if;
 end;
 $$;
-
