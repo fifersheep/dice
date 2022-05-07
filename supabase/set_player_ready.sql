@@ -28,9 +28,9 @@ begin
     where participations.game_id = set_player_ready.game_id
     order by random());
 
-    -- change the status of the game to Started, set the player order and current player
+    -- change the status of the game to Rolling, set the player order and current player
     update games
-    set status = 'Started',
+    set status = 'Rolling',
     player_order = _player_order,
     current_player_id = _player_order[1]
     where id = set_player_ready.game_id;
@@ -45,6 +45,11 @@ begin
       set dice = (array[ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6)])
       where private.participation_dice.id = _participation_dice_id;
     end loop;
+
+    -- change the status of the game to InPlay
+    update games
+    set status = 'InPlay'
+    where id = set_player_ready.game_id;
   end if;
 end;
 $$;

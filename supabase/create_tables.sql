@@ -9,7 +9,8 @@ drop type if exists public.game_statuses;
 
 create type public.game_statuses as enum (
     'Created',
-    'Started',
+    'Rolling',
+    'InPlay',
     'Ended'
 );
 
