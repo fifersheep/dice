@@ -4,7 +4,7 @@ language plpgsql
 as $$
 declare
   _result boolean := false;
-  _status game_statuses;
+  _status game_status;
 begin
   select into _status status from games where games.name=is_game_joinable.name;
 
