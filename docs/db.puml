@@ -1,0 +1,52 @@
+@startuml db
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+package public <<Rectangle>> {
+  entity games {
+    *id : bigint <<generated>>
+    --
+    *name : text
+    *status : game_status
+    player_order : bigint[]
+    current_player_id : bigint
+  }
+  
+  entity players {
+    *id : bigint <<generated>>
+    --
+    *name : text
+  }
+  
+  entity participations {
+    *game_id : bigint <<FK>>
+    *player_id : bigint <<FK>>
+    --
+    *player_ready : boolean
+    bet_quantity : smallint
+    bet_quantity : smallint
+  }
+}
+
+package private <<Rectangle>> {
+  entity participation_dice {
+    *id : uuid <<generated>>
+    --
+    *dice : smallint[]
+  }
+  
+  entity game_participation_uuids {
+    *game_id : bigint <<FK>>
+    *participation_dice_id : uuid <<FK>>
+  }
+}
+
+games ||--o{ participations
+players ||--o{ participations
+participations ||--|| participation_dice
+game_participation_uuids }o--|| games
+participation_dice ||--|| game_participation_uuids
+@enduml
