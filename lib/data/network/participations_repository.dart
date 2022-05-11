@@ -15,7 +15,7 @@ abstract class ParticipationsRepository {
   }
 
   Stream<List<Participation>> getParticipations(int gameId);
-  Future<PostgrestResponse> addParticipation(int gameId, int playerId);
+  Future<String> addParticipation(int gameId, int playerId);
   Future<void> setParticipationReady(int gameId, int playerId, bool isReady);
 }
 
@@ -32,11 +32,13 @@ class SupabaseParticipationsRepository extends ParticipationsRepository {
       .asyncMap((data) => data.map((item) => Participation.fromJson(item)).toList());
 
   @override
-  Future<PostgrestResponse> addParticipation(int gameId, int playerId) async =>
-      SupabaseClientExtensions.instance.from('participations').insert(
-        {'game_id': gameId, 'player_id': playerId},
-        returning: ReturningOption.minimal,
-      ).execute();
+  Future<String> addParticipation(int gameId, int playerId) async => SupabaseClientExtensions.instance
+      .rpc('create_participation', params: {
+        'game_id': gameId,
+        'player_id': playerId,
+      })
+      .execute()
+      .then((res) => res.data as String);
 
   @override
   Future<void> setParticipationReady(int gameId, int playerId, bool isReady) =>
