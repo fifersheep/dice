@@ -14,7 +14,8 @@ class Game {
   static Game fromJson(Map<String, dynamic> data) {
     final statuses = {
       'Created': GameStatus.Created,
-      'Started': GameStatus.Started,
+      'Rolling': GameStatus.Rolling,
+      'InPlay': GameStatus.InPlay,
       'Ended': GameStatus.Ended,
     };
 
@@ -33,7 +34,7 @@ class Game {
       };
 }
 
-enum GameStatus { Created, Started, Ended }
+enum GameStatus { Created, Rolling, InPlay, Ended }
 
 extension GetValueString on GameStatus {
   String valueString() => this.toString().split('.').last;

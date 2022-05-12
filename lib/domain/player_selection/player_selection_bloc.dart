@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:dice/data/local/shared_prefs.dart';
 import 'package:dice/data/network/players_repository.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'player_selection_event.dart';
 import 'player_selection_state.dart';
@@ -15,8 +15,7 @@ class PlayerSelectionBloc extends Bloc<PlayerSelectionEvent, PlayerSelectionStat
   final repository = PlayersRepository();
 
   Future<void> _onCheckForCurrentPlayer(CheckForCurrentPlayer event, Emitter<PlayerSelectionState> emit) async {
-    final prefs = await SharedPreferences.getInstance();
-    final currentPlayerId = prefs.getInt('currentPlayerId');
+    final currentPlayerId = await SharedPrefs.getCurrentPlayer().then((currentPlayer) => currentPlayer?.id);
     if (currentPlayerId != null) {
       emit(PlayerSelectionState.playerExists(currentPlayerId));
     } else {
@@ -40,9 +39,7 @@ class PlayerSelectionBloc extends Bloc<PlayerSelectionEvent, PlayerSelectionStat
   Future<void> _onCreatePlayerPressed(CreatePlayerPressed event, Emitter<PlayerSelectionState> emit) async {
     final playerId = await repository.createPlayer(event.name);
     if (playerId != null) {
-      SharedPreferences.getInstance().then((prefs) async {
-        await prefs.setInt('currentPlayerId', playerId);
-      });
+      await SharedPrefs.setCurrentPlayer(playerId);
       emit(PlayerSelectionState.playerCreated());
     }
   }

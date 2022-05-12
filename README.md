@@ -8,6 +8,19 @@ It's really a sample app for playing with a Supabase backend, but might as well 
 
 ## Development
 
+### Code Generation
+
+`flutter pub run build_runner build`
+
+### Supabase
+
+#### Install
+
+- [Docker](https://docs.docker.com/desktop/mac/install/)
+- Supabase CLI: `brew install supabase/tap/supabase`
+
+#### Run
+
 1. Run `supabase init`
 1. Run `supabase start`
 1. Add a `.env` file to the root directory with the following:
