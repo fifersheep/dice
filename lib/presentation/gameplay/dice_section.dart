@@ -12,9 +12,6 @@ class DiceSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        decoration: BoxDecoration(
-          border: Border.all(),
-        ),
         height: height,
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         alignment: Alignment.center,
