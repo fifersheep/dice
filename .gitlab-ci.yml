@@ -3,7 +3,7 @@ stages:
   - deploy
 
 .flutter:
-  image: cirrusci/flutter:2.10.4
+  image: cirrusci/flutter:3.0.0
   before_script:
     - chmod +x ./setup_env.sh
     - ./setup_env.sh
