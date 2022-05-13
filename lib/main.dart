@@ -6,7 +6,7 @@ import 'presentation/app.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await dotenv.load();
+  await dotenv.load(fileName: 'dotenv');
 
   runApp(App());
 }

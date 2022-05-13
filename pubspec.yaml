@@ -33,6 +33,6 @@ dev_dependencies:
 
 flutter:
   assets:
-    - .env
+    - dotenv
 
   uses-material-design: true

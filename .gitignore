@@ -1,6 +1,5 @@
 # Miscellaneous
 *.class
-*.env
 *.log
 *.pyc
 *.swp
@@ -9,6 +8,7 @@
 .buildlog/
 .history
 .svn/
+dotenv
 
 # IntelliJ related
 *.iml
