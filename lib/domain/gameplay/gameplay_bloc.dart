@@ -2,10 +2,13 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:collection/collection.dart';
+import 'package:dice/data/local/current_player.dart';
 import 'package:dice/data/local/shared_prefs.dart';
 import 'package:dice/data/model/participation.dart';
 import 'package:dice/data/model/player.dart';
 import 'package:dice/data/network/players_repository.dart';
+import 'package:dice/data/network/response.dart';
+import 'package:lazy_evaluation/lazy_evaluation.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:dice/data/model/game.dart';
 import 'package:dice/data/network/games_repository.dart';
@@ -29,13 +32,15 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
 
   int? _currentPlayerId;
 
+  Lazy<Future<CurrentPlayer?>> _currentPlayer = Lazy(() => SharedPrefs.getCurrentPlayer());
+
   void _onGameplayJoined(GameplayJoined event, Emitter<GameplayState> emit) async {
     _subscription?.cancel();
 
-    final currentPlayerId = await _getCurrentPlayerId();
-    if (currentPlayerId != null) {
-      final uniqueId = await _participationsRepository.addParticipation(event.gameId, currentPlayerId);
-      await SharedPrefs.storeUniqueId(event.gameId, currentPlayerId, uniqueId);
+    final currentPlayer = await _currentPlayer.value;
+    if (currentPlayer != null && !currentPlayer.gameParticipationUniqueIds.containsKey(event.gameId)) {
+      final uniqueId = await _participationsRepository.addParticipation(event.gameId, currentPlayer.id);
+      await SharedPrefs.storeUniqueId(event.gameId, currentPlayer.id, uniqueId);
     }
 
     final gameStream = _gameplayRepository.gameStream(event.gameId);
@@ -71,14 +76,14 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
     if (currentPlayerId != null) {
       final game = event.gameplay.game;
       if (game?.status == GameStatus.Created) {
-        _createdState(event, currentPlayerId, emit);
+        await _createdState(event, currentPlayerId, emit);
       } else if (game?.status == GameStatus.InPlay) {
-        _inPlayState(event, currentPlayerId, emit);
+        await _inPlayState(event, currentPlayerId, emit);
       }
     }
   }
 
-  void _createdState(GameplayUpdated event, int currentPlayerId, Emitter<GameplayState> emit) {
+  Future<void> _createdState(GameplayUpdated event, int currentPlayerId, Emitter<GameplayState> emit) async {
     final game = event.gameplay.game;
     final participatingPlayers = event.gameplay.participatingPlayers;
     emit(GameplayState.inLobby(
@@ -91,7 +96,7 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
         loading: participatingPlayers.length > 1 && participatingPlayers.every((pp) => pp.participation.playerReady)));
   }
 
-  void _inPlayState(GameplayUpdated event, int currentPlayerId, Emitter<GameplayState> emit) {
+  Future<void> _inPlayState(GameplayUpdated event, int currentPlayerId, Emitter<GameplayState> emit) async {
     final game = event.gameplay.game;
     final participatingPlayers = event.gameplay.participatingPlayers;
     final currentPlayerIndex = participatingPlayers.indexWhere((element) => element.player.id == currentPlayerId);
@@ -109,14 +114,20 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
       slots.firstWhereOrNull((el) => el.slot == ParticipationSlot.BottomRight),
     ].whereNotNull().toList();
 
-    emit(GameplayState.inPlay(
-      currentPlayerId: currentPlayerId,
-      gameName: game!.name,
-      leftParticipations: leftSegment,
-      rightParticipations: rightSegment,
-      opposingParticipation: slots.firstWhereOrNull((el) => el.slot == ParticipationSlot.Top),
-      currentParticipation: slots.firstWhere((el) => el.slot == ParticipationSlot.Bottom),
-    ));
+    final currentPlayer = await _currentPlayer.value;
+    final uniqueId = currentPlayer!.gameParticipationUniqueIds[game?.id];
+    final response = await _participationsRepository.getDice(uniqueId!);
+    if (response is Success<List<int>>) {
+      emit(GameplayState.inPlay(
+        currentPlayerId: currentPlayerId,
+        gameName: game!.name,
+        leftParticipations: leftSegment,
+        rightParticipations: rightSegment,
+        opposingParticipation: slots.firstWhereOrNull((el) => el.slot == ParticipationSlot.Top),
+        currentParticipation: slots.firstWhere((el) => el.slot == ParticipationSlot.Bottom),
+        dice: response.data.join(", "),
+      ));
+    }
   }
 
   String _bet(int? betQuantity, int? betValue) {

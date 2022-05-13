@@ -29,5 +29,6 @@ class GameplayState with _$GameplayState {
     required List<GameInPlayParticipation> rightParticipations,
     required GameInPlayParticipation? opposingParticipation,
     required GameInPlayParticipation currentParticipation,
+    required String dice,
   }) = GameInPlay;
 }

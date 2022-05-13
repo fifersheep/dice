@@ -26,7 +26,7 @@ class _$GameSelectionStateTearOff {
     );
   }
 
-  GameSelected gameSelected(String gameId) {
+  GameSelected gameSelected(int gameId) {
     return GameSelected(
       gameId,
     );
@@ -43,21 +43,21 @@ mixin _$GameSelectionState {
     required TResult Function(
             String gameName, GameSelectionValidation validation)
         nameChange,
-    required TResult Function(String gameId) gameSelected,
+    required TResult Function(int gameId) gameSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String gameName, GameSelectionValidation validation)?
         nameChange,
-    TResult Function(String gameId)? gameSelected,
+    TResult Function(int gameId)? gameSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String gameName, GameSelectionValidation validation)?
         nameChange,
-    TResult Function(String gameId)? gameSelected,
+    TResult Function(int gameId)? gameSelected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -181,7 +181,7 @@ class _$GameSelectionTitleChange implements GameSelectionTitleChange {
     required TResult Function(
             String gameName, GameSelectionValidation validation)
         nameChange,
-    required TResult Function(String gameId) gameSelected,
+    required TResult Function(int gameId) gameSelected,
   }) {
     return nameChange(gameName, validation);
   }
@@ -191,7 +191,7 @@ class _$GameSelectionTitleChange implements GameSelectionTitleChange {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String gameName, GameSelectionValidation validation)?
         nameChange,
-    TResult Function(String gameId)? gameSelected,
+    TResult Function(int gameId)? gameSelected,
   }) {
     return nameChange?.call(gameName, validation);
   }
@@ -201,7 +201,7 @@ class _$GameSelectionTitleChange implements GameSelectionTitleChange {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String gameName, GameSelectionValidation validation)?
         nameChange,
-    TResult Function(String gameId)? gameSelected,
+    TResult Function(int gameId)? gameSelected,
     required TResult orElse(),
   }) {
     if (nameChange != null) {
@@ -260,7 +260,7 @@ abstract class $GameSelectedCopyWith<$Res> {
   factory $GameSelectedCopyWith(
           GameSelected value, $Res Function(GameSelected) then) =
       _$GameSelectedCopyWithImpl<$Res>;
-  $Res call({String gameId});
+  $Res call({int gameId});
 }
 
 /// @nodoc
@@ -282,7 +282,7 @@ class _$GameSelectedCopyWithImpl<$Res>
       gameId == freezed
           ? _value.gameId
           : gameId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
@@ -293,7 +293,7 @@ class _$GameSelected implements GameSelected {
   const _$GameSelected(this.gameId);
 
   @override
-  final String gameId;
+  final int gameId;
 
   @override
   String toString() {
@@ -323,7 +323,7 @@ class _$GameSelected implements GameSelected {
     required TResult Function(
             String gameName, GameSelectionValidation validation)
         nameChange,
-    required TResult Function(String gameId) gameSelected,
+    required TResult Function(int gameId) gameSelected,
   }) {
     return gameSelected(gameId);
   }
@@ -333,7 +333,7 @@ class _$GameSelected implements GameSelected {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String gameName, GameSelectionValidation validation)?
         nameChange,
-    TResult Function(String gameId)? gameSelected,
+    TResult Function(int gameId)? gameSelected,
   }) {
     return gameSelected?.call(gameId);
   }
@@ -343,7 +343,7 @@ class _$GameSelected implements GameSelected {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String gameName, GameSelectionValidation validation)?
         nameChange,
-    TResult Function(String gameId)? gameSelected,
+    TResult Function(int gameId)? gameSelected,
     required TResult orElse(),
   }) {
     if (gameSelected != null) {
@@ -385,9 +385,9 @@ class _$GameSelected implements GameSelected {
 }
 
 abstract class GameSelected implements GameSelectionState {
-  const factory GameSelected(String gameId) = _$GameSelected;
+  const factory GameSelected(int gameId) = _$GameSelected;
 
-  String get gameId;
+  int get gameId;
   @JsonKey(ignore: true)
   $GameSelectedCopyWith<GameSelected> get copyWith =>
       throw _privateConstructorUsedError;

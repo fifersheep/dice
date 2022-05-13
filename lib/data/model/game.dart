@@ -6,7 +6,7 @@ class Game {
     required this.currentPlayerId,
   });
 
-  final String id;
+  final int id;
   final String name;
   final GameStatus status;
   final int? currentPlayerId;
@@ -20,7 +20,7 @@ class Game {
     };
 
     return Game(
-      id: "${data['id']}",
+      id: data['id'],
       name: data['name'],
       status: statuses[data['status']] ?? GameStatus.Ended,
       currentPlayerId: data['current_player_id'],

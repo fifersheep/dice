@@ -45,7 +45,8 @@ class _$GameplayStateTearOff {
       required List<GameInPlayParticipation> leftParticipations,
       required List<GameInPlayParticipation> rightParticipations,
       required GameInPlayParticipation? opposingParticipation,
-      required GameInPlayParticipation currentParticipation}) {
+      required GameInPlayParticipation currentParticipation,
+      required String dice}) {
     return GameInPlay(
       currentPlayerId: currentPlayerId,
       gameName: gameName,
@@ -53,6 +54,7 @@ class _$GameplayStateTearOff {
       rightParticipations: rightParticipations,
       opposingParticipation: opposingParticipation,
       currentParticipation: currentParticipation,
+      dice: dice,
     );
   }
 }
@@ -75,7 +77,8 @@ mixin _$GameplayState {
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
-            GameInPlayParticipation currentParticipation)
+            GameInPlayParticipation currentParticipation,
+            String dice)
         inPlay,
   }) =>
       throw _privateConstructorUsedError;
@@ -92,7 +95,8 @@ mixin _$GameplayState {
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
-            GameInPlayParticipation currentParticipation)?
+            GameInPlayParticipation currentParticipation,
+            String dice)?
         inPlay,
   }) =>
       throw _privateConstructorUsedError;
@@ -109,7 +113,8 @@ mixin _$GameplayState {
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
-            GameInPlayParticipation currentParticipation)?
+            GameInPlayParticipation currentParticipation,
+            String dice)?
         inPlay,
     required TResult orElse(),
   }) =>
@@ -209,7 +214,8 @@ class _$GameLoading implements GameLoading {
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
-            GameInPlayParticipation currentParticipation)
+            GameInPlayParticipation currentParticipation,
+            String dice)
         inPlay,
   }) {
     return loading();
@@ -229,7 +235,8 @@ class _$GameLoading implements GameLoading {
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
-            GameInPlayParticipation currentParticipation)?
+            GameInPlayParticipation currentParticipation,
+            String dice)?
         inPlay,
   }) {
     return loading?.call();
@@ -249,7 +256,8 @@ class _$GameLoading implements GameLoading {
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
-            GameInPlayParticipation currentParticipation)?
+            GameInPlayParticipation currentParticipation,
+            String dice)?
         inPlay,
     required TResult orElse(),
   }) {
@@ -350,7 +358,8 @@ class _$GameError implements GameError {
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
-            GameInPlayParticipation currentParticipation)
+            GameInPlayParticipation currentParticipation,
+            String dice)
         inPlay,
   }) {
     return error();
@@ -370,7 +379,8 @@ class _$GameError implements GameError {
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
-            GameInPlayParticipation currentParticipation)?
+            GameInPlayParticipation currentParticipation,
+            String dice)?
         inPlay,
   }) {
     return error?.call();
@@ -390,7 +400,8 @@ class _$GameError implements GameError {
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
-            GameInPlayParticipation currentParticipation)?
+            GameInPlayParticipation currentParticipation,
+            String dice)?
         inPlay,
     required TResult orElse(),
   }) {
@@ -555,7 +566,8 @@ class _$GameInLobby implements GameInLobby {
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
-            GameInPlayParticipation currentParticipation)
+            GameInPlayParticipation currentParticipation,
+            String dice)
         inPlay,
   }) {
     return inLobby(
@@ -576,7 +588,8 @@ class _$GameInLobby implements GameInLobby {
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
-            GameInPlayParticipation currentParticipation)?
+            GameInPlayParticipation currentParticipation,
+            String dice)?
         inPlay,
   }) {
     return inLobby?.call(
@@ -597,7 +610,8 @@ class _$GameInLobby implements GameInLobby {
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
-            GameInPlayParticipation currentParticipation)?
+            GameInPlayParticipation currentParticipation,
+            String dice)?
         inPlay,
     required TResult orElse(),
   }) {
@@ -673,7 +687,8 @@ abstract class $GameInPlayCopyWith<$Res> {
       List<GameInPlayParticipation> leftParticipations,
       List<GameInPlayParticipation> rightParticipations,
       GameInPlayParticipation? opposingParticipation,
-      GameInPlayParticipation currentParticipation});
+      GameInPlayParticipation currentParticipation,
+      String dice});
 }
 
 /// @nodoc
@@ -693,6 +708,7 @@ class _$GameInPlayCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
     Object? rightParticipations = freezed,
     Object? opposingParticipation = freezed,
     Object? currentParticipation = freezed,
+    Object? dice = freezed,
   }) {
     return _then(GameInPlay(
       currentPlayerId: currentPlayerId == freezed
@@ -719,6 +735,10 @@ class _$GameInPlayCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
           ? _value.currentParticipation
           : currentParticipation // ignore: cast_nullable_to_non_nullable
               as GameInPlayParticipation,
+      dice: dice == freezed
+          ? _value.dice
+          : dice // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -732,7 +752,8 @@ class _$GameInPlay implements GameInPlay {
       required this.leftParticipations,
       required this.rightParticipations,
       required this.opposingParticipation,
-      required this.currentParticipation});
+      required this.currentParticipation,
+      required this.dice});
 
   @override
   final int currentPlayerId;
@@ -746,10 +767,12 @@ class _$GameInPlay implements GameInPlay {
   final GameInPlayParticipation? opposingParticipation;
   @override
   final GameInPlayParticipation currentParticipation;
+  @override
+  final String dice;
 
   @override
   String toString() {
-    return 'GameplayState.inPlay(currentPlayerId: $currentPlayerId, gameName: $gameName, leftParticipations: $leftParticipations, rightParticipations: $rightParticipations, opposingParticipation: $opposingParticipation, currentParticipation: $currentParticipation)';
+    return 'GameplayState.inPlay(currentPlayerId: $currentPlayerId, gameName: $gameName, leftParticipations: $leftParticipations, rightParticipations: $rightParticipations, opposingParticipation: $opposingParticipation, currentParticipation: $currentParticipation, dice: $dice)';
   }
 
   @override
@@ -767,7 +790,8 @@ class _$GameInPlay implements GameInPlay {
             const DeepCollectionEquality()
                 .equals(other.opposingParticipation, opposingParticipation) &&
             const DeepCollectionEquality()
-                .equals(other.currentParticipation, currentParticipation));
+                .equals(other.currentParticipation, currentParticipation) &&
+            const DeepCollectionEquality().equals(other.dice, dice));
   }
 
   @override
@@ -778,7 +802,8 @@ class _$GameInPlay implements GameInPlay {
       const DeepCollectionEquality().hash(leftParticipations),
       const DeepCollectionEquality().hash(rightParticipations),
       const DeepCollectionEquality().hash(opposingParticipation),
-      const DeepCollectionEquality().hash(currentParticipation));
+      const DeepCollectionEquality().hash(currentParticipation),
+      const DeepCollectionEquality().hash(dice));
 
   @JsonKey(ignore: true)
   @override
@@ -799,11 +824,12 @@ class _$GameInPlay implements GameInPlay {
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
-            GameInPlayParticipation currentParticipation)
+            GameInPlayParticipation currentParticipation,
+            String dice)
         inPlay,
   }) {
     return inPlay(currentPlayerId, gameName, leftParticipations,
-        rightParticipations, opposingParticipation, currentParticipation);
+        rightParticipations, opposingParticipation, currentParticipation, dice);
   }
 
   @override
@@ -820,11 +846,12 @@ class _$GameInPlay implements GameInPlay {
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
-            GameInPlayParticipation currentParticipation)?
+            GameInPlayParticipation currentParticipation,
+            String dice)?
         inPlay,
   }) {
     return inPlay?.call(currentPlayerId, gameName, leftParticipations,
-        rightParticipations, opposingParticipation, currentParticipation);
+        rightParticipations, opposingParticipation, currentParticipation, dice);
   }
 
   @override
@@ -841,13 +868,20 @@ class _$GameInPlay implements GameInPlay {
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
-            GameInPlayParticipation currentParticipation)?
+            GameInPlayParticipation currentParticipation,
+            String dice)?
         inPlay,
     required TResult orElse(),
   }) {
     if (inPlay != null) {
-      return inPlay(currentPlayerId, gameName, leftParticipations,
-          rightParticipations, opposingParticipation, currentParticipation);
+      return inPlay(
+          currentPlayerId,
+          gameName,
+          leftParticipations,
+          rightParticipations,
+          opposingParticipation,
+          currentParticipation,
+          dice);
     }
     return orElse();
   }
@@ -897,7 +931,8 @@ abstract class GameInPlay implements GameplayState {
       required List<GameInPlayParticipation> leftParticipations,
       required List<GameInPlayParticipation> rightParticipations,
       required GameInPlayParticipation? opposingParticipation,
-      required GameInPlayParticipation currentParticipation}) = _$GameInPlay;
+      required GameInPlayParticipation currentParticipation,
+      required String dice}) = _$GameInPlay;
 
   int get currentPlayerId;
   String get gameName;
@@ -905,6 +940,7 @@ abstract class GameInPlay implements GameplayState {
   List<GameInPlayParticipation> get rightParticipations;
   GameInPlayParticipation? get opposingParticipation;
   GameInPlayParticipation get currentParticipation;
+  String get dice;
   @JsonKey(ignore: true)
   $GameInPlayCopyWith<GameInPlay> get copyWith =>
       throw _privateConstructorUsedError;

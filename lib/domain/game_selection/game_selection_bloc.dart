@@ -48,7 +48,7 @@ class GameSelectionBloc extends Bloc<GameSelectionEvent, GameSelectionState> {
   void _onCreateGamePressed(CreateGamePressed event, Emitter<GameSelectionState> emit) async {
     final gameId = await repository.createGame(event.gameName);
     if (gameId != null) {
-      emit(GameSelectionState.gameSelected("$gameId"));
+      emit(GameSelectionState.gameSelected(gameId));
     }
   }
 
