@@ -1,4 +1,4 @@
-create or replace function cycle_next_turn(game_id bigint) 
+create or replace function private.cycle_next_turn(game_id bigint) 
 returns void
 language plpgsql
 as $$
