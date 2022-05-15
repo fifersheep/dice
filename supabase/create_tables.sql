@@ -1,5 +1,17 @@
 create schema if not exists private;
 
+grant usage on schema private to postgres, anon, authenticated, service_role;
+alter default privileges in schema private grant all on tables to postgres, anon, authenticated, service_role;
+alter default privileges in schema private grant all on functions to postgres, anon, authenticated, service_role;
+alter default privileges in schema private grant all on sequences to postgres, anon, authenticated, service_role;
+
+alter default privileges for user supabase_admin in schema private grant all
+    on sequences to postgres, anon, authenticated, service_role;
+alter default privileges for user supabase_admin in schema private grant all
+    on tables to postgres, anon, authenticated, service_role;
+alter default privileges for user supabase_admin in schema private grant all
+    on functions to postgres, anon, authenticated, service_role;
+
 drop table if exists private.game_participation_uuids;
 drop table if exists private.participation_dice;
 drop table if exists public.participations;
