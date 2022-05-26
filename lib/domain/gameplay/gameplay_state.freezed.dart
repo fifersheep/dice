@@ -12,55 +12,7 @@ part of 'gameplay_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$GameplayStateTearOff {
-  const _$GameplayStateTearOff();
-
-  GameLoading loading() {
-    return const GameLoading();
-  }
-
-  GameError error() {
-    return const GameError();
-  }
-
-  GameInLobby inLobby(
-      {required bool currentPlayerReady,
-      required String gameName,
-      required List<ParticipatingPlayer> participatingPlayers,
-      required bool loading}) {
-    return GameInLobby(
-      currentPlayerReady: currentPlayerReady,
-      gameName: gameName,
-      participatingPlayers: participatingPlayers,
-      loading: loading,
-    );
-  }
-
-  GameInPlay inPlay(
-      {required int currentPlayerId,
-      required String gameName,
-      required List<GameInPlayParticipation> leftParticipations,
-      required List<GameInPlayParticipation> rightParticipations,
-      required GameInPlayParticipation? opposingParticipation,
-      required GameInPlayParticipation currentParticipation,
-      required String dice}) {
-    return GameInPlay(
-      currentPlayerId: currentPlayerId,
-      gameName: gameName,
-      leftParticipations: leftParticipations,
-      rightParticipations: rightParticipations,
-      opposingParticipation: opposingParticipation,
-      currentParticipation: currentParticipation,
-      dice: dice,
-    );
-  }
-}
-
-/// @nodoc
-const $GameplayState = _$GameplayStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$GameplayState {
@@ -164,21 +116,22 @@ class _$GameplayStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $GameLoadingCopyWith<$Res> {
-  factory $GameLoadingCopyWith(
-          GameLoading value, $Res Function(GameLoading) then) =
-      _$GameLoadingCopyWithImpl<$Res>;
+abstract class _$$GameLoadingCopyWith<$Res> {
+  factory _$$GameLoadingCopyWith(
+          _$GameLoading value, $Res Function(_$GameLoading) then) =
+      __$$GameLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GameLoadingCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
-    implements $GameLoadingCopyWith<$Res> {
-  _$GameLoadingCopyWithImpl(
-      GameLoading _value, $Res Function(GameLoading) _then)
-      : super(_value, (v) => _then(v as GameLoading));
+class __$$GameLoadingCopyWithImpl<$Res>
+    extends _$GameplayStateCopyWithImpl<$Res>
+    implements _$$GameLoadingCopyWith<$Res> {
+  __$$GameLoadingCopyWithImpl(
+      _$GameLoading _value, $Res Function(_$GameLoading) _then)
+      : super(_value, (v) => _then(v as _$GameLoading));
 
   @override
-  GameLoading get _value => super._value as GameLoading;
+  _$GameLoading get _value => super._value as _$GameLoading;
 }
 
 /// @nodoc
@@ -194,7 +147,7 @@ class _$GameLoading implements GameLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is GameLoading);
+        (other.runtimeType == runtimeType && other is _$GameLoading);
   }
 
   @override
@@ -310,19 +263,21 @@ abstract class GameLoading implements GameplayState {
 }
 
 /// @nodoc
-abstract class $GameErrorCopyWith<$Res> {
-  factory $GameErrorCopyWith(GameError value, $Res Function(GameError) then) =
-      _$GameErrorCopyWithImpl<$Res>;
+abstract class _$$GameErrorCopyWith<$Res> {
+  factory _$$GameErrorCopyWith(
+          _$GameError value, $Res Function(_$GameError) then) =
+      __$$GameErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GameErrorCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
-    implements $GameErrorCopyWith<$Res> {
-  _$GameErrorCopyWithImpl(GameError _value, $Res Function(GameError) _then)
-      : super(_value, (v) => _then(v as GameError));
+class __$$GameErrorCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
+    implements _$$GameErrorCopyWith<$Res> {
+  __$$GameErrorCopyWithImpl(
+      _$GameError _value, $Res Function(_$GameError) _then)
+      : super(_value, (v) => _then(v as _$GameError));
 
   @override
-  GameError get _value => super._value as GameError;
+  _$GameError get _value => super._value as _$GameError;
 }
 
 /// @nodoc
@@ -338,7 +293,7 @@ class _$GameError implements GameError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is GameError);
+        (other.runtimeType == runtimeType && other is _$GameError);
   }
 
   @override
@@ -454,10 +409,10 @@ abstract class GameError implements GameplayState {
 }
 
 /// @nodoc
-abstract class $GameInLobbyCopyWith<$Res> {
-  factory $GameInLobbyCopyWith(
-          GameInLobby value, $Res Function(GameInLobby) then) =
-      _$GameInLobbyCopyWithImpl<$Res>;
+abstract class _$$GameInLobbyCopyWith<$Res> {
+  factory _$$GameInLobbyCopyWith(
+          _$GameInLobby value, $Res Function(_$GameInLobby) then) =
+      __$$GameInLobbyCopyWithImpl<$Res>;
   $Res call(
       {bool currentPlayerReady,
       String gameName,
@@ -466,14 +421,15 @@ abstract class $GameInLobbyCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GameInLobbyCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
-    implements $GameInLobbyCopyWith<$Res> {
-  _$GameInLobbyCopyWithImpl(
-      GameInLobby _value, $Res Function(GameInLobby) _then)
-      : super(_value, (v) => _then(v as GameInLobby));
+class __$$GameInLobbyCopyWithImpl<$Res>
+    extends _$GameplayStateCopyWithImpl<$Res>
+    implements _$$GameInLobbyCopyWith<$Res> {
+  __$$GameInLobbyCopyWithImpl(
+      _$GameInLobby _value, $Res Function(_$GameInLobby) _then)
+      : super(_value, (v) => _then(v as _$GameInLobby));
 
   @override
-  GameInLobby get _value => super._value as GameInLobby;
+  _$GameInLobby get _value => super._value as _$GameInLobby;
 
   @override
   $Res call({
@@ -482,7 +438,7 @@ class _$GameInLobbyCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
     Object? participatingPlayers = freezed,
     Object? loading = freezed,
   }) {
-    return _then(GameInLobby(
+    return _then(_$GameInLobby(
       currentPlayerReady: currentPlayerReady == freezed
           ? _value.currentPlayerReady
           : currentPlayerReady // ignore: cast_nullable_to_non_nullable
@@ -492,7 +448,7 @@ class _$GameInLobbyCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
           : gameName // ignore: cast_nullable_to_non_nullable
               as String,
       participatingPlayers: participatingPlayers == freezed
-          ? _value.participatingPlayers
+          ? _value._participatingPlayers
           : participatingPlayers // ignore: cast_nullable_to_non_nullable
               as List<ParticipatingPlayer>,
       loading: loading == freezed
@@ -509,15 +465,21 @@ class _$GameInLobby implements GameInLobby {
   const _$GameInLobby(
       {required this.currentPlayerReady,
       required this.gameName,
-      required this.participatingPlayers,
-      required this.loading});
+      required final List<ParticipatingPlayer> participatingPlayers,
+      required this.loading})
+      : _participatingPlayers = participatingPlayers;
 
   @override
   final bool currentPlayerReady;
   @override
   final String gameName;
+  final List<ParticipatingPlayer> _participatingPlayers;
   @override
-  final List<ParticipatingPlayer> participatingPlayers;
+  List<ParticipatingPlayer> get participatingPlayers {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_participatingPlayers);
+  }
+
   @override
   final bool loading;
 
@@ -530,12 +492,12 @@ class _$GameInLobby implements GameInLobby {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is GameInLobby &&
+            other is _$GameInLobby &&
             const DeepCollectionEquality()
                 .equals(other.currentPlayerReady, currentPlayerReady) &&
             const DeepCollectionEquality().equals(other.gameName, gameName) &&
             const DeepCollectionEquality()
-                .equals(other.participatingPlayers, participatingPlayers) &&
+                .equals(other._participatingPlayers, _participatingPlayers) &&
             const DeepCollectionEquality().equals(other.loading, loading));
   }
 
@@ -544,13 +506,13 @@ class _$GameInLobby implements GameInLobby {
       runtimeType,
       const DeepCollectionEquality().hash(currentPlayerReady),
       const DeepCollectionEquality().hash(gameName),
-      const DeepCollectionEquality().hash(participatingPlayers),
+      const DeepCollectionEquality().hash(_participatingPlayers),
       const DeepCollectionEquality().hash(loading));
 
   @JsonKey(ignore: true)
   @override
-  $GameInLobbyCopyWith<GameInLobby> get copyWith =>
-      _$GameInLobbyCopyWithImpl<GameInLobby>(this, _$identity);
+  _$$GameInLobbyCopyWith<_$GameInLobby> get copyWith =>
+      __$$GameInLobbyCopyWithImpl<_$GameInLobby>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -662,25 +624,26 @@ class _$GameInLobby implements GameInLobby {
 
 abstract class GameInLobby implements GameplayState {
   const factory GameInLobby(
-      {required bool currentPlayerReady,
-      required String gameName,
-      required List<ParticipatingPlayer> participatingPlayers,
-      required bool loading}) = _$GameInLobby;
+      {required final bool currentPlayerReady,
+      required final String gameName,
+      required final List<ParticipatingPlayer> participatingPlayers,
+      required final bool loading}) = _$GameInLobby;
 
-  bool get currentPlayerReady;
-  String get gameName;
-  List<ParticipatingPlayer> get participatingPlayers;
-  bool get loading;
+  bool get currentPlayerReady => throw _privateConstructorUsedError;
+  String get gameName => throw _privateConstructorUsedError;
+  List<ParticipatingPlayer> get participatingPlayers =>
+      throw _privateConstructorUsedError;
+  bool get loading => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GameInLobbyCopyWith<GameInLobby> get copyWith =>
+  _$$GameInLobbyCopyWith<_$GameInLobby> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GameInPlayCopyWith<$Res> {
-  factory $GameInPlayCopyWith(
-          GameInPlay value, $Res Function(GameInPlay) then) =
-      _$GameInPlayCopyWithImpl<$Res>;
+abstract class _$$GameInPlayCopyWith<$Res> {
+  factory _$$GameInPlayCopyWith(
+          _$GameInPlay value, $Res Function(_$GameInPlay) then) =
+      __$$GameInPlayCopyWithImpl<$Res>;
   $Res call(
       {int currentPlayerId,
       String gameName,
@@ -692,13 +655,14 @@ abstract class $GameInPlayCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GameInPlayCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
-    implements $GameInPlayCopyWith<$Res> {
-  _$GameInPlayCopyWithImpl(GameInPlay _value, $Res Function(GameInPlay) _then)
-      : super(_value, (v) => _then(v as GameInPlay));
+class __$$GameInPlayCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
+    implements _$$GameInPlayCopyWith<$Res> {
+  __$$GameInPlayCopyWithImpl(
+      _$GameInPlay _value, $Res Function(_$GameInPlay) _then)
+      : super(_value, (v) => _then(v as _$GameInPlay));
 
   @override
-  GameInPlay get _value => super._value as GameInPlay;
+  _$GameInPlay get _value => super._value as _$GameInPlay;
 
   @override
   $Res call({
@@ -710,7 +674,7 @@ class _$GameInPlayCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
     Object? currentParticipation = freezed,
     Object? dice = freezed,
   }) {
-    return _then(GameInPlay(
+    return _then(_$GameInPlay(
       currentPlayerId: currentPlayerId == freezed
           ? _value.currentPlayerId
           : currentPlayerId // ignore: cast_nullable_to_non_nullable
@@ -720,11 +684,11 @@ class _$GameInPlayCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
           : gameName // ignore: cast_nullable_to_non_nullable
               as String,
       leftParticipations: leftParticipations == freezed
-          ? _value.leftParticipations
+          ? _value._leftParticipations
           : leftParticipations // ignore: cast_nullable_to_non_nullable
               as List<GameInPlayParticipation>,
       rightParticipations: rightParticipations == freezed
-          ? _value.rightParticipations
+          ? _value._rightParticipations
           : rightParticipations // ignore: cast_nullable_to_non_nullable
               as List<GameInPlayParticipation>,
       opposingParticipation: opposingParticipation == freezed
@@ -749,20 +713,32 @@ class _$GameInPlay implements GameInPlay {
   const _$GameInPlay(
       {required this.currentPlayerId,
       required this.gameName,
-      required this.leftParticipations,
-      required this.rightParticipations,
+      required final List<GameInPlayParticipation> leftParticipations,
+      required final List<GameInPlayParticipation> rightParticipations,
       required this.opposingParticipation,
       required this.currentParticipation,
-      required this.dice});
+      required this.dice})
+      : _leftParticipations = leftParticipations,
+        _rightParticipations = rightParticipations;
 
   @override
   final int currentPlayerId;
   @override
   final String gameName;
+  final List<GameInPlayParticipation> _leftParticipations;
   @override
-  final List<GameInPlayParticipation> leftParticipations;
+  List<GameInPlayParticipation> get leftParticipations {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_leftParticipations);
+  }
+
+  final List<GameInPlayParticipation> _rightParticipations;
   @override
-  final List<GameInPlayParticipation> rightParticipations;
+  List<GameInPlayParticipation> get rightParticipations {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_rightParticipations);
+  }
+
   @override
   final GameInPlayParticipation? opposingParticipation;
   @override
@@ -779,14 +755,14 @@ class _$GameInPlay implements GameInPlay {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is GameInPlay &&
+            other is _$GameInPlay &&
             const DeepCollectionEquality()
                 .equals(other.currentPlayerId, currentPlayerId) &&
             const DeepCollectionEquality().equals(other.gameName, gameName) &&
             const DeepCollectionEquality()
-                .equals(other.leftParticipations, leftParticipations) &&
+                .equals(other._leftParticipations, _leftParticipations) &&
             const DeepCollectionEquality()
-                .equals(other.rightParticipations, rightParticipations) &&
+                .equals(other._rightParticipations, _rightParticipations) &&
             const DeepCollectionEquality()
                 .equals(other.opposingParticipation, opposingParticipation) &&
             const DeepCollectionEquality()
@@ -799,16 +775,16 @@ class _$GameInPlay implements GameInPlay {
       runtimeType,
       const DeepCollectionEquality().hash(currentPlayerId),
       const DeepCollectionEquality().hash(gameName),
-      const DeepCollectionEquality().hash(leftParticipations),
-      const DeepCollectionEquality().hash(rightParticipations),
+      const DeepCollectionEquality().hash(_leftParticipations),
+      const DeepCollectionEquality().hash(_rightParticipations),
       const DeepCollectionEquality().hash(opposingParticipation),
       const DeepCollectionEquality().hash(currentParticipation),
       const DeepCollectionEquality().hash(dice));
 
   @JsonKey(ignore: true)
   @override
-  $GameInPlayCopyWith<GameInPlay> get copyWith =>
-      _$GameInPlayCopyWithImpl<GameInPlay>(this, _$identity);
+  _$$GameInPlayCopyWith<_$GameInPlay> get copyWith =>
+      __$$GameInPlayCopyWithImpl<_$GameInPlay>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -926,22 +902,26 @@ class _$GameInPlay implements GameInPlay {
 
 abstract class GameInPlay implements GameplayState {
   const factory GameInPlay(
-      {required int currentPlayerId,
-      required String gameName,
-      required List<GameInPlayParticipation> leftParticipations,
-      required List<GameInPlayParticipation> rightParticipations,
-      required GameInPlayParticipation? opposingParticipation,
-      required GameInPlayParticipation currentParticipation,
-      required String dice}) = _$GameInPlay;
+      {required final int currentPlayerId,
+      required final String gameName,
+      required final List<GameInPlayParticipation> leftParticipations,
+      required final List<GameInPlayParticipation> rightParticipations,
+      required final GameInPlayParticipation? opposingParticipation,
+      required final GameInPlayParticipation currentParticipation,
+      required final String dice}) = _$GameInPlay;
 
-  int get currentPlayerId;
-  String get gameName;
-  List<GameInPlayParticipation> get leftParticipations;
-  List<GameInPlayParticipation> get rightParticipations;
-  GameInPlayParticipation? get opposingParticipation;
-  GameInPlayParticipation get currentParticipation;
-  String get dice;
+  int get currentPlayerId => throw _privateConstructorUsedError;
+  String get gameName => throw _privateConstructorUsedError;
+  List<GameInPlayParticipation> get leftParticipations =>
+      throw _privateConstructorUsedError;
+  List<GameInPlayParticipation> get rightParticipations =>
+      throw _privateConstructorUsedError;
+  GameInPlayParticipation? get opposingParticipation =>
+      throw _privateConstructorUsedError;
+  GameInPlayParticipation get currentParticipation =>
+      throw _privateConstructorUsedError;
+  String get dice => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GameInPlayCopyWith<GameInPlay> get copyWith =>
+  _$$GameInPlayCopyWith<_$GameInPlay> get copyWith =>
       throw _privateConstructorUsedError;
 }

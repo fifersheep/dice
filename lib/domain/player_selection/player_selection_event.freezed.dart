@@ -12,31 +12,7 @@ part of 'player_selection_event.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$PlayerSelectionEventTearOff {
-  const _$PlayerSelectionEventTearOff();
-
-  PlayerNameChanged nameChanged(String name) {
-    return PlayerNameChanged(
-      name,
-    );
-  }
-
-  CreatePlayerPressed createPlayerPressed(String name) {
-    return CreatePlayerPressed(
-      name,
-    );
-  }
-
-  CheckForCurrentPlayer checkForCurrentPlayer() {
-    return const CheckForCurrentPlayer();
-  }
-}
-
-/// @nodoc
-const $PlayerSelectionEvent = _$PlayerSelectionEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$PlayerSelectionEvent {
@@ -105,29 +81,29 @@ class _$PlayerSelectionEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $PlayerNameChangedCopyWith<$Res> {
-  factory $PlayerNameChangedCopyWith(
-          PlayerNameChanged value, $Res Function(PlayerNameChanged) then) =
-      _$PlayerNameChangedCopyWithImpl<$Res>;
+abstract class _$$PlayerNameChangedCopyWith<$Res> {
+  factory _$$PlayerNameChangedCopyWith(
+          _$PlayerNameChanged value, $Res Function(_$PlayerNameChanged) then) =
+      __$$PlayerNameChangedCopyWithImpl<$Res>;
   $Res call({String name});
 }
 
 /// @nodoc
-class _$PlayerNameChangedCopyWithImpl<$Res>
+class __$$PlayerNameChangedCopyWithImpl<$Res>
     extends _$PlayerSelectionEventCopyWithImpl<$Res>
-    implements $PlayerNameChangedCopyWith<$Res> {
-  _$PlayerNameChangedCopyWithImpl(
-      PlayerNameChanged _value, $Res Function(PlayerNameChanged) _then)
-      : super(_value, (v) => _then(v as PlayerNameChanged));
+    implements _$$PlayerNameChangedCopyWith<$Res> {
+  __$$PlayerNameChangedCopyWithImpl(
+      _$PlayerNameChanged _value, $Res Function(_$PlayerNameChanged) _then)
+      : super(_value, (v) => _then(v as _$PlayerNameChanged));
 
   @override
-  PlayerNameChanged get _value => super._value as PlayerNameChanged;
+  _$PlayerNameChanged get _value => super._value as _$PlayerNameChanged;
 
   @override
   $Res call({
     Object? name = freezed,
   }) {
-    return _then(PlayerNameChanged(
+    return _then(_$PlayerNameChanged(
       name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -163,7 +139,7 @@ class _$PlayerNameChanged
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is PlayerNameChanged &&
+            other is _$PlayerNameChanged &&
             const DeepCollectionEquality().equals(other.name, name));
   }
 
@@ -173,8 +149,8 @@ class _$PlayerNameChanged
 
   @JsonKey(ignore: true)
   @override
-  $PlayerNameChangedCopyWith<PlayerNameChanged> get copyWith =>
-      _$PlayerNameChangedCopyWithImpl<PlayerNameChanged>(this, _$identity);
+  _$$PlayerNameChangedCopyWith<_$PlayerNameChanged> get copyWith =>
+      __$$PlayerNameChangedCopyWithImpl<_$PlayerNameChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -247,38 +223,38 @@ class _$PlayerNameChanged
 }
 
 abstract class PlayerNameChanged implements PlayerSelectionEvent {
-  const factory PlayerNameChanged(String name) = _$PlayerNameChanged;
+  const factory PlayerNameChanged(final String name) = _$PlayerNameChanged;
 
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PlayerNameChangedCopyWith<PlayerNameChanged> get copyWith =>
+  _$$PlayerNameChangedCopyWith<_$PlayerNameChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreatePlayerPressedCopyWith<$Res> {
-  factory $CreatePlayerPressedCopyWith(
-          CreatePlayerPressed value, $Res Function(CreatePlayerPressed) then) =
-      _$CreatePlayerPressedCopyWithImpl<$Res>;
+abstract class _$$CreatePlayerPressedCopyWith<$Res> {
+  factory _$$CreatePlayerPressedCopyWith(_$CreatePlayerPressed value,
+          $Res Function(_$CreatePlayerPressed) then) =
+      __$$CreatePlayerPressedCopyWithImpl<$Res>;
   $Res call({String name});
 }
 
 /// @nodoc
-class _$CreatePlayerPressedCopyWithImpl<$Res>
+class __$$CreatePlayerPressedCopyWithImpl<$Res>
     extends _$PlayerSelectionEventCopyWithImpl<$Res>
-    implements $CreatePlayerPressedCopyWith<$Res> {
-  _$CreatePlayerPressedCopyWithImpl(
-      CreatePlayerPressed _value, $Res Function(CreatePlayerPressed) _then)
-      : super(_value, (v) => _then(v as CreatePlayerPressed));
+    implements _$$CreatePlayerPressedCopyWith<$Res> {
+  __$$CreatePlayerPressedCopyWithImpl(
+      _$CreatePlayerPressed _value, $Res Function(_$CreatePlayerPressed) _then)
+      : super(_value, (v) => _then(v as _$CreatePlayerPressed));
 
   @override
-  CreatePlayerPressed get _value => super._value as CreatePlayerPressed;
+  _$CreatePlayerPressed get _value => super._value as _$CreatePlayerPressed;
 
   @override
   $Res call({
     Object? name = freezed,
   }) {
-    return _then(CreatePlayerPressed(
+    return _then(_$CreatePlayerPressed(
       name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -315,7 +291,7 @@ class _$CreatePlayerPressed
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is CreatePlayerPressed &&
+            other is _$CreatePlayerPressed &&
             const DeepCollectionEquality().equals(other.name, name));
   }
 
@@ -325,8 +301,9 @@ class _$CreatePlayerPressed
 
   @JsonKey(ignore: true)
   @override
-  $CreatePlayerPressedCopyWith<CreatePlayerPressed> get copyWith =>
-      _$CreatePlayerPressedCopyWithImpl<CreatePlayerPressed>(this, _$identity);
+  _$$CreatePlayerPressedCopyWith<_$CreatePlayerPressed> get copyWith =>
+      __$$CreatePlayerPressedCopyWithImpl<_$CreatePlayerPressed>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -399,31 +376,31 @@ class _$CreatePlayerPressed
 }
 
 abstract class CreatePlayerPressed implements PlayerSelectionEvent {
-  const factory CreatePlayerPressed(String name) = _$CreatePlayerPressed;
+  const factory CreatePlayerPressed(final String name) = _$CreatePlayerPressed;
 
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CreatePlayerPressedCopyWith<CreatePlayerPressed> get copyWith =>
+  _$$CreatePlayerPressedCopyWith<_$CreatePlayerPressed> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CheckForCurrentPlayerCopyWith<$Res> {
-  factory $CheckForCurrentPlayerCopyWith(CheckForCurrentPlayer value,
-          $Res Function(CheckForCurrentPlayer) then) =
-      _$CheckForCurrentPlayerCopyWithImpl<$Res>;
+abstract class _$$CheckForCurrentPlayerCopyWith<$Res> {
+  factory _$$CheckForCurrentPlayerCopyWith(_$CheckForCurrentPlayer value,
+          $Res Function(_$CheckForCurrentPlayer) then) =
+      __$$CheckForCurrentPlayerCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$CheckForCurrentPlayerCopyWithImpl<$Res>
+class __$$CheckForCurrentPlayerCopyWithImpl<$Res>
     extends _$PlayerSelectionEventCopyWithImpl<$Res>
-    implements $CheckForCurrentPlayerCopyWith<$Res> {
-  _$CheckForCurrentPlayerCopyWithImpl(
-      CheckForCurrentPlayer _value, $Res Function(CheckForCurrentPlayer) _then)
-      : super(_value, (v) => _then(v as CheckForCurrentPlayer));
+    implements _$$CheckForCurrentPlayerCopyWith<$Res> {
+  __$$CheckForCurrentPlayerCopyWithImpl(_$CheckForCurrentPlayer _value,
+      $Res Function(_$CheckForCurrentPlayer) _then)
+      : super(_value, (v) => _then(v as _$CheckForCurrentPlayer));
 
   @override
-  CheckForCurrentPlayer get _value => super._value as CheckForCurrentPlayer;
+  _$CheckForCurrentPlayer get _value => super._value as _$CheckForCurrentPlayer;
 }
 
 /// @nodoc
@@ -441,15 +418,14 @@ class _$CheckForCurrentPlayer
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty(
-          'type', 'PlayerSelectionEvent.checkForCurrentPlayer'));
+    properties.add(DiagnosticsProperty(
+        'type', 'PlayerSelectionEvent.checkForCurrentPlayer'));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is CheckForCurrentPlayer);
+        (other.runtimeType == runtimeType && other is _$CheckForCurrentPlayer);
   }
 
   @override

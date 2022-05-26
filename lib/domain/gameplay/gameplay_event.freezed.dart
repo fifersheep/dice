@@ -12,31 +12,7 @@ part of 'gameplay_event.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$GameplayEventTearOff {
-  const _$GameplayEventTearOff();
-
-  GameplayJoined joined(int gameId) {
-    return GameplayJoined(
-      gameId,
-    );
-  }
-
-  GameplayUpdated gameplayUpdated(GameplayModel gameplay) {
-    return GameplayUpdated(
-      gameplay,
-    );
-  }
-
-  ReadyTapped readyTapped() {
-    return const ReadyTapped();
-  }
-}
-
-/// @nodoc
-const $GameplayEvent = _$GameplayEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$GameplayEvent {
@@ -104,29 +80,29 @@ class _$GameplayEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $GameplayJoinedCopyWith<$Res> {
-  factory $GameplayJoinedCopyWith(
-          GameplayJoined value, $Res Function(GameplayJoined) then) =
-      _$GameplayJoinedCopyWithImpl<$Res>;
+abstract class _$$GameplayJoinedCopyWith<$Res> {
+  factory _$$GameplayJoinedCopyWith(
+          _$GameplayJoined value, $Res Function(_$GameplayJoined) then) =
+      __$$GameplayJoinedCopyWithImpl<$Res>;
   $Res call({int gameId});
 }
 
 /// @nodoc
-class _$GameplayJoinedCopyWithImpl<$Res>
+class __$$GameplayJoinedCopyWithImpl<$Res>
     extends _$GameplayEventCopyWithImpl<$Res>
-    implements $GameplayJoinedCopyWith<$Res> {
-  _$GameplayJoinedCopyWithImpl(
-      GameplayJoined _value, $Res Function(GameplayJoined) _then)
-      : super(_value, (v) => _then(v as GameplayJoined));
+    implements _$$GameplayJoinedCopyWith<$Res> {
+  __$$GameplayJoinedCopyWithImpl(
+      _$GameplayJoined _value, $Res Function(_$GameplayJoined) _then)
+      : super(_value, (v) => _then(v as _$GameplayJoined));
 
   @override
-  GameplayJoined get _value => super._value as GameplayJoined;
+  _$GameplayJoined get _value => super._value as _$GameplayJoined;
 
   @override
   $Res call({
     Object? gameId = freezed,
   }) {
-    return _then(GameplayJoined(
+    return _then(_$GameplayJoined(
       gameId == freezed
           ? _value.gameId
           : gameId // ignore: cast_nullable_to_non_nullable
@@ -152,7 +128,7 @@ class _$GameplayJoined implements GameplayJoined {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is GameplayJoined &&
+            other is _$GameplayJoined &&
             const DeepCollectionEquality().equals(other.gameId, gameId));
   }
 
@@ -162,8 +138,8 @@ class _$GameplayJoined implements GameplayJoined {
 
   @JsonKey(ignore: true)
   @override
-  $GameplayJoinedCopyWith<GameplayJoined> get copyWith =>
-      _$GameplayJoinedCopyWithImpl<GameplayJoined>(this, _$identity);
+  _$$GameplayJoinedCopyWith<_$GameplayJoined> get copyWith =>
+      __$$GameplayJoinedCopyWithImpl<_$GameplayJoined>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -235,38 +211,38 @@ class _$GameplayJoined implements GameplayJoined {
 }
 
 abstract class GameplayJoined implements GameplayEvent {
-  const factory GameplayJoined(int gameId) = _$GameplayJoined;
+  const factory GameplayJoined(final int gameId) = _$GameplayJoined;
 
-  int get gameId;
+  int get gameId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GameplayJoinedCopyWith<GameplayJoined> get copyWith =>
+  _$$GameplayJoinedCopyWith<_$GameplayJoined> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GameplayUpdatedCopyWith<$Res> {
-  factory $GameplayUpdatedCopyWith(
-          GameplayUpdated value, $Res Function(GameplayUpdated) then) =
-      _$GameplayUpdatedCopyWithImpl<$Res>;
+abstract class _$$GameplayUpdatedCopyWith<$Res> {
+  factory _$$GameplayUpdatedCopyWith(
+          _$GameplayUpdated value, $Res Function(_$GameplayUpdated) then) =
+      __$$GameplayUpdatedCopyWithImpl<$Res>;
   $Res call({GameplayModel gameplay});
 }
 
 /// @nodoc
-class _$GameplayUpdatedCopyWithImpl<$Res>
+class __$$GameplayUpdatedCopyWithImpl<$Res>
     extends _$GameplayEventCopyWithImpl<$Res>
-    implements $GameplayUpdatedCopyWith<$Res> {
-  _$GameplayUpdatedCopyWithImpl(
-      GameplayUpdated _value, $Res Function(GameplayUpdated) _then)
-      : super(_value, (v) => _then(v as GameplayUpdated));
+    implements _$$GameplayUpdatedCopyWith<$Res> {
+  __$$GameplayUpdatedCopyWithImpl(
+      _$GameplayUpdated _value, $Res Function(_$GameplayUpdated) _then)
+      : super(_value, (v) => _then(v as _$GameplayUpdated));
 
   @override
-  GameplayUpdated get _value => super._value as GameplayUpdated;
+  _$GameplayUpdated get _value => super._value as _$GameplayUpdated;
 
   @override
   $Res call({
     Object? gameplay = freezed,
   }) {
-    return _then(GameplayUpdated(
+    return _then(_$GameplayUpdated(
       gameplay == freezed
           ? _value.gameplay
           : gameplay // ignore: cast_nullable_to_non_nullable
@@ -292,7 +268,7 @@ class _$GameplayUpdated implements GameplayUpdated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is GameplayUpdated &&
+            other is _$GameplayUpdated &&
             const DeepCollectionEquality().equals(other.gameplay, gameplay));
   }
 
@@ -302,8 +278,8 @@ class _$GameplayUpdated implements GameplayUpdated {
 
   @JsonKey(ignore: true)
   @override
-  $GameplayUpdatedCopyWith<GameplayUpdated> get copyWith =>
-      _$GameplayUpdatedCopyWithImpl<GameplayUpdated>(this, _$identity);
+  _$$GameplayUpdatedCopyWith<_$GameplayUpdated> get copyWith =>
+      __$$GameplayUpdatedCopyWithImpl<_$GameplayUpdated>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -375,30 +351,32 @@ class _$GameplayUpdated implements GameplayUpdated {
 }
 
 abstract class GameplayUpdated implements GameplayEvent {
-  const factory GameplayUpdated(GameplayModel gameplay) = _$GameplayUpdated;
+  const factory GameplayUpdated(final GameplayModel gameplay) =
+      _$GameplayUpdated;
 
-  GameplayModel get gameplay;
+  GameplayModel get gameplay => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GameplayUpdatedCopyWith<GameplayUpdated> get copyWith =>
+  _$$GameplayUpdatedCopyWith<_$GameplayUpdated> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ReadyTappedCopyWith<$Res> {
-  factory $ReadyTappedCopyWith(
-          ReadyTapped value, $Res Function(ReadyTapped) then) =
-      _$ReadyTappedCopyWithImpl<$Res>;
+abstract class _$$ReadyTappedCopyWith<$Res> {
+  factory _$$ReadyTappedCopyWith(
+          _$ReadyTapped value, $Res Function(_$ReadyTapped) then) =
+      __$$ReadyTappedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ReadyTappedCopyWithImpl<$Res> extends _$GameplayEventCopyWithImpl<$Res>
-    implements $ReadyTappedCopyWith<$Res> {
-  _$ReadyTappedCopyWithImpl(
-      ReadyTapped _value, $Res Function(ReadyTapped) _then)
-      : super(_value, (v) => _then(v as ReadyTapped));
+class __$$ReadyTappedCopyWithImpl<$Res>
+    extends _$GameplayEventCopyWithImpl<$Res>
+    implements _$$ReadyTappedCopyWith<$Res> {
+  __$$ReadyTappedCopyWithImpl(
+      _$ReadyTapped _value, $Res Function(_$ReadyTapped) _then)
+      : super(_value, (v) => _then(v as _$ReadyTapped));
 
   @override
-  ReadyTapped get _value => super._value as ReadyTapped;
+  _$ReadyTapped get _value => super._value as _$ReadyTapped;
 }
 
 /// @nodoc
@@ -414,7 +392,7 @@ class _$ReadyTapped implements ReadyTapped {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ReadyTapped);
+        (other.runtimeType == runtimeType && other is _$ReadyTapped);
   }
 
   @override

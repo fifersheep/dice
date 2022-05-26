@@ -12,27 +12,7 @@ part of 'response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ResponseTearOff {
-  const _$ResponseTearOff();
-
-  Success<T> success<T>(T data) {
-    return Success<T>(
-      data,
-    );
-  }
-
-  Failure<T> failure<T>(String errorMessage) {
-    return Failure<T>(
-      errorMessage,
-    );
-  }
-}
-
-/// @nodoc
-const $Response = _$ResponseTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Response<T> {
@@ -93,26 +73,28 @@ class _$ResponseCopyWithImpl<T, $Res> implements $ResponseCopyWith<T, $Res> {
 }
 
 /// @nodoc
-abstract class $SuccessCopyWith<T, $Res> {
-  factory $SuccessCopyWith(Success<T> value, $Res Function(Success<T>) then) =
-      _$SuccessCopyWithImpl<T, $Res>;
+abstract class _$$SuccessCopyWith<T, $Res> {
+  factory _$$SuccessCopyWith(
+          _$Success<T> value, $Res Function(_$Success<T>) then) =
+      __$$SuccessCopyWithImpl<T, $Res>;
   $Res call({T data});
 }
 
 /// @nodoc
-class _$SuccessCopyWithImpl<T, $Res> extends _$ResponseCopyWithImpl<T, $Res>
-    implements $SuccessCopyWith<T, $Res> {
-  _$SuccessCopyWithImpl(Success<T> _value, $Res Function(Success<T>) _then)
-      : super(_value, (v) => _then(v as Success<T>));
+class __$$SuccessCopyWithImpl<T, $Res> extends _$ResponseCopyWithImpl<T, $Res>
+    implements _$$SuccessCopyWith<T, $Res> {
+  __$$SuccessCopyWithImpl(
+      _$Success<T> _value, $Res Function(_$Success<T>) _then)
+      : super(_value, (v) => _then(v as _$Success<T>));
 
   @override
-  Success<T> get _value => super._value as Success<T>;
+  _$Success<T> get _value => super._value as _$Success<T>;
 
   @override
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(Success<T>(
+    return _then(_$Success<T>(
       data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -138,7 +120,7 @@ class _$Success<T> implements Success<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Success<T> &&
+            other is _$Success<T> &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
@@ -148,8 +130,8 @@ class _$Success<T> implements Success<T> {
 
   @JsonKey(ignore: true)
   @override
-  $SuccessCopyWith<T, Success<T>> get copyWith =>
-      _$SuccessCopyWithImpl<T, Success<T>>(this, _$identity);
+  _$$SuccessCopyWith<T, _$Success<T>> get copyWith =>
+      __$$SuccessCopyWithImpl<T, _$Success<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -215,35 +197,37 @@ class _$Success<T> implements Success<T> {
 }
 
 abstract class Success<T> implements Response<T> {
-  const factory Success(T data) = _$Success<T>;
+  const factory Success(final T data) = _$Success<T>;
 
-  T get data;
+  T get data => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SuccessCopyWith<T, Success<T>> get copyWith =>
+  _$$SuccessCopyWith<T, _$Success<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FailureCopyWith<T, $Res> {
-  factory $FailureCopyWith(Failure<T> value, $Res Function(Failure<T>) then) =
-      _$FailureCopyWithImpl<T, $Res>;
+abstract class _$$FailureCopyWith<T, $Res> {
+  factory _$$FailureCopyWith(
+          _$Failure<T> value, $Res Function(_$Failure<T>) then) =
+      __$$FailureCopyWithImpl<T, $Res>;
   $Res call({String errorMessage});
 }
 
 /// @nodoc
-class _$FailureCopyWithImpl<T, $Res> extends _$ResponseCopyWithImpl<T, $Res>
-    implements $FailureCopyWith<T, $Res> {
-  _$FailureCopyWithImpl(Failure<T> _value, $Res Function(Failure<T>) _then)
-      : super(_value, (v) => _then(v as Failure<T>));
+class __$$FailureCopyWithImpl<T, $Res> extends _$ResponseCopyWithImpl<T, $Res>
+    implements _$$FailureCopyWith<T, $Res> {
+  __$$FailureCopyWithImpl(
+      _$Failure<T> _value, $Res Function(_$Failure<T>) _then)
+      : super(_value, (v) => _then(v as _$Failure<T>));
 
   @override
-  Failure<T> get _value => super._value as Failure<T>;
+  _$Failure<T> get _value => super._value as _$Failure<T>;
 
   @override
   $Res call({
     Object? errorMessage = freezed,
   }) {
-    return _then(Failure<T>(
+    return _then(_$Failure<T>(
       errorMessage == freezed
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -269,7 +253,7 @@ class _$Failure<T> implements Failure<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Failure<T> &&
+            other is _$Failure<T> &&
             const DeepCollectionEquality()
                 .equals(other.errorMessage, errorMessage));
   }
@@ -280,8 +264,8 @@ class _$Failure<T> implements Failure<T> {
 
   @JsonKey(ignore: true)
   @override
-  $FailureCopyWith<T, Failure<T>> get copyWith =>
-      _$FailureCopyWithImpl<T, Failure<T>>(this, _$identity);
+  _$$FailureCopyWith<T, _$Failure<T>> get copyWith =>
+      __$$FailureCopyWithImpl<T, _$Failure<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -347,10 +331,10 @@ class _$Failure<T> implements Failure<T> {
 }
 
 abstract class Failure<T> implements Response<T> {
-  const factory Failure(String errorMessage) = _$Failure<T>;
+  const factory Failure(final String errorMessage) = _$Failure<T>;
 
-  String get errorMessage;
+  String get errorMessage => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FailureCopyWith<T, Failure<T>> get copyWith =>
+  _$$FailureCopyWith<T, _$Failure<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

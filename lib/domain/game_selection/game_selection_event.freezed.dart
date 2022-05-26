@@ -12,38 +12,11 @@ part of 'game_selection_event.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$GameSelectionEventTearOff {
-  const _$GameSelectionEventTearOff();
-
-  GameNameChanged gameNameChanged(String gameName) {
-    return GameNameChanged(
-      gameName,
-    );
-  }
-
-  CreateGamePressed createGamePressed(String gameName) {
-    return CreateGamePressed(
-      gameName,
-    );
-  }
-
-  JoinGamePressed joinGamePressed(String gameName) {
-    return JoinGamePressed(
-      gameName,
-    );
-  }
-}
-
-/// @nodoc
-const $GameSelectionEvent = _$GameSelectionEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$GameSelectionEvent {
   String get gameName => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String gameName) gameNameChanged,
@@ -125,31 +98,31 @@ class _$GameSelectionEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $GameNameChangedCopyWith<$Res>
+abstract class _$$GameNameChangedCopyWith<$Res>
     implements $GameSelectionEventCopyWith<$Res> {
-  factory $GameNameChangedCopyWith(
-          GameNameChanged value, $Res Function(GameNameChanged) then) =
-      _$GameNameChangedCopyWithImpl<$Res>;
+  factory _$$GameNameChangedCopyWith(
+          _$GameNameChanged value, $Res Function(_$GameNameChanged) then) =
+      __$$GameNameChangedCopyWithImpl<$Res>;
   @override
   $Res call({String gameName});
 }
 
 /// @nodoc
-class _$GameNameChangedCopyWithImpl<$Res>
+class __$$GameNameChangedCopyWithImpl<$Res>
     extends _$GameSelectionEventCopyWithImpl<$Res>
-    implements $GameNameChangedCopyWith<$Res> {
-  _$GameNameChangedCopyWithImpl(
-      GameNameChanged _value, $Res Function(GameNameChanged) _then)
-      : super(_value, (v) => _then(v as GameNameChanged));
+    implements _$$GameNameChangedCopyWith<$Res> {
+  __$$GameNameChangedCopyWithImpl(
+      _$GameNameChanged _value, $Res Function(_$GameNameChanged) _then)
+      : super(_value, (v) => _then(v as _$GameNameChanged));
 
   @override
-  GameNameChanged get _value => super._value as GameNameChanged;
+  _$GameNameChanged get _value => super._value as _$GameNameChanged;
 
   @override
   $Res call({
     Object? gameName = freezed,
   }) {
-    return _then(GameNameChanged(
+    return _then(_$GameNameChanged(
       gameName == freezed
           ? _value.gameName
           : gameName // ignore: cast_nullable_to_non_nullable
@@ -185,7 +158,7 @@ class _$GameNameChanged
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is GameNameChanged &&
+            other is _$GameNameChanged &&
             const DeepCollectionEquality().equals(other.gameName, gameName));
   }
 
@@ -195,8 +168,8 @@ class _$GameNameChanged
 
   @JsonKey(ignore: true)
   @override
-  $GameNameChangedCopyWith<GameNameChanged> get copyWith =>
-      _$GameNameChangedCopyWithImpl<GameNameChanged>(this, _$identity);
+  _$$GameNameChangedCopyWith<_$GameNameChanged> get copyWith =>
+      __$$GameNameChangedCopyWithImpl<_$GameNameChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -268,42 +241,42 @@ class _$GameNameChanged
 }
 
 abstract class GameNameChanged implements GameSelectionEvent {
-  const factory GameNameChanged(String gameName) = _$GameNameChanged;
+  const factory GameNameChanged(final String gameName) = _$GameNameChanged;
 
   @override
-  String get gameName;
+  String get gameName => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $GameNameChangedCopyWith<GameNameChanged> get copyWith =>
+  _$$GameNameChangedCopyWith<_$GameNameChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateGamePressedCopyWith<$Res>
+abstract class _$$CreateGamePressedCopyWith<$Res>
     implements $GameSelectionEventCopyWith<$Res> {
-  factory $CreateGamePressedCopyWith(
-          CreateGamePressed value, $Res Function(CreateGamePressed) then) =
-      _$CreateGamePressedCopyWithImpl<$Res>;
+  factory _$$CreateGamePressedCopyWith(
+          _$CreateGamePressed value, $Res Function(_$CreateGamePressed) then) =
+      __$$CreateGamePressedCopyWithImpl<$Res>;
   @override
   $Res call({String gameName});
 }
 
 /// @nodoc
-class _$CreateGamePressedCopyWithImpl<$Res>
+class __$$CreateGamePressedCopyWithImpl<$Res>
     extends _$GameSelectionEventCopyWithImpl<$Res>
-    implements $CreateGamePressedCopyWith<$Res> {
-  _$CreateGamePressedCopyWithImpl(
-      CreateGamePressed _value, $Res Function(CreateGamePressed) _then)
-      : super(_value, (v) => _then(v as CreateGamePressed));
+    implements _$$CreateGamePressedCopyWith<$Res> {
+  __$$CreateGamePressedCopyWithImpl(
+      _$CreateGamePressed _value, $Res Function(_$CreateGamePressed) _then)
+      : super(_value, (v) => _then(v as _$CreateGamePressed));
 
   @override
-  CreateGamePressed get _value => super._value as CreateGamePressed;
+  _$CreateGamePressed get _value => super._value as _$CreateGamePressed;
 
   @override
   $Res call({
     Object? gameName = freezed,
   }) {
-    return _then(CreateGamePressed(
+    return _then(_$CreateGamePressed(
       gameName == freezed
           ? _value.gameName
           : gameName // ignore: cast_nullable_to_non_nullable
@@ -339,7 +312,7 @@ class _$CreateGamePressed
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is CreateGamePressed &&
+            other is _$CreateGamePressed &&
             const DeepCollectionEquality().equals(other.gameName, gameName));
   }
 
@@ -349,8 +322,8 @@ class _$CreateGamePressed
 
   @JsonKey(ignore: true)
   @override
-  $CreateGamePressedCopyWith<CreateGamePressed> get copyWith =>
-      _$CreateGamePressedCopyWithImpl<CreateGamePressed>(this, _$identity);
+  _$$CreateGamePressedCopyWith<_$CreateGamePressed> get copyWith =>
+      __$$CreateGamePressedCopyWithImpl<_$CreateGamePressed>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -422,42 +395,42 @@ class _$CreateGamePressed
 }
 
 abstract class CreateGamePressed implements GameSelectionEvent {
-  const factory CreateGamePressed(String gameName) = _$CreateGamePressed;
+  const factory CreateGamePressed(final String gameName) = _$CreateGamePressed;
 
   @override
-  String get gameName;
+  String get gameName => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $CreateGamePressedCopyWith<CreateGamePressed> get copyWith =>
+  _$$CreateGamePressedCopyWith<_$CreateGamePressed> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $JoinGamePressedCopyWith<$Res>
+abstract class _$$JoinGamePressedCopyWith<$Res>
     implements $GameSelectionEventCopyWith<$Res> {
-  factory $JoinGamePressedCopyWith(
-          JoinGamePressed value, $Res Function(JoinGamePressed) then) =
-      _$JoinGamePressedCopyWithImpl<$Res>;
+  factory _$$JoinGamePressedCopyWith(
+          _$JoinGamePressed value, $Res Function(_$JoinGamePressed) then) =
+      __$$JoinGamePressedCopyWithImpl<$Res>;
   @override
   $Res call({String gameName});
 }
 
 /// @nodoc
-class _$JoinGamePressedCopyWithImpl<$Res>
+class __$$JoinGamePressedCopyWithImpl<$Res>
     extends _$GameSelectionEventCopyWithImpl<$Res>
-    implements $JoinGamePressedCopyWith<$Res> {
-  _$JoinGamePressedCopyWithImpl(
-      JoinGamePressed _value, $Res Function(JoinGamePressed) _then)
-      : super(_value, (v) => _then(v as JoinGamePressed));
+    implements _$$JoinGamePressedCopyWith<$Res> {
+  __$$JoinGamePressedCopyWithImpl(
+      _$JoinGamePressed _value, $Res Function(_$JoinGamePressed) _then)
+      : super(_value, (v) => _then(v as _$JoinGamePressed));
 
   @override
-  JoinGamePressed get _value => super._value as JoinGamePressed;
+  _$JoinGamePressed get _value => super._value as _$JoinGamePressed;
 
   @override
   $Res call({
     Object? gameName = freezed,
   }) {
-    return _then(JoinGamePressed(
+    return _then(_$JoinGamePressed(
       gameName == freezed
           ? _value.gameName
           : gameName // ignore: cast_nullable_to_non_nullable
@@ -493,7 +466,7 @@ class _$JoinGamePressed
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is JoinGamePressed &&
+            other is _$JoinGamePressed &&
             const DeepCollectionEquality().equals(other.gameName, gameName));
   }
 
@@ -503,8 +476,8 @@ class _$JoinGamePressed
 
   @JsonKey(ignore: true)
   @override
-  $JoinGamePressedCopyWith<JoinGamePressed> get copyWith =>
-      _$JoinGamePressedCopyWithImpl<JoinGamePressed>(this, _$identity);
+  _$$JoinGamePressedCopyWith<_$JoinGamePressed> get copyWith =>
+      __$$JoinGamePressedCopyWithImpl<_$JoinGamePressed>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -576,12 +549,12 @@ class _$JoinGamePressed
 }
 
 abstract class JoinGamePressed implements GameSelectionEvent {
-  const factory JoinGamePressed(String gameName) = _$JoinGamePressed;
+  const factory JoinGamePressed(final String gameName) = _$JoinGamePressed;
 
   @override
-  String get gameName;
+  String get gameName => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $JoinGamePressedCopyWith<JoinGamePressed> get copyWith =>
+  _$$JoinGamePressedCopyWith<_$JoinGamePressed> get copyWith =>
       throw _privateConstructorUsedError;
 }

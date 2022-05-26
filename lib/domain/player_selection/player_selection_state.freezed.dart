@@ -12,53 +12,7 @@ part of 'player_selection_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$PlayerSelectionStateTearOff {
-  const _$PlayerSelectionStateTearOff();
-
-  PlayerNameInvalid nameInvalid() {
-    return const PlayerNameInvalid();
-  }
-
-  PlayerNameAvailable nameAvailable(String name) {
-    return PlayerNameAvailable(
-      name,
-    );
-  }
-
-  PlayerNameUnavailable nameUnavailable(String name) {
-    return PlayerNameUnavailable(
-      name,
-    );
-  }
-
-  CheckingPlayerName checkingName(String name) {
-    return CheckingPlayerName(
-      name,
-    );
-  }
-
-  PlayerNameChange nameChange(String name) {
-    return PlayerNameChange(
-      name,
-    );
-  }
-
-  PlayerCreated playerCreated() {
-    return const PlayerCreated();
-  }
-
-  PlayerExists playerExists(int id) {
-    return PlayerExists(
-      id,
-    );
-  }
-}
-
-/// @nodoc
-const $PlayerSelectionState = _$PlayerSelectionStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$PlayerSelectionState {
@@ -150,22 +104,22 @@ class _$PlayerSelectionStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $PlayerNameInvalidCopyWith<$Res> {
-  factory $PlayerNameInvalidCopyWith(
-          PlayerNameInvalid value, $Res Function(PlayerNameInvalid) then) =
-      _$PlayerNameInvalidCopyWithImpl<$Res>;
+abstract class _$$PlayerNameInvalidCopyWith<$Res> {
+  factory _$$PlayerNameInvalidCopyWith(
+          _$PlayerNameInvalid value, $Res Function(_$PlayerNameInvalid) then) =
+      __$$PlayerNameInvalidCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$PlayerNameInvalidCopyWithImpl<$Res>
+class __$$PlayerNameInvalidCopyWithImpl<$Res>
     extends _$PlayerSelectionStateCopyWithImpl<$Res>
-    implements $PlayerNameInvalidCopyWith<$Res> {
-  _$PlayerNameInvalidCopyWithImpl(
-      PlayerNameInvalid _value, $Res Function(PlayerNameInvalid) _then)
-      : super(_value, (v) => _then(v as PlayerNameInvalid));
+    implements _$$PlayerNameInvalidCopyWith<$Res> {
+  __$$PlayerNameInvalidCopyWithImpl(
+      _$PlayerNameInvalid _value, $Res Function(_$PlayerNameInvalid) _then)
+      : super(_value, (v) => _then(v as _$PlayerNameInvalid));
 
   @override
-  PlayerNameInvalid get _value => super._value as PlayerNameInvalid;
+  _$PlayerNameInvalid get _value => super._value as _$PlayerNameInvalid;
 }
 
 /// @nodoc
@@ -181,7 +135,7 @@ class _$PlayerNameInvalid implements PlayerNameInvalid {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is PlayerNameInvalid);
+        (other.runtimeType == runtimeType && other is _$PlayerNameInvalid);
   }
 
   @override
@@ -285,29 +239,29 @@ abstract class PlayerNameInvalid implements PlayerSelectionState {
 }
 
 /// @nodoc
-abstract class $PlayerNameAvailableCopyWith<$Res> {
-  factory $PlayerNameAvailableCopyWith(
-          PlayerNameAvailable value, $Res Function(PlayerNameAvailable) then) =
-      _$PlayerNameAvailableCopyWithImpl<$Res>;
+abstract class _$$PlayerNameAvailableCopyWith<$Res> {
+  factory _$$PlayerNameAvailableCopyWith(_$PlayerNameAvailable value,
+          $Res Function(_$PlayerNameAvailable) then) =
+      __$$PlayerNameAvailableCopyWithImpl<$Res>;
   $Res call({String name});
 }
 
 /// @nodoc
-class _$PlayerNameAvailableCopyWithImpl<$Res>
+class __$$PlayerNameAvailableCopyWithImpl<$Res>
     extends _$PlayerSelectionStateCopyWithImpl<$Res>
-    implements $PlayerNameAvailableCopyWith<$Res> {
-  _$PlayerNameAvailableCopyWithImpl(
-      PlayerNameAvailable _value, $Res Function(PlayerNameAvailable) _then)
-      : super(_value, (v) => _then(v as PlayerNameAvailable));
+    implements _$$PlayerNameAvailableCopyWith<$Res> {
+  __$$PlayerNameAvailableCopyWithImpl(
+      _$PlayerNameAvailable _value, $Res Function(_$PlayerNameAvailable) _then)
+      : super(_value, (v) => _then(v as _$PlayerNameAvailable));
 
   @override
-  PlayerNameAvailable get _value => super._value as PlayerNameAvailable;
+  _$PlayerNameAvailable get _value => super._value as _$PlayerNameAvailable;
 
   @override
   $Res call({
     Object? name = freezed,
   }) {
-    return _then(PlayerNameAvailable(
+    return _then(_$PlayerNameAvailable(
       name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -333,7 +287,7 @@ class _$PlayerNameAvailable implements PlayerNameAvailable {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is PlayerNameAvailable &&
+            other is _$PlayerNameAvailable &&
             const DeepCollectionEquality().equals(other.name, name));
   }
 
@@ -343,8 +297,9 @@ class _$PlayerNameAvailable implements PlayerNameAvailable {
 
   @JsonKey(ignore: true)
   @override
-  $PlayerNameAvailableCopyWith<PlayerNameAvailable> get copyWith =>
-      _$PlayerNameAvailableCopyWithImpl<PlayerNameAvailable>(this, _$identity);
+  _$$PlayerNameAvailableCopyWith<_$PlayerNameAvailable> get copyWith =>
+      __$$PlayerNameAvailableCopyWithImpl<_$PlayerNameAvailable>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -440,38 +395,38 @@ class _$PlayerNameAvailable implements PlayerNameAvailable {
 }
 
 abstract class PlayerNameAvailable implements PlayerSelectionState {
-  const factory PlayerNameAvailable(String name) = _$PlayerNameAvailable;
+  const factory PlayerNameAvailable(final String name) = _$PlayerNameAvailable;
 
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PlayerNameAvailableCopyWith<PlayerNameAvailable> get copyWith =>
+  _$$PlayerNameAvailableCopyWith<_$PlayerNameAvailable> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlayerNameUnavailableCopyWith<$Res> {
-  factory $PlayerNameUnavailableCopyWith(PlayerNameUnavailable value,
-          $Res Function(PlayerNameUnavailable) then) =
-      _$PlayerNameUnavailableCopyWithImpl<$Res>;
+abstract class _$$PlayerNameUnavailableCopyWith<$Res> {
+  factory _$$PlayerNameUnavailableCopyWith(_$PlayerNameUnavailable value,
+          $Res Function(_$PlayerNameUnavailable) then) =
+      __$$PlayerNameUnavailableCopyWithImpl<$Res>;
   $Res call({String name});
 }
 
 /// @nodoc
-class _$PlayerNameUnavailableCopyWithImpl<$Res>
+class __$$PlayerNameUnavailableCopyWithImpl<$Res>
     extends _$PlayerSelectionStateCopyWithImpl<$Res>
-    implements $PlayerNameUnavailableCopyWith<$Res> {
-  _$PlayerNameUnavailableCopyWithImpl(
-      PlayerNameUnavailable _value, $Res Function(PlayerNameUnavailable) _then)
-      : super(_value, (v) => _then(v as PlayerNameUnavailable));
+    implements _$$PlayerNameUnavailableCopyWith<$Res> {
+  __$$PlayerNameUnavailableCopyWithImpl(_$PlayerNameUnavailable _value,
+      $Res Function(_$PlayerNameUnavailable) _then)
+      : super(_value, (v) => _then(v as _$PlayerNameUnavailable));
 
   @override
-  PlayerNameUnavailable get _value => super._value as PlayerNameUnavailable;
+  _$PlayerNameUnavailable get _value => super._value as _$PlayerNameUnavailable;
 
   @override
   $Res call({
     Object? name = freezed,
   }) {
-    return _then(PlayerNameUnavailable(
+    return _then(_$PlayerNameUnavailable(
       name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -497,7 +452,7 @@ class _$PlayerNameUnavailable implements PlayerNameUnavailable {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is PlayerNameUnavailable &&
+            other is _$PlayerNameUnavailable &&
             const DeepCollectionEquality().equals(other.name, name));
   }
 
@@ -507,8 +462,8 @@ class _$PlayerNameUnavailable implements PlayerNameUnavailable {
 
   @JsonKey(ignore: true)
   @override
-  $PlayerNameUnavailableCopyWith<PlayerNameUnavailable> get copyWith =>
-      _$PlayerNameUnavailableCopyWithImpl<PlayerNameUnavailable>(
+  _$$PlayerNameUnavailableCopyWith<_$PlayerNameUnavailable> get copyWith =>
+      __$$PlayerNameUnavailableCopyWithImpl<_$PlayerNameUnavailable>(
           this, _$identity);
 
   @override
@@ -605,38 +560,39 @@ class _$PlayerNameUnavailable implements PlayerNameUnavailable {
 }
 
 abstract class PlayerNameUnavailable implements PlayerSelectionState {
-  const factory PlayerNameUnavailable(String name) = _$PlayerNameUnavailable;
+  const factory PlayerNameUnavailable(final String name) =
+      _$PlayerNameUnavailable;
 
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PlayerNameUnavailableCopyWith<PlayerNameUnavailable> get copyWith =>
+  _$$PlayerNameUnavailableCopyWith<_$PlayerNameUnavailable> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CheckingPlayerNameCopyWith<$Res> {
-  factory $CheckingPlayerNameCopyWith(
-          CheckingPlayerName value, $Res Function(CheckingPlayerName) then) =
-      _$CheckingPlayerNameCopyWithImpl<$Res>;
+abstract class _$$CheckingPlayerNameCopyWith<$Res> {
+  factory _$$CheckingPlayerNameCopyWith(_$CheckingPlayerName value,
+          $Res Function(_$CheckingPlayerName) then) =
+      __$$CheckingPlayerNameCopyWithImpl<$Res>;
   $Res call({String name});
 }
 
 /// @nodoc
-class _$CheckingPlayerNameCopyWithImpl<$Res>
+class __$$CheckingPlayerNameCopyWithImpl<$Res>
     extends _$PlayerSelectionStateCopyWithImpl<$Res>
-    implements $CheckingPlayerNameCopyWith<$Res> {
-  _$CheckingPlayerNameCopyWithImpl(
-      CheckingPlayerName _value, $Res Function(CheckingPlayerName) _then)
-      : super(_value, (v) => _then(v as CheckingPlayerName));
+    implements _$$CheckingPlayerNameCopyWith<$Res> {
+  __$$CheckingPlayerNameCopyWithImpl(
+      _$CheckingPlayerName _value, $Res Function(_$CheckingPlayerName) _then)
+      : super(_value, (v) => _then(v as _$CheckingPlayerName));
 
   @override
-  CheckingPlayerName get _value => super._value as CheckingPlayerName;
+  _$CheckingPlayerName get _value => super._value as _$CheckingPlayerName;
 
   @override
   $Res call({
     Object? name = freezed,
   }) {
-    return _then(CheckingPlayerName(
+    return _then(_$CheckingPlayerName(
       name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -662,7 +618,7 @@ class _$CheckingPlayerName implements CheckingPlayerName {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is CheckingPlayerName &&
+            other is _$CheckingPlayerName &&
             const DeepCollectionEquality().equals(other.name, name));
   }
 
@@ -672,8 +628,9 @@ class _$CheckingPlayerName implements CheckingPlayerName {
 
   @JsonKey(ignore: true)
   @override
-  $CheckingPlayerNameCopyWith<CheckingPlayerName> get copyWith =>
-      _$CheckingPlayerNameCopyWithImpl<CheckingPlayerName>(this, _$identity);
+  _$$CheckingPlayerNameCopyWith<_$CheckingPlayerName> get copyWith =>
+      __$$CheckingPlayerNameCopyWithImpl<_$CheckingPlayerName>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -769,38 +726,38 @@ class _$CheckingPlayerName implements CheckingPlayerName {
 }
 
 abstract class CheckingPlayerName implements PlayerSelectionState {
-  const factory CheckingPlayerName(String name) = _$CheckingPlayerName;
+  const factory CheckingPlayerName(final String name) = _$CheckingPlayerName;
 
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CheckingPlayerNameCopyWith<CheckingPlayerName> get copyWith =>
+  _$$CheckingPlayerNameCopyWith<_$CheckingPlayerName> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlayerNameChangeCopyWith<$Res> {
-  factory $PlayerNameChangeCopyWith(
-          PlayerNameChange value, $Res Function(PlayerNameChange) then) =
-      _$PlayerNameChangeCopyWithImpl<$Res>;
+abstract class _$$PlayerNameChangeCopyWith<$Res> {
+  factory _$$PlayerNameChangeCopyWith(
+          _$PlayerNameChange value, $Res Function(_$PlayerNameChange) then) =
+      __$$PlayerNameChangeCopyWithImpl<$Res>;
   $Res call({String name});
 }
 
 /// @nodoc
-class _$PlayerNameChangeCopyWithImpl<$Res>
+class __$$PlayerNameChangeCopyWithImpl<$Res>
     extends _$PlayerSelectionStateCopyWithImpl<$Res>
-    implements $PlayerNameChangeCopyWith<$Res> {
-  _$PlayerNameChangeCopyWithImpl(
-      PlayerNameChange _value, $Res Function(PlayerNameChange) _then)
-      : super(_value, (v) => _then(v as PlayerNameChange));
+    implements _$$PlayerNameChangeCopyWith<$Res> {
+  __$$PlayerNameChangeCopyWithImpl(
+      _$PlayerNameChange _value, $Res Function(_$PlayerNameChange) _then)
+      : super(_value, (v) => _then(v as _$PlayerNameChange));
 
   @override
-  PlayerNameChange get _value => super._value as PlayerNameChange;
+  _$PlayerNameChange get _value => super._value as _$PlayerNameChange;
 
   @override
   $Res call({
     Object? name = freezed,
   }) {
-    return _then(PlayerNameChange(
+    return _then(_$PlayerNameChange(
       name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -826,7 +783,7 @@ class _$PlayerNameChange implements PlayerNameChange {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is PlayerNameChange &&
+            other is _$PlayerNameChange &&
             const DeepCollectionEquality().equals(other.name, name));
   }
 
@@ -836,8 +793,8 @@ class _$PlayerNameChange implements PlayerNameChange {
 
   @JsonKey(ignore: true)
   @override
-  $PlayerNameChangeCopyWith<PlayerNameChange> get copyWith =>
-      _$PlayerNameChangeCopyWithImpl<PlayerNameChange>(this, _$identity);
+  _$$PlayerNameChangeCopyWith<_$PlayerNameChange> get copyWith =>
+      __$$PlayerNameChangeCopyWithImpl<_$PlayerNameChange>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -933,31 +890,31 @@ class _$PlayerNameChange implements PlayerNameChange {
 }
 
 abstract class PlayerNameChange implements PlayerSelectionState {
-  const factory PlayerNameChange(String name) = _$PlayerNameChange;
+  const factory PlayerNameChange(final String name) = _$PlayerNameChange;
 
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PlayerNameChangeCopyWith<PlayerNameChange> get copyWith =>
+  _$$PlayerNameChangeCopyWith<_$PlayerNameChange> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlayerCreatedCopyWith<$Res> {
-  factory $PlayerCreatedCopyWith(
-          PlayerCreated value, $Res Function(PlayerCreated) then) =
-      _$PlayerCreatedCopyWithImpl<$Res>;
+abstract class _$$PlayerCreatedCopyWith<$Res> {
+  factory _$$PlayerCreatedCopyWith(
+          _$PlayerCreated value, $Res Function(_$PlayerCreated) then) =
+      __$$PlayerCreatedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$PlayerCreatedCopyWithImpl<$Res>
+class __$$PlayerCreatedCopyWithImpl<$Res>
     extends _$PlayerSelectionStateCopyWithImpl<$Res>
-    implements $PlayerCreatedCopyWith<$Res> {
-  _$PlayerCreatedCopyWithImpl(
-      PlayerCreated _value, $Res Function(PlayerCreated) _then)
-      : super(_value, (v) => _then(v as PlayerCreated));
+    implements _$$PlayerCreatedCopyWith<$Res> {
+  __$$PlayerCreatedCopyWithImpl(
+      _$PlayerCreated _value, $Res Function(_$PlayerCreated) _then)
+      : super(_value, (v) => _then(v as _$PlayerCreated));
 
   @override
-  PlayerCreated get _value => super._value as PlayerCreated;
+  _$PlayerCreated get _value => super._value as _$PlayerCreated;
 }
 
 /// @nodoc
@@ -973,7 +930,7 @@ class _$PlayerCreated implements PlayerCreated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is PlayerCreated);
+        (other.runtimeType == runtimeType && other is _$PlayerCreated);
   }
 
   @override
@@ -1077,29 +1034,29 @@ abstract class PlayerCreated implements PlayerSelectionState {
 }
 
 /// @nodoc
-abstract class $PlayerExistsCopyWith<$Res> {
-  factory $PlayerExistsCopyWith(
-          PlayerExists value, $Res Function(PlayerExists) then) =
-      _$PlayerExistsCopyWithImpl<$Res>;
+abstract class _$$PlayerExistsCopyWith<$Res> {
+  factory _$$PlayerExistsCopyWith(
+          _$PlayerExists value, $Res Function(_$PlayerExists) then) =
+      __$$PlayerExistsCopyWithImpl<$Res>;
   $Res call({int id});
 }
 
 /// @nodoc
-class _$PlayerExistsCopyWithImpl<$Res>
+class __$$PlayerExistsCopyWithImpl<$Res>
     extends _$PlayerSelectionStateCopyWithImpl<$Res>
-    implements $PlayerExistsCopyWith<$Res> {
-  _$PlayerExistsCopyWithImpl(
-      PlayerExists _value, $Res Function(PlayerExists) _then)
-      : super(_value, (v) => _then(v as PlayerExists));
+    implements _$$PlayerExistsCopyWith<$Res> {
+  __$$PlayerExistsCopyWithImpl(
+      _$PlayerExists _value, $Res Function(_$PlayerExists) _then)
+      : super(_value, (v) => _then(v as _$PlayerExists));
 
   @override
-  PlayerExists get _value => super._value as PlayerExists;
+  _$PlayerExists get _value => super._value as _$PlayerExists;
 
   @override
   $Res call({
     Object? id = freezed,
   }) {
-    return _then(PlayerExists(
+    return _then(_$PlayerExists(
       id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1125,7 +1082,7 @@ class _$PlayerExists implements PlayerExists {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is PlayerExists &&
+            other is _$PlayerExists &&
             const DeepCollectionEquality().equals(other.id, id));
   }
 
@@ -1135,8 +1092,8 @@ class _$PlayerExists implements PlayerExists {
 
   @JsonKey(ignore: true)
   @override
-  $PlayerExistsCopyWith<PlayerExists> get copyWith =>
-      _$PlayerExistsCopyWithImpl<PlayerExists>(this, _$identity);
+  _$$PlayerExistsCopyWith<_$PlayerExists> get copyWith =>
+      __$$PlayerExistsCopyWithImpl<_$PlayerExists>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1232,10 +1189,10 @@ class _$PlayerExists implements PlayerExists {
 }
 
 abstract class PlayerExists implements PlayerSelectionState {
-  const factory PlayerExists(int id) = _$PlayerExists;
+  const factory PlayerExists(final int id) = _$PlayerExists;
 
-  int get id;
+  int get id => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PlayerExistsCopyWith<PlayerExists> get copyWith =>
+  _$$PlayerExistsCopyWith<_$PlayerExists> get copyWith =>
       throw _privateConstructorUsedError;
 }

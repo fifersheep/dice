@@ -10,7 +10,7 @@ It's really a sample app for playing with a Supabase backend, but might as well 
 
 ### Code Generation
 
-`flutter pub run build_runner build`
+`flutter pub run build_runner build --delete-conflicting-outputs`
 
 ### Supabase
 
