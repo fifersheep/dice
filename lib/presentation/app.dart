@@ -13,6 +13,7 @@ class App extends StatelessWidget {
       theme: AppTheme.defaultTheme,
       routerDelegate: _router.delegate(),
       routeInformationParser: _router.defaultRouteParser(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

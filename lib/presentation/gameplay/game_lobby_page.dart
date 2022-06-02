@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:dice/domain/gameplay/gameplay_bloc.dart';
 import 'package:dice/domain/gameplay/gameplay_event.dart';
 import 'package:dice/domain/gameplay/gameplay_state.dart';
+import 'package:dice/presentation/app_scaffold.dart';
 import 'package:dice/presentation/gameplay/game_lobby.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +29,7 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AppScaffold(
       body: BlocBuilder(
         bloc: bloc,
         builder: (context, snapshot) {

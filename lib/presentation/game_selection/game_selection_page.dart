@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:dice/domain/game_selection/game_selection_bloc.dart';
 import 'package:dice/domain/game_selection/game_selection_event.dart';
 import 'package:dice/domain/game_selection/game_selection_state.dart';
+import 'package:dice/presentation/app_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +19,7 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
   @override
   Widget build(BuildContext context) {
     final editController = TextEditingController();
-    return Scaffold(
+    return AppScaffold(
       body: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
