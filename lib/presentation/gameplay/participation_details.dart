@@ -5,20 +5,23 @@ class ParticipationDetails extends StatelessWidget {
   const ParticipationDetails({
     required this.name,
     required this.currentBet,
+    required this.diceQuantity,
     this.size = 24,
     required this.isActive,
   });
 
   final String name;
   final String currentBet;
+  final int diceQuantity;
   final double size;
   final bool isActive;
 
   @override
   Widget build(BuildContext context) {
+    final color = isActive ? ThemeColors.white : ThemeColors.white50;
     final textStyle = TextStyle(
       fontSize: size,
-      color: isActive ? ThemeColors.white : ThemeColors.white50,
+      color: color,
     );
 
     return Column(
@@ -27,8 +30,9 @@ class ParticipationDetails extends StatelessWidget {
           currentBet,
           style: textStyle,
         ),
-        SizedBox(
-          height: 8,
+        CustomPaint(
+          painter: DiceQuantityPainter(diceQuantity, color),
+          size: const Size(80, 20),
         ),
         Text(
           name,
@@ -37,4 +41,30 @@ class ParticipationDetails extends StatelessWidget {
       ],
     );
   }
+}
+
+class DiceQuantityPainter extends CustomPainter {
+  DiceQuantityPainter(this.diceQuantity, this.color);
+
+  final int diceQuantity;
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    const double filledCircleRadius = 3;
+    final Paint paint = Paint()..color = ThemeColors.white;
+    dot(double x, double y) => canvas.drawCircle(
+          Offset(x, y),
+          filledCircleRadius,
+          paint,
+        );
+
+    final spacing = size.width / 5;
+    for (var i = 0; i < diceQuantity; i++) {
+      dot(spacing * i + spacing / 2 + spacing / 2 * (5 - diceQuantity), size.height / 2);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

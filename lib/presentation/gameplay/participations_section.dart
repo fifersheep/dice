@@ -37,6 +37,7 @@ class ParticipationsSection extends StatelessWidget {
                       .map((e) => ParticipationDetails(
                             name: e.name,
                             currentBet: e.bet,
+                            diceQuantity: e.diceQuantity,
                             isActive: e.isActive,
                           ))
                       .toList(),
@@ -50,12 +51,14 @@ class ParticipationsSection extends StatelessWidget {
                     ParticipationDetails(
                       name: opposingParticipation!.name,
                       currentBet: opposingParticipation!.bet,
+                      diceQuantity: opposingParticipation!.diceQuantity,
                       isActive: opposingParticipation!.isActive,
                     ),
                   Spacer(),
                   ParticipationDetails(
                     name: currentParticipation.name,
                     currentBet: currentParticipation.bet,
+                    diceQuantity: currentParticipation.diceQuantity,
                     size: 42,
                     isActive: currentParticipation.isActive,
                   ),
@@ -70,6 +73,7 @@ class ParticipationsSection extends StatelessWidget {
                       .map((e) => ParticipationDetails(
                             name: e.name,
                             currentBet: e.bet,
+                            diceQuantity: e.diceQuantity,
                             isActive: e.isActive,
                           ))
                       .toList(),

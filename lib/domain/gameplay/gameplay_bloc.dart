@@ -146,6 +146,7 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
           .map((pp) => GameInPlayParticipation(
                 pp.value.player.name,
                 _bet(pp.value.participation.betQuantity, pp.value.participation.betValue),
+                pp.value.participation.diceQuantity ?? 0,
                 _slotForParticipation(pp.key, orderedParticipations.length),
                 pp.value.player.id == gameCurrentPlayerId,
               ))
@@ -203,10 +204,11 @@ enum ParticipationSlot { BottomLeft, TopLeft, Top, TopRight, BottomRight, Bottom
 class GameInPlayParticipation {
   final String name;
   final String bet;
+  final int diceQuantity;
   final ParticipationSlot slot;
   final bool isActive;
 
-  GameInPlayParticipation(this.name, this.bet, this.slot, this.isActive);
+  GameInPlayParticipation(this.name, this.bet, this.diceQuantity, this.slot, this.isActive);
 }
 
 class GameplayModel {
