@@ -10,7 +10,7 @@ class AppScaffold extends StatelessWidget {
   Widget build(BuildContext context) => Banner(
         location: BannerLocation.topEnd,
         message: "Alpha",
-        color: ThemeColors.secondary,
+        color: ThemeColors.red,
         child: Scaffold(
           body: body,
         ),
