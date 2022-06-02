@@ -43,6 +43,7 @@ create table public.participations (
     game_id bigint not null,
     player_id bigint not null,
     player_ready boolean not null default false,
+    dice_quantity smallint,
     bet_quantity smallint,
     bet_value smallint,
     primary key (game_id, player_id),

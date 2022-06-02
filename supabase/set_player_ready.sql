@@ -46,6 +46,11 @@ begin
       where private.participation_dice.id = _participation_dice_id;
     end loop;
 
+    -- set the dice count for each participant
+    update participations
+    set dice_quantity = 5
+    where participations.game_id = set_player_ready.game_id;
+
     -- change the status of the game to InPlay
     update games
     set status = 'InPlay'
