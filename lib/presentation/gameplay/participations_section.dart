@@ -6,6 +6,7 @@ import 'participation_details.dart';
 class ParticipationsSection extends StatelessWidget {
   ParticipationsSection(
     this.height,
+    this.currentParticipationDice,
     this.currentParticipation,
     this.opposingParticipation,
     this.leftParticipations,
@@ -13,6 +14,7 @@ class ParticipationsSection extends StatelessWidget {
   );
 
   final double height;
+  final String currentParticipationDice;
   final GameInPlayParticipation currentParticipation;
   final GameInPlayParticipation? opposingParticipation;
   final List<GameInPlayParticipation> leftParticipations;
@@ -59,7 +61,7 @@ class ParticipationsSection extends StatelessWidget {
                     name: currentParticipation.name,
                     currentBet: currentParticipation.bet,
                     diceQuantity: currentParticipation.diceQuantity,
-                    size: 42,
+                    diceValues: currentParticipationDice,
                     isActive: currentParticipation.isActive,
                   ),
                 ],

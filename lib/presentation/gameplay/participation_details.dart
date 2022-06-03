@@ -1,4 +1,5 @@
 import 'package:dice/presentation/constants/colors.dart';
+import 'package:dice/presentation/gameplay/dice_section.dart';
 import 'package:flutter/material.dart';
 
 class ParticipationDetails extends StatelessWidget {
@@ -6,21 +7,21 @@ class ParticipationDetails extends StatelessWidget {
     required this.name,
     required this.currentBet,
     required this.diceQuantity,
-    this.size = 24,
     required this.isActive,
+    this.diceValues,
   });
 
   final String name;
   final String currentBet;
   final int diceQuantity;
-  final double size;
   final bool isActive;
+  final String? diceValues;
 
   @override
   Widget build(BuildContext context) {
     final color = isActive ? ThemeColors.white : ThemeColors.white50;
     final textStyle = TextStyle(
-      fontSize: size,
+      fontSize: diceValues == null ? 24 : 42,
       color: color,
     );
 
@@ -30,10 +31,14 @@ class ParticipationDetails extends StatelessWidget {
           currentBet,
           style: textStyle,
         ),
-        CustomPaint(
-          painter: DiceQuantityPainter(diceQuantity, color),
-          size: const Size(80, 20),
-        ),
+        diceValues != null
+            ? DiceSection(
+                dice: diceValues!,
+              )
+            : CustomPaint(
+                painter: DiceQuantityPainter(diceQuantity, color),
+                size: const Size(80, 20),
+              ),
         Text(
           name,
           style: textStyle,
