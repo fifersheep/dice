@@ -42,7 +42,7 @@ begin
       where game_participation_uuids.game_id = set_player_ready.game_id
     loop
       update private.participation_dice
-      set dice = (array[ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6)])
+      set dice = (array[ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6)])
       where private.participation_dice.id = _participation_dice_id;
     end loop;
 
