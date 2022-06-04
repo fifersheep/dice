@@ -11,7 +11,7 @@ class BetUserAction extends StatefulWidget {
     required this.betOptions,
   }) : super(key: key);
 
-  final List<int> quantityOptions = const [1, 2, 3, 4, 5, 6];
+  final List<int> valueOptions = const [1, 2, 3, 4, 5, 6];
   final List<int> betOptions;
 
   @override
@@ -33,16 +33,14 @@ class _BetUserActionState extends State<BetUserAction> {
               elevation: 0,
             ),
           ),
-          ...widget.quantityOptions.mapIndexed((index, element) {
-            final n = widget.quantityOptions.length;
-            final step = 360 / n;
-            final degrees = step * index + (step / 2);
+          ...widget.valueOptions.mapIndexed((index, element) {
+            final step = 360 / widget.valueOptions.length;
+            final degrees = step * index - (step * 1.5);
             return _buildButton(degrees, 95, ThemeColors.primary, "$element");
           }).toList(),
           ...widget.betOptions.mapIndexed((index, element) {
-            final n = widget.betOptions.length;
-            final step = 360 / n;
-            final degrees = step * index;
+            final step = 360 / widget.betOptions.length;
+            final degrees = step * index - (step * 2);
             return _buildButton(degrees, 165, ThemeColors.primary, "$element");
           }).toList(),
           CustomPaint(
