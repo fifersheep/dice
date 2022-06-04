@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:collection/collection.dart';
@@ -116,8 +117,10 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
 
     final currentPlayer = await _currentPlayer.value;
     final uniqueId = currentPlayer!.gameParticipationUniqueIds[game?.id];
-    final response = await _participationsRepository.getDice(uniqueId!);
-    if (response is Success<List<int>>) {
+    final diceResponse = await _participationsRepository.getDice(uniqueId!);
+    final int totalDiceCount = slots.fold(0, (prev, element) => prev + element.diceQuantity);
+    final lowestBet = max((totalDiceCount / 3).ceil() - 3, 1);
+    if (diceResponse is Success<List<int>>) {
       emit(GameplayState.inPlay(
         currentPlayerId: currentPlayerId,
         gameName: game!.name,
@@ -125,7 +128,8 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
         rightParticipations: rightSegment,
         opposingParticipation: slots.firstWhereOrNull((el) => el.slot == ParticipationSlot.Top),
         currentParticipation: slots.firstWhere((el) => el.slot == ParticipationSlot.Bottom),
-        dice: response.data.join(", "),
+        currentParticipationDice: diceResponse.data.join(", "),
+        betOptions: List.generate(8, (i) => i + lowestBet),
       ));
     }
   }

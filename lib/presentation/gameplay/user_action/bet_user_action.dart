@@ -6,10 +6,13 @@ import 'package:vector_math/vector_math_64.dart';
 import 'draw_user_action_divider.dart';
 
 class BetUserAction extends StatefulWidget {
-  const BetUserAction({Key? key}) : super(key: key);
+  const BetUserAction({
+    Key? key,
+    required this.betOptions,
+  }) : super(key: key);
 
   final List<int> quantityOptions = const [1, 2, 3, 4, 5, 6];
-  final List<int> valueOptions = const [4, 5, 6, 7, 8, 9];
+  final List<int> betOptions;
 
   @override
   _BetUserActionState createState() => _BetUserActionState();
@@ -30,14 +33,14 @@ class _BetUserActionState extends State<BetUserAction> {
               elevation: 0,
             ),
           ),
-          ...widget.valueOptions.mapIndexed((index, element) {
+          ...widget.quantityOptions.mapIndexed((index, element) {
             final n = widget.quantityOptions.length;
             final step = 360 / n;
             final degrees = step * index + (step / 2);
             return _buildButton(degrees, 95, ThemeColors.primary, "$element");
           }).toList(),
-          ...widget.quantityOptions.mapIndexed((index, element) {
-            final n = widget.quantityOptions.length;
+          ...widget.betOptions.mapIndexed((index, element) {
+            final n = widget.betOptions.length;
             final step = 360 / n;
             final degrees = step * index;
             return _buildButton(degrees, 165, ThemeColors.primary, "$element");
