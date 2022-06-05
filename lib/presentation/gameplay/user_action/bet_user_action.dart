@@ -23,51 +23,58 @@ class _BetUserActionState extends State<BetUserAction> {
   int? selectedBetOption = null;
 
   @override
-  Widget build(BuildContext context) => SizedBox.expand(
-        child: Stack(alignment: Alignment.center, clipBehavior: Clip.none, children: [
-          SizedBox(
-            height: 100,
-            width: 100,
-            child: FloatingActionButton(
-              child: const Text("Raise"),
-              foregroundColor: ThemeColors.green,
-              backgroundColor: ThemeColors.white,
-              onPressed: () {},
-              elevation: 0,
-            ),
+  Widget build(BuildContext context) {
+    final betSelected = selectedBetOption != null && selectedValueOption != null;
+    final backgroundColor = betSelected ? ThemeColors.white : ThemeColors.white50;
+    final onPressed = !betSelected ? null : () {};
+    final multiple = selectedBetOption != null && selectedBetOption! > 1 ? "'s" : "";
+    final selectedBetOptionLabel = betSelected ? "${selectedBetOption}x${selectedValueOption}$multiple" : "Bet";
+    return SizedBox.expand(
+      child: Stack(alignment: Alignment.center, clipBehavior: Clip.none, children: [
+        SizedBox(
+          height: 100,
+          width: 100,
+          child: FloatingActionButton(
+            child: Text(selectedBetOptionLabel),
+            foregroundColor: ThemeColors.green,
+            backgroundColor: backgroundColor,
+            onPressed: onPressed,
+            elevation: 0,
           ),
-          ...widget.valueOptions.mapIndexed((index, valueOption) {
-            final step = 360 / widget.valueOptions.length;
-            final degrees = step * index - (step * 1.5);
-            return _buildButton(degrees, 95, valueOption == selectedValueOption, "$valueOption", () {
-              setState(() {
-                selectedValueOption = valueOption;
-              });
+        ),
+        ...widget.valueOptions.mapIndexed((index, valueOption) {
+          final step = 360 / widget.valueOptions.length;
+          final degrees = step * index - (step * 1.5);
+          return _buildButton(degrees, 95, valueOption == selectedValueOption, "$valueOption", () {
+            setState(() {
+              selectedValueOption = valueOption;
             });
-          }).toList(),
-          ...widget.betOptions.mapIndexed((index, betOption) {
-            final step = 360 / widget.betOptions.length;
-            final degrees = step * index - (step * 2);
-            return _buildButton(degrees, 165, betOption == selectedBetOption, "$betOption", () {
-              setState(() {
-                selectedBetOption = betOption;
-              });
+          });
+        }).toList(),
+        ...widget.betOptions.mapIndexed((index, betOption) {
+          final step = 360 / widget.betOptions.length;
+          final degrees = step * index - (step * 2);
+          return _buildButton(degrees, 165, betOption == selectedBetOption, "$betOption", () {
+            setState(() {
+              selectedBetOption = betOption;
             });
-          }).toList(),
-          CustomPaint(
-            painter: DrawUserActionDivider(
-              radius: 130,
-              size: MediaQuery.of(context).size,
-            ),
+          });
+        }).toList(),
+        CustomPaint(
+          painter: DrawUserActionDivider(
+            radius: 130,
+            size: MediaQuery.of(context).size,
           ),
-          CustomPaint(
-            painter: DrawUserActionDivider(
-              radius: 200,
-              size: MediaQuery.of(context).size,
-            ),
+        ),
+        CustomPaint(
+          painter: DrawUserActionDivider(
+            radius: 200,
+            size: MediaQuery.of(context).size,
           ),
-        ]),
-      );
+        ),
+      ]),
+    );
+  }
 
   Widget _buildButton(double angle, double distance, bool isSelected, String label, void Function() onPressed) {
     final double rad = radians(angle);
