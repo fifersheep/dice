@@ -8,6 +8,11 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.16.0 <3.0.0"
 
+scripts:
+  build: flutter pub run build_runner build --delete-conflicting-outputs
+  watch: flutter pub run build_runner watch --delete-conflicting-outputs
+  serve: flutter run -d web-server --web-hostname 0.0.0.0 --web-port 8989
+
 dependencies:
   auto_route: ^4.0.1
   bloc: ^8.0.3
