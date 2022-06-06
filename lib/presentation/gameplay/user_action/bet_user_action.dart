@@ -22,13 +22,22 @@ class _BetUserActionState extends State<BetUserAction> {
   int? selectedValueOption = null;
   int? selectedBetOption = null;
 
+  int? get adjustedSelectedBetOption {
+    final betOption = selectedBetOption;
+    if (betOption != null && selectedValueOption == 1) {
+      return (betOption / 2).ceil();
+    } else {
+      return betOption;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final betSelected = selectedBetOption != null && selectedValueOption != null;
     final backgroundColor = betSelected ? ThemeColors.white : ThemeColors.white50;
     final onPressed = !betSelected ? null : () {};
     final multiple = selectedBetOption != null && selectedBetOption! > 1 ? "'s" : "";
-    final selectedBetOptionLabel = betSelected ? "${selectedBetOption}x${selectedValueOption}$multiple" : "Bet";
+    final selectedBetOptionLabel = betSelected ? "${adjustedSelectedBetOption}x${selectedValueOption}$multiple" : "Bet";
     return SizedBox.expand(
       child: Stack(alignment: Alignment.center, clipBehavior: Clip.none, children: [
         SizedBox(
@@ -54,7 +63,8 @@ class _BetUserActionState extends State<BetUserAction> {
         ...widget.betOptions.mapIndexed((index, betOption) {
           final step = 360 / widget.betOptions.length;
           final degrees = step * index - (step * 2);
-          return _buildButton(degrees, 165, betOption == selectedBetOption, "$betOption", () {
+          return _buildButton(degrees, 165, betOption == selectedBetOption, "${adjustedSelectedBetOption ?? betOption}",
+              () {
             setState(() {
               selectedBetOption = betOption;
             });
