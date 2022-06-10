@@ -23,7 +23,7 @@ class Gameplay extends StatelessWidget {
             UserActionsSection(
               height: constraints.maxHeight * 0.5,
               isActive: gameInPlay.currentParticipation.isActive,
-              betOptions: gameInPlay.betOptions,
+              numberOfDice: gameInPlay.numberOfDice,
             ),
           ],
         ),

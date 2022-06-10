@@ -119,7 +119,6 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
     final uniqueId = currentPlayer!.gameParticipationUniqueIds[game?.id];
     final diceResponse = await _participationsRepository.getDice(uniqueId!);
     final int totalDiceCount = slots.fold(0, (prev, element) => prev + element.diceQuantity);
-    final lowestBet = max((totalDiceCount / 3).ceil() - 3, 1);
     if (diceResponse is Success<List<int>>) {
       emit(GameplayState.inPlay(
         currentPlayerId: currentPlayerId,
@@ -129,7 +128,7 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
         opposingParticipation: slots.firstWhereOrNull((el) => el.slot == ParticipationSlot.Top),
         currentParticipation: slots.firstWhere((el) => el.slot == ParticipationSlot.Bottom),
         currentParticipationDice: diceResponse.data.join(", "),
-        betOptions: List.generate(8, (i) => i + lowestBet),
+        numberOfDice: totalDiceCount,
       ));
     }
   }

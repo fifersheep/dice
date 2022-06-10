@@ -7,12 +7,12 @@ class UserActionsSection extends StatefulWidget {
     Key? key,
     required this.height,
     required this.isActive,
-    required this.betOptions,
+    required this.numberOfDice,
   }) : super(key: key);
 
   final double height;
   final bool isActive;
-  final List<int> betOptions;
+  final int numberOfDice;
 
   @override
   _UserActionsSectionState createState() => _UserActionsSectionState();
@@ -25,7 +25,7 @@ class _UserActionsSectionState extends State<UserActionsSection> {
         padding: const EdgeInsets.all(16),
         child: widget.isActive
             ? BetUserAction(
-                betOptions: widget.betOptions,
+                numberOfDice: widget.numberOfDice,
               )
             : NoUserAction(),
       );

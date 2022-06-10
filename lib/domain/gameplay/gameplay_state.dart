@@ -30,6 +30,6 @@ class GameplayState with _$GameplayState {
     required GameInPlayParticipation? opposingParticipation,
     required GameInPlayParticipation currentParticipation,
     required String currentParticipationDice,
-    required List<int> betOptions,
+    required int numberOfDice,
   }) = GameInPlay;
 }
