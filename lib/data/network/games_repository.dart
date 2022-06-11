@@ -7,9 +7,7 @@ abstract class GamesRepository {
   GamesRepository._();
 
   factory GamesRepository() {
-    if (_instance == null) {
-      _instance = SupabaseGamesRepository();
-    }
+    _instance ??= SupabaseGamesRepository();
     return _instance!;
   }
 

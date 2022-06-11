@@ -4,7 +4,7 @@ import 'package:dice/presentation/gameplay/user_actions_section.dart';
 import 'package:flutter/material.dart';
 
 class Gameplay extends StatelessWidget {
-  const Gameplay(this.gameInPlay);
+  const Gameplay(this.gameInPlay, {Key? key}) : super(key: key);
 
   final GameInPlay gameInPlay;
 

@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GameSelectionPage extends StatefulWidget {
-  GameSelectionPage({Key? key}) : super(key: key);
+  const GameSelectionPage({Key? key}) : super(key: key);
 
   @override
-  _GameSelectionPageState createState() => _GameSelectionPageState();
+  State<GameSelectionPage> createState() => _GameSelectionPageState();
 }
 
 class _GameSelectionPageState extends State<GameSelectionPage> {
@@ -25,24 +25,24 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               "Dice",
               style: TextStyle(fontSize: 48),
             ),
-            SizedBox(height: 64),
+            const SizedBox(height: 64),
             Center(
               child: Container(
-                constraints: BoxConstraints(maxWidth: 600),
+                constraints: const BoxConstraints(maxWidth: 600),
                 child: Column(
                   children: [
                     TextField(
-                      decoration: InputDecoration(labelText: 'Game name'),
+                      decoration: const InputDecoration(labelText: 'Game name'),
                       onChanged: (value) => bloc.add(
                         GameSelectionEvent.gameNameChanged(value.trim()),
                       ),
                       controller: editController,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     _gameSelection(editController),
                   ],
                 ),
@@ -74,13 +74,13 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
           },
           builder: (context, state) {
             if (state is GameSelectionTitleChange) {
-              if (state.validation == GameSelectionValidation.Available) {
+              if (state.validation == GameSelectionValidation.available) {
                 return _createGame(state.gameName);
-              } else if (state.validation == GameSelectionValidation.Awaiting) {
+              } else if (state.validation == GameSelectionValidation.awaiting) {
                 return _checkingGame();
-              } else if (state.validation == GameSelectionValidation.Joinable) {
+              } else if (state.validation == GameSelectionValidation.joinable) {
                 return _joinGame(state.gameName);
-              } else if (state.validation == GameSelectionValidation.Unjoinable) {
+              } else if (state.validation == GameSelectionValidation.unjoinable) {
                 return _alreadyStarted();
               } else {
                 return _noActions();
@@ -119,11 +119,11 @@ class _GameSelectionPageState extends State<GameSelectionPage> {
     );
   }
 
-  Widget _alreadyStarted() => Center(
+  Widget _alreadyStarted() => const Center(
         child: Text("This game has already started"),
       );
 
-  Widget _noActions() => Center(
+  Widget _noActions() => const Center(
         child: Text("Enter a valid game name"),
       );
 }

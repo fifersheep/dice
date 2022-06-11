@@ -1,7 +1,7 @@
 import 'package:dice/presentation/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-enum SelectorStatus { Active, Disabled, Error }
+enum SelectorStatus { active, disabled, error }
 
 class Selector extends StatelessWidget {
   const Selector({
@@ -35,7 +35,7 @@ class Selector extends StatelessWidget {
           height: 2,
           color: color,
         ),
-        onChanged: status == SelectorStatus.Active ? onChanged : null,
+        onChanged: status == SelectorStatus.active ? onChanged : null,
         items: options
             .map((int value) => DropdownMenuItem(
                   value: value,
@@ -48,9 +48,9 @@ class Selector extends StatelessWidget {
 
   Color _colorFor(BuildContext context, SelectorStatus status) {
     switch (status) {
-      case SelectorStatus.Active:
+      case SelectorStatus.active:
         return ThemeColors.textOnPrimary;
-      case SelectorStatus.Error:
+      case SelectorStatus.error:
         return Colors.red;
       default:
         return Colors.grey;

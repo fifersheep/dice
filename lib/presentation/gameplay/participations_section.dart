@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'participation_details.dart';
 
 class ParticipationsSection extends StatelessWidget {
-  ParticipationsSection(
+  const ParticipationsSection(
     this.height,
     this.currentParticipationDice,
     this.currentParticipation,
     this.opposingParticipation,
     this.leftParticipations,
-    this.rightParticipations,
-  );
+    this.rightParticipations, {
+    Key? key,
+  }) : super(key: key);
 
   final double height;
   final String currentParticipationDice;
@@ -25,7 +26,7 @@ class ParticipationsSection extends StatelessWidget {
         child: Container(
           height: height,
           padding: const EdgeInsets.all(16),
-          constraints: BoxConstraints(maxWidth: 800),
+          constraints: const BoxConstraints(maxWidth: 800),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,7 +57,7 @@ class ParticipationsSection extends StatelessWidget {
                       diceQuantity: opposingParticipation!.diceQuantity,
                       isActive: opposingParticipation!.isActive,
                     ),
-                  Spacer(),
+                  const Spacer(),
                   ParticipationDetails(
                     name: currentParticipation.name,
                     currentBet: currentParticipation.bet,

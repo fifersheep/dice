@@ -11,16 +11,16 @@ class AppTheme {
         typography: Typography.material2018(),
         dividerColor: Colors.grey,
         fontFamily: 'Montserrat',
-        inputDecorationTheme: InputDecorationTheme(
+        inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: ThemeColors.white),
+            borderSide: BorderSide(color: ThemeColors.white),
           ),
         ),
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
             padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry>(
-              (_) => EdgeInsets.symmetric(horizontal: 24),
+              (_) => const EdgeInsets.symmetric(horizontal: 24),
             ),
             backgroundColor: MaterialStateProperty.resolveWith<Color>(
               (states) {

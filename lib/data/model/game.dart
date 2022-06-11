@@ -13,16 +13,16 @@ class Game {
 
   static Game fromJson(Map<String, dynamic> data) {
     final statuses = {
-      'Created': GameStatus.Created,
-      'Rolling': GameStatus.Rolling,
-      'InPlay': GameStatus.InPlay,
-      'Ended': GameStatus.Ended,
+      'Created': GameStatus.created,
+      'Rolling': GameStatus.rolling,
+      'InPlay': GameStatus.inPlay,
+      'Ended': GameStatus.ended,
     };
 
     return Game(
       id: data['id'],
       name: data['name'],
-      status: statuses[data['status']] ?? GameStatus.Ended,
+      status: statuses[data['status']] ?? GameStatus.ended,
       currentPlayerId: data['current_player_id'],
     );
   }
@@ -34,8 +34,11 @@ class Game {
       };
 }
 
-enum GameStatus { Created, Rolling, InPlay, Ended }
+enum GameStatus { created, rolling, inPlay, ended }
 
 extension GetValueString on GameStatus {
-  String valueString() => this.toString().split('.').last;
+  String valueString() {
+    final raw = toString().split('.').last;
+    return "${raw[0].toUpperCase()}${raw.substring(1)}";
+  }
 }

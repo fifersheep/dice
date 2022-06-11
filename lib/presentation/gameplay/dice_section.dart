@@ -10,7 +10,7 @@ class DiceSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         alignment: Alignment.center,
         child: Text(
           dice,

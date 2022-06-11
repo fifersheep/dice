@@ -6,7 +6,7 @@ import 'bet_placement_event.dart';
 import 'bet_placement_state.dart';
 
 class BetPlacementBloc extends Bloc<BetPlacementEvent, BetPlacementState> {
-  BetPlacementBloc() : super(BetPlacementState.loading()) {
+  BetPlacementBloc() : super(const BetPlacementState.loading()) {
     on<BetPlacementDiceAvailable>(_onBetPlacementDiceAvailable);
     on<BetPlacementBetOptionSelected>(_onBetPlacementBetOptionSelected);
     on<BetPlacementValueOptionSelected>(_onBetPlacementValueOptionSelected);
@@ -35,7 +35,7 @@ class BetPlacementBloc extends Bloc<BetPlacementEvent, BetPlacementState> {
       final String placeBetLabel;
       if (selectedValueOption != null) {
         final multiple = selectedValueOption > 1 ? "'s" : "";
-        placeBetLabel = "${event.betOption}x${selectedValueOption}$multiple";
+        placeBetLabel = "${event.betOption}x$selectedValueOption$multiple";
       } else {
         placeBetLabel = "Bet";
       }

@@ -10,12 +10,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'gameplay.dart';
 
 class GameLobbyPage extends StatefulWidget {
-  GameLobbyPage({@PathParam('id') required this.gameId});
+  const GameLobbyPage({Key? key, @PathParam('id') required this.gameId}) : super(key: key);
 
   final int gameId;
 
   @override
-  _GameLobbyPageState createState() => _GameLobbyPageState();
+  State<GameLobbyPage> createState() => _GameLobbyPageState();
 }
 
 class _GameLobbyPageState extends State<GameLobbyPage> {
@@ -34,11 +34,11 @@ class _GameLobbyPageState extends State<GameLobbyPage> {
         bloc: bloc,
         builder: (context, snapshot) {
           if (snapshot is GameInLobby) {
-            return GameLobby(snapshot, () => bloc.add(GameplayEvent.readyTapped()));
+            return GameLobby(snapshot, () => bloc.add(const GameplayEvent.readyTapped()));
           } else if (snapshot is GameInPlay) {
             return Gameplay(snapshot);
           } else {
-            return Center(
+            return const Center(
               child: Text('Game unavailable'),
             );
           }

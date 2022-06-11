@@ -6,7 +6,7 @@ import 'player_selection_event.dart';
 import 'player_selection_state.dart';
 
 class PlayerSelectionBloc extends Bloc<PlayerSelectionEvent, PlayerSelectionState> {
-  PlayerSelectionBloc() : super(PlayerSelectionState.nameInvalid()) {
+  PlayerSelectionBloc() : super(const PlayerSelectionState.nameInvalid()) {
     on<CheckForCurrentPlayer>(_onCheckForCurrentPlayer);
     on<PlayerNameChanged>(_onPlayerNameChanged);
     on<CreatePlayerPressed>(_onCreatePlayerPressed);
@@ -19,13 +19,13 @@ class PlayerSelectionBloc extends Bloc<PlayerSelectionEvent, PlayerSelectionStat
     if (currentPlayerId != null) {
       emit(PlayerSelectionState.playerExists(currentPlayerId));
     } else {
-      emit(PlayerSelectionState.nameInvalid());
+      emit(const PlayerSelectionState.nameInvalid());
     }
   }
 
   Future<void> _onPlayerNameChanged(PlayerNameChanged event, Emitter<PlayerSelectionState> emit) async {
     if (event.name.length < 5) {
-      emit(PlayerSelectionState.nameInvalid());
+      emit(const PlayerSelectionState.nameInvalid());
     } else {
       final playerExists = await repository.doesPlayerExist(event.name);
       if (playerExists) {
@@ -40,7 +40,7 @@ class PlayerSelectionBloc extends Bloc<PlayerSelectionEvent, PlayerSelectionStat
     final playerId = await repository.createPlayer(event.name);
     if (playerId != null) {
       await SharedPrefs.setCurrentPlayer(playerId);
-      emit(PlayerSelectionState.playerCreated());
+      emit(const PlayerSelectionState.playerCreated());
     }
   }
 }

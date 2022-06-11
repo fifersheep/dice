@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 
 class ParticipationDetails extends StatelessWidget {
   const ParticipationDetails({
+    Key? key,
     required this.name,
     required this.currentBet,
     required this.diceQuantity,
     required this.isActive,
     this.diceValues,
-  });
+  }) : super(key: key);
 
   final String name;
   final String currentBet;

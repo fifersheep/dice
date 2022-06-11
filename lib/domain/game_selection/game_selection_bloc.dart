@@ -6,9 +6,9 @@ import 'package:dice/domain/game_selection/game_selection_state.dart';
 
 class GameSelectionBloc extends Bloc<GameSelectionEvent, GameSelectionState> {
   GameSelectionBloc()
-      : super(GameSelectionState.nameChange(
+      : super(const GameSelectionState.nameChange(
           gameName: "",
-          validation: GameSelectionValidation.Invalid,
+          validation: GameSelectionValidation.invalid,
         )) {
     on<GameNameChanged>(_onGameNameChanged);
     on<CreateGamePressed>(_onCreateGamePressed);
@@ -21,17 +21,17 @@ class GameSelectionBloc extends Bloc<GameSelectionEvent, GameSelectionState> {
     if (event.gameName.length < 5) {
       emit(GameSelectionState.nameChange(
         gameName: event.gameName,
-        validation: GameSelectionValidation.Invalid,
+        validation: GameSelectionValidation.invalid,
       ));
     } else {
       emit(GameSelectionState.nameChange(
         gameName: event.gameName,
-        validation: GameSelectionValidation.Awaiting,
+        validation: GameSelectionValidation.awaiting,
       ));
       final game = await repository.getGame(event.gameName);
       if (game != null) {
         final validation =
-            game.status == GameStatus.Created ? GameSelectionValidation.Joinable : GameSelectionValidation.Unjoinable;
+            game.status == GameStatus.created ? GameSelectionValidation.joinable : GameSelectionValidation.unjoinable;
         emit(GameSelectionState.nameChange(
           gameName: event.gameName,
           validation: validation,
@@ -39,7 +39,7 @@ class GameSelectionBloc extends Bloc<GameSelectionEvent, GameSelectionState> {
       } else {
         emit(GameSelectionState.nameChange(
           gameName: event.gameName,
-          validation: GameSelectionValidation.Available,
+          validation: GameSelectionValidation.available,
         ));
       }
     }

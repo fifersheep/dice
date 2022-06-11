@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PlayerSelectionPage extends StatefulWidget {
+  const PlayerSelectionPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _PlayerSelectionPageState();
 }
@@ -23,22 +25,22 @@ class _PlayerSelectionPageState extends State<PlayerSelectionPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               "Dice",
               style: TextStyle(fontSize: 48),
             ),
-            SizedBox(height: 64),
+            const SizedBox(height: 64),
             Center(
               child: Container(
-                constraints: BoxConstraints(maxWidth: 600),
+                constraints: const BoxConstraints(maxWidth: 600),
                 child: Column(
                   children: [
                     TextField(
-                      decoration: InputDecoration(labelText: 'Player name'),
+                      decoration: const InputDecoration(labelText: 'Player name'),
                       onChanged: (value) => bloc.add(PlayerSelectionEvent.nameChanged(value)),
                       controller: editController,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     _actions(editController),
                   ],
                 ),
@@ -55,7 +57,7 @@ class _PlayerSelectionPageState extends State<PlayerSelectionPage> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         BlocConsumer<PlayerSelectionBloc, PlayerSelectionState>(
-          bloc: bloc..add(PlayerSelectionEvent.checkForCurrentPlayer()),
+          bloc: bloc..add(const PlayerSelectionEvent.checkForCurrentPlayer()),
           listener: (context, state) {
             if (state is PlayerExists || state is PlayerCreated) {
               context.router.pushNamed('/games');
@@ -98,9 +100,9 @@ class _PlayerSelectionPageState extends State<PlayerSelectionPage> {
     );
   }
 
-  Widget _alreadyInUse() => Text("This player name is already in use");
+  Widget _alreadyInUse() => const Text("This player name is already in use");
 
-  Widget _invalid() => Text("Enter a valid player name");
+  Widget _invalid() => const Text("Enter a valid player name");
 
-  Widget _error() => Text("An error has occurred");
+  Widget _error() => const Text("An error has occurred");
 }

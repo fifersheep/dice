@@ -15,7 +15,7 @@ class UserActionsSection extends StatefulWidget {
   final int numberOfDice;
 
   @override
-  _UserActionsSectionState createState() => _UserActionsSectionState();
+  State<UserActionsSection> createState() => _UserActionsSectionState();
 }
 
 class _UserActionsSectionState extends State<UserActionsSection> {
@@ -27,6 +27,6 @@ class _UserActionsSectionState extends State<UserActionsSection> {
             ? BetUserAction(
                 numberOfDice: widget.numberOfDice,
               )
-            : NoUserAction(),
+            : const NoUserAction(),
       );
 }

@@ -17,7 +17,7 @@ class BetUserAction extends StatefulWidget {
   final int numberOfDice;
 
   @override
-  _BetUserActionState createState() => _BetUserActionState();
+  State<BetUserAction> createState() => _BetUserActionState();
 }
 
 class _BetUserActionState extends State<BetUserAction> {
@@ -54,11 +54,11 @@ class _BetUserActionState extends State<BetUserAction> {
                   height: 100,
                   width: 100,
                   child: FloatingActionButton(
-                    child: Text(data.placeBetLabel),
                     foregroundColor: ThemeColors.green,
                     backgroundColor: backgroundColor,
                     onPressed: onPressed,
                     elevation: 0,
+                    child: Text(data.placeBetLabel),
                   ),
                 ),
                 ...data.valueOptions.mapIndexed((index, valueOption) {
@@ -71,7 +71,7 @@ class _BetUserActionState extends State<BetUserAction> {
                 ...data.betOptions.mapIndexed((index, betOption) {
                   final step = 360 / data.betOptions.length;
                   final degrees = step * index - (step * 2);
-                  return _buildButton(degrees, 165, betOption == selectedBetOption, "${betOption}", () {
+                  return _buildButton(degrees, 165, betOption == selectedBetOption, "$betOption", () {
                     setState(() {
                       bloc.add(BetPlacementEvent.betOptionSelected(betOption));
                     });
@@ -92,7 +92,7 @@ class _BetUserActionState extends State<BetUserAction> {
               ]),
             );
           } else {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
         });
   }
@@ -107,11 +107,11 @@ class _BetUserActionState extends State<BetUserAction> {
         distance,
       ),
       child: FloatingActionButton(
-        child: Text(label),
         backgroundColor: backgroundColor,
         foregroundColor: foregroundColor,
         onPressed: onPressed,
         elevation: 0,
+        child: Text(label),
       ),
     );
   }

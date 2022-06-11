@@ -9,4 +9,4 @@ class GameSelectionState with _$GameSelectionState {
   const factory GameSelectionState.gameSelected(int gameId) = GameSelected;
 }
 
-enum GameSelectionValidation { Invalid, Awaiting, Unjoinable, Joinable, Available }
+enum GameSelectionValidation { invalid, awaiting, unjoinable, joinable, available }

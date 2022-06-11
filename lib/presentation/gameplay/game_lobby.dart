@@ -4,7 +4,7 @@ import 'package:dice/presentation/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class GameLobby extends StatelessWidget {
-  const GameLobby(this.gameInLobby, this.onTapReady);
+  const GameLobby(this.gameInLobby, this.onTapReady, {Key? key}) : super(key: key);
 
   final GameInLobby gameInLobby;
   final Function() onTapReady;
@@ -15,7 +15,7 @@ class GameLobby extends StatelessWidget {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             CircularProgressIndicator(),
             SizedBox(
               height: 16,
@@ -31,12 +31,12 @@ class GameLobby extends StatelessWidget {
         children: [
           Text(
             gameInLobby.gameName,
-            style: TextStyle(fontSize: 48),
+            style: const TextStyle(fontSize: 48),
           ),
-          SizedBox(height: 64),
+          const SizedBox(height: 64),
           Center(
             child: Container(
-              constraints: BoxConstraints(maxWidth: 600),
+              constraints: const BoxConstraints(maxWidth: 600),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: gameInLobby.participatingPlayers
@@ -68,7 +68,7 @@ class GameLobby extends StatelessWidget {
         children: [
           Text(
             participatingPlayer.player.name,
-            style: TextStyle(fontSize: 21),
+            style: const TextStyle(fontSize: 21),
           ),
           Padding(
             padding: const EdgeInsets.all(8),

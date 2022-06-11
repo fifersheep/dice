@@ -8,9 +8,7 @@ abstract class ParticipationsRepository {
   ParticipationsRepository._();
 
   factory ParticipationsRepository() {
-    if (_instance == null) {
-      _instance = SupabaseParticipationsRepository();
-    }
+    _instance ??= SupabaseParticipationsRepository();
     return _instance!;
   }
 
