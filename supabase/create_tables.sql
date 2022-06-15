@@ -13,7 +13,8 @@ alter default privileges for user supabase_admin in schema private grant all
     on functions to postgres, anon, authenticated, service_role;
 
 drop table if exists private.game_participation_uuids;
-drop table if exists private.participation_dice;
+drop table if exists private.game_turn;
+drop table if exists private.participation_cups;
 drop table if exists public.participations;
 drop table if exists public.games;
 drop table if exists public.players;
@@ -55,18 +56,23 @@ create table public.participations (
         references players(id)
 );
 
-create table private.participation_dice (
+create table private.participation_cups (
     id uuid primary key default uuid_generate_v4(),
-    dice smallint array not null default array[]::smallint[]
+    game_id bigint not null,
+    player_id bigint not null,
+    dice smallint array not null default array[]::smallint[],
+    unique (game_id, player_id)
 );
 
-create table private.game_participation_uuids (
-    game_id bigint not null,
-    participation_dice_id uuid not null,
-    primary key (game_id, participation_dice_id),
-    constraint fk_participation_dice_id
-        foreign key(participation_dice_id)
-        references private.participation_dice(id)
+create table private.game_turn (
+    game_id bigint primary key not null,
+    turn_participation_cups_id uuid,
+    constraint fk_game_id
+        foreign key(game_id)
+        references games(id),
+    constraint fk_participation_cups_id
+        foreign key(turn_participation_cups_id)
+        references private.participation_cups(id)
 );
 
 alter publication supabase_realtime add table games;
@@ -86,13 +92,16 @@ comment on table public.participations is 'Participations - a player in a partic
 comment on column public.participations.game_id is 'The game id that this participation is for.';
 comment on column public.participations.player_id is 'The player id for this participation.';
 comment on column public.participations.player_ready is 'Whether this player is ready for this participation.';
+comment on column public.participations.dice_quantity is 'The dice quantity for the cup belonging to this participant.';
 comment on column public.participations.bet_quantity is 'The current bet quantity for this participation.';
 comment on column public.participations.bet_value is 'The current bet value this participation.';
 
-comment on table private.participation_dice is 'Participation Dice - a player in a particular game and their private play details.';
-comment on column private.participation_dice.id is 'A unique id for this participation.';
-comment on column private.participation_dice.dice is 'The player dice for this participation.';
+comment on table private.participation_cups is 'Participation Cups - a cup in a particular game belonging to a particular participant.';
+comment on column private.participation_cups.id is 'A unique id for this participation cup.';
+comment on column private.participation_cups.game_id is 'The game id associated with this participation cup.';
+comment on column private.participation_cups.player_id is 'The player id associated with this participation cup.';
+comment on column private.participation_cups.dice is 'The player dice for this participation cup.';
 
-comment on table private.game_participation_uuids is 'Game Participation UUIDs - mapping participations UUIDs to game ids.';
-comment on column private.game_participation_uuids.game_id is 'The game id associated with the participations UUID.';
-comment on column private.game_participation_uuids.participation_dice_id is 'The participation dice id.';
+comment on table private.game_turn is 'Game Turn - tracking which participation id is currently active in a game.';
+comment on column private.game_turn.game_id is 'The game id for which the turn is for.';
+comment on column private.game_turn.turn_participation_cups_id is 'The participation cup id of the current turn.';

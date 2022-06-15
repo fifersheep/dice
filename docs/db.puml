@@ -26,27 +26,31 @@ package public <<Rectangle>> {
     *player_id : bigint <<FK>>
     --
     *player_ready : boolean
+    dice_quantity : smallint
     bet_quantity : smallint
     bet_quantity : smallint
   }
 }
 
 package private <<Rectangle>> {
-  entity participation_dice {
+  entity participation_cups {
     *id : uuid <<generated>>
     --
+    *game_id : bigint <<FK>>
+    *player_id : bigint <<FK>>
     *dice : smallint[]
   }
   
-  entity game_participation_uuids {
+  entity game_turn {
     *game_id : bigint <<FK>>
-    *participation_dice_id : uuid <<FK>>
+    *turn_participation_cups_id : uuid <<FK>>
   }
 }
 
 games ||--o{ participations
 players ||--o{ participations
-participations ||--|| participation_dice
-game_participation_uuids }o--|| games
-participation_dice ||--|| game_participation_uuids
+games ||--o{ participation_cups
+players ||--o{ participation_cups
+game_turn ||--|| games
+participation_cups ||--|| game_turn
 @enduml

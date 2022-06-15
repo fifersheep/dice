@@ -6,18 +6,21 @@ declare
   _enough_participants boolean := false;
   _all_players_ready boolean := false;
   _player_order bigint[];
-  _participation_dice_id uuid;
+  _participation_cups_id uuid;
 begin
+  -- set player_ready value
   update participations
   set player_ready = set_player_ready.player_ready
   where participations.player_id = set_player_ready.player_id and participations.game_id = set_player_ready.game_id;
 
+  -- determine whether there are at least 2 participants
   select count(*) > 1
   into _enough_participants
   from participations
   where participations.player_ready = true
   and participations.game_id = set_player_ready.game_id;
 
+  -- determine whether all players are ready
   _all_players_ready := not exists (select from participations where participations.player_ready = false);
   
   if (_enough_participants and _all_players_ready) then
@@ -35,16 +38,20 @@ begin
     current_player_id = _player_order[1]
     where id = set_player_ready.game_id;
 
+    -- get the participation_cup_id for the player whose turn it is
+    select id
+    into _participation_cups_id
+    from private.participation_cups
+    where participation_cups.player_id = _player_order[1];
+
+    -- set the game turn participation cup id
+    insert into private.game_turn(game_id, turn_participation_cups_id)
+    values (set_player_ready.game_id, _participation_cups_id);
+
     -- for each participations uuid, roll 5 dice
-    for _participation_dice_id in
-      select participation_dice_id
-      from private.game_participation_uuids
-      where game_participation_uuids.game_id = set_player_ready.game_id
-    loop
-      update private.participation_dice
-      set dice = (array[ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6)])
-      where private.participation_dice.id = _participation_dice_id;
-    end loop;
+    update private.participation_cups
+    set dice = (array[ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6),ceil(random() * 6)])
+    where private.participation_cups.game_id = set_player_ready.game_id;
 
     -- set the dice count for each participant
     update participations

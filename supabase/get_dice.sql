@@ -3,6 +3,6 @@ returns smallint[]
 language sql
 as $$
   select dice
-  from private.participation_dice
-  where participation_dice.id = get_dice.id;
+  from private.participation_cups
+  where participation_cups.id = get_dice.id;
 $$;

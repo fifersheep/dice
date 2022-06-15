@@ -3,17 +3,17 @@ returns uuid
 language plpgsql
 as $$
 declare 
-  _private_id uuid;
+  _participation_cup_id uuid;
 begin
+  -- create a public participation
   insert into participations(player_id, game_id)
   values (create_participation.player_id, create_participation.game_id);
 
-  insert into private.participation_dice default values
-  returning id into _private_id;
+  -- create a private participation cup
+  insert into private.participation_cups(player_id, game_id)
+  values (create_participation.player_id, create_participation.game_id)
+  returning id into _participation_cup_id;
 
-  insert into private.game_participation_uuids(game_id, participation_dice_id)
-  values (create_participation.game_id, _private_id);
-
-  return _private_id;
+  return _participation_cup_id;
 end;
 $$;
