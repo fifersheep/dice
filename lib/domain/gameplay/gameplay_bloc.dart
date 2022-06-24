@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:collection/collection.dart';
@@ -38,7 +39,7 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
     _subscription?.cancel();
 
     final currentPlayer = await _currentPlayer.value;
-    if (currentPlayer != null && !currentPlayer.gameParticipationUniqueIds.containsKey(event.gameId)) {
+    if (currentPlayer != null && !currentPlayer.gameParticipationCupIds.containsKey(event.gameId)) {
       final uniqueId = await _participationsRepository.addParticipation(event.gameId, currentPlayer.id);
       await SharedPrefs.storeUniqueId(event.gameId, currentPlayer.id, uniqueId);
     }
@@ -115,19 +116,33 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
     ].whereNotNull().toList();
 
     final currentPlayer = await _currentPlayer.value;
-    final uniqueId = currentPlayer!.gameParticipationUniqueIds[game?.id];
+    final uniqueId = currentPlayer!.gameParticipationCupIds[game?.id];
     final diceResponse = await _participationsRepository.getDice(uniqueId!);
     final int totalDiceCount = slots.fold(0, (prev, element) => prev + element.diceQuantity);
+    final int? highestBetQuantity = slots.fold(null, (prev, element) {
+      final betQuantity = element.betQuantity;
+      if (betQuantity == null) {
+        return prev;
+      }
+
+      if (prev == null) {
+        return betQuantity;
+      }
+
+      return max(prev, betQuantity);
+    });
     if (diceResponse is Success<List<int>>) {
       emit(GameplayState.inPlay(
         currentPlayerId: currentPlayerId,
-        gameName: game!.name,
+        gameId: game!.id,
+        gameName: game.name,
         leftParticipations: leftSegment,
         rightParticipations: rightSegment,
         opposingParticipation: slots.firstWhereOrNull((el) => el.slot == ParticipationSlot.top),
         currentParticipation: slots.firstWhere((el) => el.slot == ParticipationSlot.bottom),
         currentParticipationDice: diceResponse.data.join(", "),
         numberOfDice: totalDiceCount,
+        highestBetQuantity: highestBetQuantity,
       ));
     }
   }
@@ -148,6 +163,7 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
           .map((pp) => GameInPlayParticipation(
                 pp.value.player.name,
                 _bet(pp.value.participation.betQuantity, pp.value.participation.betValue),
+                pp.value.participation.betQuantity,
                 pp.value.participation.diceQuantity ?? 0,
                 _slotForParticipation(pp.key, orderedParticipations.length),
                 pp.value.player.id == gameCurrentPlayerId,
@@ -204,11 +220,12 @@ enum ParticipationSlot { bottomLeft, topLeft, top, topRight, bottomRight, bottom
 class GameInPlayParticipation {
   final String name;
   final String bet;
+  final int? betQuantity;
   final int diceQuantity;
   final ParticipationSlot slot;
   final bool isActive;
 
-  GameInPlayParticipation(this.name, this.bet, this.diceQuantity, this.slot, this.isActive);
+  GameInPlayParticipation(this.name, this.bet, this.betQuantity, this.diceQuantity, this.slot, this.isActive);
 }
 
 class GameplayModel {

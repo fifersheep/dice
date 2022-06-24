@@ -11,10 +11,10 @@ class SharedPrefs {
         if (currentPlayerDataStr != null) {
           currentPlayerData = CurrentPlayer.fromJson(jsonDecode(currentPlayerDataStr));
         } else {
-          currentPlayerData = CurrentPlayer(id: playerId, gameParticipationUniqueIds: {});
+          currentPlayerData = CurrentPlayer(id: playerId, gameParticipationCupIds: {});
         }
 
-        currentPlayerData.gameParticipationUniqueIds.putIfAbsent(gameId, () => uniqueId);
+        currentPlayerData.gameParticipationCupIds.putIfAbsent(gameId, () => uniqueId);
 
         await prefs.setString('currentPlayerData', jsonEncode(currentPlayerData.toJson()));
       });
@@ -24,7 +24,7 @@ class SharedPrefs {
             'currentPlayerData',
             jsonEncode(CurrentPlayer(
               id: playerId,
-              gameParticipationUniqueIds: {},
+              gameParticipationCupIds: {},
             ).toJson()));
       });
 

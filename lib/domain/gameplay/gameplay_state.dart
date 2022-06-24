@@ -24,6 +24,7 @@ class GameplayState with _$GameplayState {
 
   const factory GameplayState.inPlay({
     required int currentPlayerId,
+    required int gameId,
     required String gameName,
     required List<GameInPlayParticipation> leftParticipations,
     required List<GameInPlayParticipation> rightParticipations,
@@ -31,5 +32,6 @@ class GameplayState with _$GameplayState {
     required GameInPlayParticipation currentParticipation,
     required String currentParticipationDice,
     required int numberOfDice,
+    required int? highestBetQuantity,
   }) = GameInPlay;
 }

@@ -6,13 +6,13 @@ part 'current_player.g.dart';
 class CurrentPlayer {
   CurrentPlayer({
     required this.id,
-    required this.gameParticipationUniqueIds,
+    required this.gameParticipationCupIds,
   });
 
   final int id;
 
-  @JsonKey(name: "game_participation_unique_ids")
-  final Map<int, String> gameParticipationUniqueIds;
+  @JsonKey(name: "game_participation_cup_ids")
+  final Map<int, String> gameParticipationCupIds;
 
   factory CurrentPlayer.fromJson(Map<String, dynamic> json) => _$CurrentPlayerFromJson(json);
 

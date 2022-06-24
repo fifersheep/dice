@@ -11,10 +11,14 @@ import 'draw_user_action_divider.dart';
 class BetUserAction extends StatefulWidget {
   const BetUserAction({
     Key? key,
+    required this.gameId,
     required this.numberOfDice,
+    required this.highestBetQuantity,
   }) : super(key: key);
 
+  final int gameId;
   final int numberOfDice;
+  final int? highestBetQuantity;
 
   @override
   State<BetUserAction> createState() => _BetUserActionState();
@@ -25,7 +29,11 @@ class _BetUserActionState extends State<BetUserAction> {
 
   @override
   void initState() {
-    bloc.add(BetPlacementEvent.diceAvailable(widget.numberOfDice));
+    bloc.add(BetPlacementEvent.bettingAvailable(
+      widget.gameId,
+      widget.numberOfDice,
+      widget.highestBetQuantity,
+    ));
     super.initState();
   }
 
@@ -46,7 +54,11 @@ class _BetUserActionState extends State<BetUserAction> {
             final selectedValueOption = data.selectedValueOption;
             final betSelected = selectedBetOption != null && selectedValueOption != null;
             final backgroundColor = betSelected ? ThemeColors.white : ThemeColors.white50;
-            final onPressed = !betSelected ? null : () {};
+            final onPressed = !betSelected
+                ? null
+                : () {
+                    bloc.add(const BetPlacementEvent.placeBet());
+                  };
 
             return SizedBox.expand(
               child: Stack(alignment: Alignment.center, clipBehavior: Clip.none, children: [

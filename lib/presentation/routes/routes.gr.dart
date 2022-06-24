@@ -25,20 +25,19 @@ class AppRouter extends _i4.RootStackRouter {
   final Map<String, _i4.PageFactory> pagesMap = {
     PlayerSelectionRoute.name: (routeData) {
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i1.PlayerSelectionPage());
+          routeData: routeData, child: const _i1.PlayerSelectionPage());
     },
     GameSelectionRoute.name: (routeData) {
-      final args = routeData.argsAs<GameSelectionRouteArgs>(
-          orElse: () => const GameSelectionRouteArgs());
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i2.GameSelectionPage(key: args.key));
+          routeData: routeData, child: const _i2.GameSelectionPage());
     },
     GameLobbyRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<GameLobbyRouteArgs>(
           orElse: () => GameLobbyRouteArgs(gameId: pathParams.getInt('id')));
       return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i3.GameLobbyPage(gameId: args.gameId));
+          routeData: routeData,
+          child: _i3.GameLobbyPage(key: args.key, gameId: args.gameId));
     }
   };
 
@@ -63,44 +62,33 @@ class PlayerSelectionRoute extends _i4.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.GameSelectionPage]
-class GameSelectionRoute extends _i4.PageRouteInfo<GameSelectionRouteArgs> {
-  GameSelectionRoute({_i5.Key? key})
-      : super(GameSelectionRoute.name,
-            path: '/games', args: GameSelectionRouteArgs(key: key));
+class GameSelectionRoute extends _i4.PageRouteInfo<void> {
+  const GameSelectionRoute() : super(GameSelectionRoute.name, path: '/games');
 
   static const String name = 'GameSelectionRoute';
-}
-
-class GameSelectionRouteArgs {
-  const GameSelectionRouteArgs({this.key});
-
-  final _i5.Key? key;
-
-  @override
-  String toString() {
-    return 'GameSelectionRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for
 /// [_i3.GameLobbyPage]
 class GameLobbyRoute extends _i4.PageRouteInfo<GameLobbyRouteArgs> {
-  GameLobbyRoute({required int gameId})
+  GameLobbyRoute({_i5.Key? key, required int gameId})
       : super(GameLobbyRoute.name,
             path: '/games/:id',
-            args: GameLobbyRouteArgs(gameId: gameId),
+            args: GameLobbyRouteArgs(key: key, gameId: gameId),
             rawPathParams: {'id': gameId});
 
   static const String name = 'GameLobbyRoute';
 }
 
 class GameLobbyRouteArgs {
-  const GameLobbyRouteArgs({required this.gameId});
+  const GameLobbyRouteArgs({this.key, required this.gameId});
+
+  final _i5.Key? key;
 
   final int gameId;
 
   @override
   String toString() {
-    return 'GameLobbyRouteArgs{gameId: $gameId}';
+    return 'GameLobbyRouteArgs{key: $key, gameId: $gameId}';
   }
 }

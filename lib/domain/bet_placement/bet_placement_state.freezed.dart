@@ -20,36 +20,48 @@ mixin _$BetPlacementState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(
+            int gameId,
+            int numberOfDice,
+            int? highestBetQuantity,
             List<int> betOptions,
             List<int> valueOptions,
             int? selectedBetOption,
             int? selectedValueOption,
             String placeBetLabel)
         payload,
+    required TResult Function() placingBet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(
+            int gameId,
+            int numberOfDice,
+            int? highestBetQuantity,
             List<int> betOptions,
             List<int> valueOptions,
             int? selectedBetOption,
             int? selectedValueOption,
             String placeBetLabel)?
         payload,
+    TResult Function()? placingBet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(
+            int gameId,
+            int numberOfDice,
+            int? highestBetQuantity,
             List<int> betOptions,
             List<int> valueOptions,
             int? selectedBetOption,
             int? selectedValueOption,
             String placeBetLabel)?
         payload,
+    TResult Function()? placingBet,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -57,18 +69,21 @@ mixin _$BetPlacementState {
   TResult map<TResult extends Object?>({
     required TResult Function(BetPlacementLoading value) loading,
     required TResult Function(BetPlacementPayload value) payload,
+    required TResult Function(BetPlacementPlacingBet value) placingBet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(BetPlacementLoading value)? loading,
     TResult Function(BetPlacementPayload value)? payload,
+    TResult Function(BetPlacementPlacingBet value)? placingBet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BetPlacementLoading value)? loading,
     TResult Function(BetPlacementPayload value)? payload,
+    TResult Function(BetPlacementPlacingBet value)? placingBet,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -134,12 +149,16 @@ class _$BetPlacementLoading implements BetPlacementLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(
+            int gameId,
+            int numberOfDice,
+            int? highestBetQuantity,
             List<int> betOptions,
             List<int> valueOptions,
             int? selectedBetOption,
             int? selectedValueOption,
             String placeBetLabel)
         payload,
+    required TResult Function() placingBet,
   }) {
     return loading();
   }
@@ -149,12 +168,16 @@ class _$BetPlacementLoading implements BetPlacementLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(
+            int gameId,
+            int numberOfDice,
+            int? highestBetQuantity,
             List<int> betOptions,
             List<int> valueOptions,
             int? selectedBetOption,
             int? selectedValueOption,
             String placeBetLabel)?
         payload,
+    TResult Function()? placingBet,
   }) {
     return loading?.call();
   }
@@ -164,12 +187,16 @@ class _$BetPlacementLoading implements BetPlacementLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(
+            int gameId,
+            int numberOfDice,
+            int? highestBetQuantity,
             List<int> betOptions,
             List<int> valueOptions,
             int? selectedBetOption,
             int? selectedValueOption,
             String placeBetLabel)?
         payload,
+    TResult Function()? placingBet,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -183,6 +210,7 @@ class _$BetPlacementLoading implements BetPlacementLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(BetPlacementLoading value) loading,
     required TResult Function(BetPlacementPayload value) payload,
+    required TResult Function(BetPlacementPlacingBet value) placingBet,
   }) {
     return loading(this);
   }
@@ -192,6 +220,7 @@ class _$BetPlacementLoading implements BetPlacementLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(BetPlacementLoading value)? loading,
     TResult Function(BetPlacementPayload value)? payload,
+    TResult Function(BetPlacementPlacingBet value)? placingBet,
   }) {
     return loading?.call(this);
   }
@@ -201,6 +230,7 @@ class _$BetPlacementLoading implements BetPlacementLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BetPlacementLoading value)? loading,
     TResult Function(BetPlacementPayload value)? payload,
+    TResult Function(BetPlacementPlacingBet value)? placingBet,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -220,7 +250,10 @@ abstract class _$$BetPlacementPayloadCopyWith<$Res> {
           $Res Function(_$BetPlacementPayload) then) =
       __$$BetPlacementPayloadCopyWithImpl<$Res>;
   $Res call(
-      {List<int> betOptions,
+      {int gameId,
+      int numberOfDice,
+      int? highestBetQuantity,
+      List<int> betOptions,
       List<int> valueOptions,
       int? selectedBetOption,
       int? selectedValueOption,
@@ -240,6 +273,9 @@ class __$$BetPlacementPayloadCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? gameId = freezed,
+    Object? numberOfDice = freezed,
+    Object? highestBetQuantity = freezed,
     Object? betOptions = freezed,
     Object? valueOptions = freezed,
     Object? selectedBetOption = freezed,
@@ -247,6 +283,18 @@ class __$$BetPlacementPayloadCopyWithImpl<$Res>
     Object? placeBetLabel = freezed,
   }) {
     return _then(_$BetPlacementPayload(
+      gameId: gameId == freezed
+          ? _value.gameId
+          : gameId // ignore: cast_nullable_to_non_nullable
+              as int,
+      numberOfDice: numberOfDice == freezed
+          ? _value.numberOfDice
+          : numberOfDice // ignore: cast_nullable_to_non_nullable
+              as int,
+      highestBetQuantity: highestBetQuantity == freezed
+          ? _value.highestBetQuantity
+          : highestBetQuantity // ignore: cast_nullable_to_non_nullable
+              as int?,
       betOptions: betOptions == freezed
           ? _value._betOptions
           : betOptions // ignore: cast_nullable_to_non_nullable
@@ -275,7 +323,10 @@ class __$$BetPlacementPayloadCopyWithImpl<$Res>
 
 class _$BetPlacementPayload implements BetPlacementPayload {
   const _$BetPlacementPayload(
-      {required final List<int> betOptions,
+      {required this.gameId,
+      required this.numberOfDice,
+      required this.highestBetQuantity,
+      required final List<int> betOptions,
       required final List<int> valueOptions,
       required this.selectedBetOption,
       required this.selectedValueOption,
@@ -283,6 +334,12 @@ class _$BetPlacementPayload implements BetPlacementPayload {
       : _betOptions = betOptions,
         _valueOptions = valueOptions;
 
+  @override
+  final int gameId;
+  @override
+  final int numberOfDice;
+  @override
+  final int? highestBetQuantity;
   final List<int> _betOptions;
   @override
   List<int> get betOptions {
@@ -306,7 +363,7 @@ class _$BetPlacementPayload implements BetPlacementPayload {
 
   @override
   String toString() {
-    return 'BetPlacementState.payload(betOptions: $betOptions, valueOptions: $valueOptions, selectedBetOption: $selectedBetOption, selectedValueOption: $selectedValueOption, placeBetLabel: $placeBetLabel)';
+    return 'BetPlacementState.payload(gameId: $gameId, numberOfDice: $numberOfDice, highestBetQuantity: $highestBetQuantity, betOptions: $betOptions, valueOptions: $valueOptions, selectedBetOption: $selectedBetOption, selectedValueOption: $selectedValueOption, placeBetLabel: $placeBetLabel)';
   }
 
   @override
@@ -314,6 +371,11 @@ class _$BetPlacementPayload implements BetPlacementPayload {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BetPlacementPayload &&
+            const DeepCollectionEquality().equals(other.gameId, gameId) &&
+            const DeepCollectionEquality()
+                .equals(other.numberOfDice, numberOfDice) &&
+            const DeepCollectionEquality()
+                .equals(other.highestBetQuantity, highestBetQuantity) &&
             const DeepCollectionEquality()
                 .equals(other._betOptions, _betOptions) &&
             const DeepCollectionEquality()
@@ -329,6 +391,9 @@ class _$BetPlacementPayload implements BetPlacementPayload {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(gameId),
+      const DeepCollectionEquality().hash(numberOfDice),
+      const DeepCollectionEquality().hash(highestBetQuantity),
       const DeepCollectionEquality().hash(_betOptions),
       const DeepCollectionEquality().hash(_valueOptions),
       const DeepCollectionEquality().hash(selectedBetOption),
@@ -346,15 +411,19 @@ class _$BetPlacementPayload implements BetPlacementPayload {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(
+            int gameId,
+            int numberOfDice,
+            int? highestBetQuantity,
             List<int> betOptions,
             List<int> valueOptions,
             int? selectedBetOption,
             int? selectedValueOption,
             String placeBetLabel)
         payload,
+    required TResult Function() placingBet,
   }) {
-    return payload(betOptions, valueOptions, selectedBetOption,
-        selectedValueOption, placeBetLabel);
+    return payload(gameId, numberOfDice, highestBetQuantity, betOptions,
+        valueOptions, selectedBetOption, selectedValueOption, placeBetLabel);
   }
 
   @override
@@ -362,15 +431,19 @@ class _$BetPlacementPayload implements BetPlacementPayload {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(
+            int gameId,
+            int numberOfDice,
+            int? highestBetQuantity,
             List<int> betOptions,
             List<int> valueOptions,
             int? selectedBetOption,
             int? selectedValueOption,
             String placeBetLabel)?
         payload,
+    TResult Function()? placingBet,
   }) {
-    return payload?.call(betOptions, valueOptions, selectedBetOption,
-        selectedValueOption, placeBetLabel);
+    return payload?.call(gameId, numberOfDice, highestBetQuantity, betOptions,
+        valueOptions, selectedBetOption, selectedValueOption, placeBetLabel);
   }
 
   @override
@@ -378,17 +451,21 @@ class _$BetPlacementPayload implements BetPlacementPayload {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(
+            int gameId,
+            int numberOfDice,
+            int? highestBetQuantity,
             List<int> betOptions,
             List<int> valueOptions,
             int? selectedBetOption,
             int? selectedValueOption,
             String placeBetLabel)?
         payload,
+    TResult Function()? placingBet,
     required TResult orElse(),
   }) {
     if (payload != null) {
-      return payload(betOptions, valueOptions, selectedBetOption,
-          selectedValueOption, placeBetLabel);
+      return payload(gameId, numberOfDice, highestBetQuantity, betOptions,
+          valueOptions, selectedBetOption, selectedValueOption, placeBetLabel);
     }
     return orElse();
   }
@@ -398,6 +475,7 @@ class _$BetPlacementPayload implements BetPlacementPayload {
   TResult map<TResult extends Object?>({
     required TResult Function(BetPlacementLoading value) loading,
     required TResult Function(BetPlacementPayload value) payload,
+    required TResult Function(BetPlacementPlacingBet value) placingBet,
   }) {
     return payload(this);
   }
@@ -407,6 +485,7 @@ class _$BetPlacementPayload implements BetPlacementPayload {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(BetPlacementLoading value)? loading,
     TResult Function(BetPlacementPayload value)? payload,
+    TResult Function(BetPlacementPlacingBet value)? placingBet,
   }) {
     return payload?.call(this);
   }
@@ -416,6 +495,7 @@ class _$BetPlacementPayload implements BetPlacementPayload {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BetPlacementLoading value)? loading,
     TResult Function(BetPlacementPayload value)? payload,
+    TResult Function(BetPlacementPlacingBet value)? placingBet,
     required TResult orElse(),
   }) {
     if (payload != null) {
@@ -427,12 +507,18 @@ class _$BetPlacementPayload implements BetPlacementPayload {
 
 abstract class BetPlacementPayload implements BetPlacementState {
   const factory BetPlacementPayload(
-      {required final List<int> betOptions,
+      {required final int gameId,
+      required final int numberOfDice,
+      required final int? highestBetQuantity,
+      required final List<int> betOptions,
       required final List<int> valueOptions,
       required final int? selectedBetOption,
       required final int? selectedValueOption,
       required final String placeBetLabel}) = _$BetPlacementPayload;
 
+  int get gameId => throw _privateConstructorUsedError;
+  int get numberOfDice => throw _privateConstructorUsedError;
+  int? get highestBetQuantity => throw _privateConstructorUsedError;
   List<int> get betOptions => throw _privateConstructorUsedError;
   List<int> get valueOptions => throw _privateConstructorUsedError;
   int? get selectedBetOption => throw _privateConstructorUsedError;
@@ -441,4 +527,143 @@ abstract class BetPlacementPayload implements BetPlacementState {
   @JsonKey(ignore: true)
   _$$BetPlacementPayloadCopyWith<_$BetPlacementPayload> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$BetPlacementPlacingBetCopyWith<$Res> {
+  factory _$$BetPlacementPlacingBetCopyWith(_$BetPlacementPlacingBet value,
+          $Res Function(_$BetPlacementPlacingBet) then) =
+      __$$BetPlacementPlacingBetCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$BetPlacementPlacingBetCopyWithImpl<$Res>
+    extends _$BetPlacementStateCopyWithImpl<$Res>
+    implements _$$BetPlacementPlacingBetCopyWith<$Res> {
+  __$$BetPlacementPlacingBetCopyWithImpl(_$BetPlacementPlacingBet _value,
+      $Res Function(_$BetPlacementPlacingBet) _then)
+      : super(_value, (v) => _then(v as _$BetPlacementPlacingBet));
+
+  @override
+  _$BetPlacementPlacingBet get _value =>
+      super._value as _$BetPlacementPlacingBet;
+}
+
+/// @nodoc
+
+class _$BetPlacementPlacingBet implements BetPlacementPlacingBet {
+  const _$BetPlacementPlacingBet();
+
+  @override
+  String toString() {
+    return 'BetPlacementState.placingBet()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$BetPlacementPlacingBet);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(
+            int gameId,
+            int numberOfDice,
+            int? highestBetQuantity,
+            List<int> betOptions,
+            List<int> valueOptions,
+            int? selectedBetOption,
+            int? selectedValueOption,
+            String placeBetLabel)
+        payload,
+    required TResult Function() placingBet,
+  }) {
+    return placingBet();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(
+            int gameId,
+            int numberOfDice,
+            int? highestBetQuantity,
+            List<int> betOptions,
+            List<int> valueOptions,
+            int? selectedBetOption,
+            int? selectedValueOption,
+            String placeBetLabel)?
+        payload,
+    TResult Function()? placingBet,
+  }) {
+    return placingBet?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(
+            int gameId,
+            int numberOfDice,
+            int? highestBetQuantity,
+            List<int> betOptions,
+            List<int> valueOptions,
+            int? selectedBetOption,
+            int? selectedValueOption,
+            String placeBetLabel)?
+        payload,
+    TResult Function()? placingBet,
+    required TResult orElse(),
+  }) {
+    if (placingBet != null) {
+      return placingBet();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BetPlacementLoading value) loading,
+    required TResult Function(BetPlacementPayload value) payload,
+    required TResult Function(BetPlacementPlacingBet value) placingBet,
+  }) {
+    return placingBet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(BetPlacementLoading value)? loading,
+    TResult Function(BetPlacementPayload value)? payload,
+    TResult Function(BetPlacementPlacingBet value)? placingBet,
+  }) {
+    return placingBet?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BetPlacementLoading value)? loading,
+    TResult Function(BetPlacementPayload value)? payload,
+    TResult Function(BetPlacementPlacingBet value)? placingBet,
+    required TResult orElse(),
+  }) {
+    if (placingBet != null) {
+      return placingBet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BetPlacementPlacingBet implements BetPlacementState {
+  const factory BetPlacementPlacingBet() = _$BetPlacementPlacingBet;
 }

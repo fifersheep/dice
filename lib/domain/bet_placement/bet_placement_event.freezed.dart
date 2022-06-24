@@ -18,50 +18,61 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BetPlacementEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int numberOfDice) diceAvailable,
+    required TResult Function(
+            int gameId, int numberOfDice, int? highestBetQuantity)
+        bettingAvailable,
     required TResult Function(int betOption) betOptionSelected,
     required TResult Function(int valueOption, int numberOfDice)
         valueOptionSelected,
+    required TResult Function() placeBet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int numberOfDice)? diceAvailable,
+    TResult Function(int gameId, int numberOfDice, int? highestBetQuantity)?
+        bettingAvailable,
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
+    TResult Function()? placeBet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int numberOfDice)? diceAvailable,
+    TResult Function(int gameId, int numberOfDice, int? highestBetQuantity)?
+        bettingAvailable,
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
+    TResult Function()? placeBet,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BetPlacementDiceAvailable value) diceAvailable,
+    required TResult Function(BetPlacementBettingAvailable value)
+        bettingAvailable,
     required TResult Function(BetPlacementBetOptionSelected value)
         betOptionSelected,
     required TResult Function(BetPlacementValueOptionSelected value)
         valueOptionSelected,
+    required TResult Function(BetPlacementBetPlaceed value) placeBet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BetPlacementDiceAvailable value)? diceAvailable,
+    TResult Function(BetPlacementBettingAvailable value)? bettingAvailable,
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
+    TResult Function(BetPlacementBetPlaceed value)? placeBet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BetPlacementDiceAvailable value)? diceAvailable,
+    TResult Function(BetPlacementBettingAvailable value)? bettingAvailable,
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
+    TResult Function(BetPlacementBetPlaceed value)? placeBet,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -85,102 +96,131 @@ class _$BetPlacementEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$BetPlacementDiceAvailableCopyWith<$Res> {
-  factory _$$BetPlacementDiceAvailableCopyWith(
-          _$BetPlacementDiceAvailable value,
-          $Res Function(_$BetPlacementDiceAvailable) then) =
-      __$$BetPlacementDiceAvailableCopyWithImpl<$Res>;
-  $Res call({int numberOfDice});
+abstract class _$$BetPlacementBettingAvailableCopyWith<$Res> {
+  factory _$$BetPlacementBettingAvailableCopyWith(
+          _$BetPlacementBettingAvailable value,
+          $Res Function(_$BetPlacementBettingAvailable) then) =
+      __$$BetPlacementBettingAvailableCopyWithImpl<$Res>;
+  $Res call({int gameId, int numberOfDice, int? highestBetQuantity});
 }
 
 /// @nodoc
-class __$$BetPlacementDiceAvailableCopyWithImpl<$Res>
+class __$$BetPlacementBettingAvailableCopyWithImpl<$Res>
     extends _$BetPlacementEventCopyWithImpl<$Res>
-    implements _$$BetPlacementDiceAvailableCopyWith<$Res> {
-  __$$BetPlacementDiceAvailableCopyWithImpl(_$BetPlacementDiceAvailable _value,
-      $Res Function(_$BetPlacementDiceAvailable) _then)
-      : super(_value, (v) => _then(v as _$BetPlacementDiceAvailable));
+    implements _$$BetPlacementBettingAvailableCopyWith<$Res> {
+  __$$BetPlacementBettingAvailableCopyWithImpl(
+      _$BetPlacementBettingAvailable _value,
+      $Res Function(_$BetPlacementBettingAvailable) _then)
+      : super(_value, (v) => _then(v as _$BetPlacementBettingAvailable));
 
   @override
-  _$BetPlacementDiceAvailable get _value =>
-      super._value as _$BetPlacementDiceAvailable;
+  _$BetPlacementBettingAvailable get _value =>
+      super._value as _$BetPlacementBettingAvailable;
 
   @override
   $Res call({
+    Object? gameId = freezed,
     Object? numberOfDice = freezed,
+    Object? highestBetQuantity = freezed,
   }) {
-    return _then(_$BetPlacementDiceAvailable(
+    return _then(_$BetPlacementBettingAvailable(
+      gameId == freezed
+          ? _value.gameId
+          : gameId // ignore: cast_nullable_to_non_nullable
+              as int,
       numberOfDice == freezed
           ? _value.numberOfDice
           : numberOfDice // ignore: cast_nullable_to_non_nullable
               as int,
+      highestBetQuantity == freezed
+          ? _value.highestBetQuantity
+          : highestBetQuantity // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$BetPlacementDiceAvailable implements BetPlacementDiceAvailable {
-  const _$BetPlacementDiceAvailable(this.numberOfDice);
+class _$BetPlacementBettingAvailable implements BetPlacementBettingAvailable {
+  const _$BetPlacementBettingAvailable(
+      this.gameId, this.numberOfDice, this.highestBetQuantity);
 
   @override
+  final int gameId;
+  @override
   final int numberOfDice;
+  @override
+  final int? highestBetQuantity;
 
   @override
   String toString() {
-    return 'BetPlacementEvent.diceAvailable(numberOfDice: $numberOfDice)';
+    return 'BetPlacementEvent.bettingAvailable(gameId: $gameId, numberOfDice: $numberOfDice, highestBetQuantity: $highestBetQuantity)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BetPlacementDiceAvailable &&
+            other is _$BetPlacementBettingAvailable &&
+            const DeepCollectionEquality().equals(other.gameId, gameId) &&
             const DeepCollectionEquality()
-                .equals(other.numberOfDice, numberOfDice));
+                .equals(other.numberOfDice, numberOfDice) &&
+            const DeepCollectionEquality()
+                .equals(other.highestBetQuantity, highestBetQuantity));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(numberOfDice));
+      runtimeType,
+      const DeepCollectionEquality().hash(gameId),
+      const DeepCollectionEquality().hash(numberOfDice),
+      const DeepCollectionEquality().hash(highestBetQuantity));
 
   @JsonKey(ignore: true)
   @override
-  _$$BetPlacementDiceAvailableCopyWith<_$BetPlacementDiceAvailable>
-      get copyWith => __$$BetPlacementDiceAvailableCopyWithImpl<
-          _$BetPlacementDiceAvailable>(this, _$identity);
+  _$$BetPlacementBettingAvailableCopyWith<_$BetPlacementBettingAvailable>
+      get copyWith => __$$BetPlacementBettingAvailableCopyWithImpl<
+          _$BetPlacementBettingAvailable>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int numberOfDice) diceAvailable,
+    required TResult Function(
+            int gameId, int numberOfDice, int? highestBetQuantity)
+        bettingAvailable,
     required TResult Function(int betOption) betOptionSelected,
     required TResult Function(int valueOption, int numberOfDice)
         valueOptionSelected,
+    required TResult Function() placeBet,
   }) {
-    return diceAvailable(numberOfDice);
+    return bettingAvailable(gameId, numberOfDice, highestBetQuantity);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int numberOfDice)? diceAvailable,
+    TResult Function(int gameId, int numberOfDice, int? highestBetQuantity)?
+        bettingAvailable,
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
+    TResult Function()? placeBet,
   }) {
-    return diceAvailable?.call(numberOfDice);
+    return bettingAvailable?.call(gameId, numberOfDice, highestBetQuantity);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int numberOfDice)? diceAvailable,
+    TResult Function(int gameId, int numberOfDice, int? highestBetQuantity)?
+        bettingAvailable,
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
+    TResult Function()? placeBet,
     required TResult orElse(),
   }) {
-    if (diceAvailable != null) {
-      return diceAvailable(numberOfDice);
+    if (bettingAvailable != null) {
+      return bettingAvailable(gameId, numberOfDice, highestBetQuantity);
     }
     return orElse();
   }
@@ -188,49 +228,57 @@ class _$BetPlacementDiceAvailable implements BetPlacementDiceAvailable {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BetPlacementDiceAvailable value) diceAvailable,
+    required TResult Function(BetPlacementBettingAvailable value)
+        bettingAvailable,
     required TResult Function(BetPlacementBetOptionSelected value)
         betOptionSelected,
     required TResult Function(BetPlacementValueOptionSelected value)
         valueOptionSelected,
+    required TResult Function(BetPlacementBetPlaceed value) placeBet,
   }) {
-    return diceAvailable(this);
+    return bettingAvailable(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BetPlacementDiceAvailable value)? diceAvailable,
+    TResult Function(BetPlacementBettingAvailable value)? bettingAvailable,
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
+    TResult Function(BetPlacementBetPlaceed value)? placeBet,
   }) {
-    return diceAvailable?.call(this);
+    return bettingAvailable?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BetPlacementDiceAvailable value)? diceAvailable,
+    TResult Function(BetPlacementBettingAvailable value)? bettingAvailable,
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
+    TResult Function(BetPlacementBetPlaceed value)? placeBet,
     required TResult orElse(),
   }) {
-    if (diceAvailable != null) {
-      return diceAvailable(this);
+    if (bettingAvailable != null) {
+      return bettingAvailable(this);
     }
     return orElse();
   }
 }
 
-abstract class BetPlacementDiceAvailable implements BetPlacementEvent {
-  const factory BetPlacementDiceAvailable(final int numberOfDice) =
-      _$BetPlacementDiceAvailable;
+abstract class BetPlacementBettingAvailable implements BetPlacementEvent {
+  const factory BetPlacementBettingAvailable(
+      final int gameId,
+      final int numberOfDice,
+      final int? highestBetQuantity) = _$BetPlacementBettingAvailable;
 
+  int get gameId => throw _privateConstructorUsedError;
   int get numberOfDice => throw _privateConstructorUsedError;
+  int? get highestBetQuantity => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$$BetPlacementDiceAvailableCopyWith<_$BetPlacementDiceAvailable>
+  _$$BetPlacementBettingAvailableCopyWith<_$BetPlacementBettingAvailable>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -303,10 +351,13 @@ class _$BetPlacementBetOptionSelected implements BetPlacementBetOptionSelected {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int numberOfDice) diceAvailable,
+    required TResult Function(
+            int gameId, int numberOfDice, int? highestBetQuantity)
+        bettingAvailable,
     required TResult Function(int betOption) betOptionSelected,
     required TResult Function(int valueOption, int numberOfDice)
         valueOptionSelected,
+    required TResult Function() placeBet,
   }) {
     return betOptionSelected(betOption);
   }
@@ -314,9 +365,11 @@ class _$BetPlacementBetOptionSelected implements BetPlacementBetOptionSelected {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int numberOfDice)? diceAvailable,
+    TResult Function(int gameId, int numberOfDice, int? highestBetQuantity)?
+        bettingAvailable,
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
+    TResult Function()? placeBet,
   }) {
     return betOptionSelected?.call(betOption);
   }
@@ -324,9 +377,11 @@ class _$BetPlacementBetOptionSelected implements BetPlacementBetOptionSelected {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int numberOfDice)? diceAvailable,
+    TResult Function(int gameId, int numberOfDice, int? highestBetQuantity)?
+        bettingAvailable,
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
+    TResult Function()? placeBet,
     required TResult orElse(),
   }) {
     if (betOptionSelected != null) {
@@ -338,11 +393,13 @@ class _$BetPlacementBetOptionSelected implements BetPlacementBetOptionSelected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BetPlacementDiceAvailable value) diceAvailable,
+    required TResult Function(BetPlacementBettingAvailable value)
+        bettingAvailable,
     required TResult Function(BetPlacementBetOptionSelected value)
         betOptionSelected,
     required TResult Function(BetPlacementValueOptionSelected value)
         valueOptionSelected,
+    required TResult Function(BetPlacementBetPlaceed value) placeBet,
   }) {
     return betOptionSelected(this);
   }
@@ -350,10 +407,11 @@ class _$BetPlacementBetOptionSelected implements BetPlacementBetOptionSelected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BetPlacementDiceAvailable value)? diceAvailable,
+    TResult Function(BetPlacementBettingAvailable value)? bettingAvailable,
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
+    TResult Function(BetPlacementBetPlaceed value)? placeBet,
   }) {
     return betOptionSelected?.call(this);
   }
@@ -361,10 +419,11 @@ class _$BetPlacementBetOptionSelected implements BetPlacementBetOptionSelected {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BetPlacementDiceAvailable value)? diceAvailable,
+    TResult Function(BetPlacementBettingAvailable value)? bettingAvailable,
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
+    TResult Function(BetPlacementBetPlaceed value)? placeBet,
     required TResult orElse(),
   }) {
     if (betOptionSelected != null) {
@@ -466,10 +525,13 @@ class _$BetPlacementValueOptionSelected
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int numberOfDice) diceAvailable,
+    required TResult Function(
+            int gameId, int numberOfDice, int? highestBetQuantity)
+        bettingAvailable,
     required TResult Function(int betOption) betOptionSelected,
     required TResult Function(int valueOption, int numberOfDice)
         valueOptionSelected,
+    required TResult Function() placeBet,
   }) {
     return valueOptionSelected(valueOption, numberOfDice);
   }
@@ -477,9 +539,11 @@ class _$BetPlacementValueOptionSelected
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int numberOfDice)? diceAvailable,
+    TResult Function(int gameId, int numberOfDice, int? highestBetQuantity)?
+        bettingAvailable,
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
+    TResult Function()? placeBet,
   }) {
     return valueOptionSelected?.call(valueOption, numberOfDice);
   }
@@ -487,9 +551,11 @@ class _$BetPlacementValueOptionSelected
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int numberOfDice)? diceAvailable,
+    TResult Function(int gameId, int numberOfDice, int? highestBetQuantity)?
+        bettingAvailable,
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
+    TResult Function()? placeBet,
     required TResult orElse(),
   }) {
     if (valueOptionSelected != null) {
@@ -501,11 +567,13 @@ class _$BetPlacementValueOptionSelected
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BetPlacementDiceAvailable value) diceAvailable,
+    required TResult Function(BetPlacementBettingAvailable value)
+        bettingAvailable,
     required TResult Function(BetPlacementBetOptionSelected value)
         betOptionSelected,
     required TResult Function(BetPlacementValueOptionSelected value)
         valueOptionSelected,
+    required TResult Function(BetPlacementBetPlaceed value) placeBet,
   }) {
     return valueOptionSelected(this);
   }
@@ -513,10 +581,11 @@ class _$BetPlacementValueOptionSelected
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BetPlacementDiceAvailable value)? diceAvailable,
+    TResult Function(BetPlacementBettingAvailable value)? bettingAvailable,
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
+    TResult Function(BetPlacementBetPlaceed value)? placeBet,
   }) {
     return valueOptionSelected?.call(this);
   }
@@ -524,10 +593,11 @@ class _$BetPlacementValueOptionSelected
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BetPlacementDiceAvailable value)? diceAvailable,
+    TResult Function(BetPlacementBettingAvailable value)? bettingAvailable,
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
+    TResult Function(BetPlacementBetPlaceed value)? placeBet,
     required TResult orElse(),
   }) {
     if (valueOptionSelected != null) {
@@ -547,4 +617,132 @@ abstract class BetPlacementValueOptionSelected implements BetPlacementEvent {
   @JsonKey(ignore: true)
   _$$BetPlacementValueOptionSelectedCopyWith<_$BetPlacementValueOptionSelected>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$BetPlacementBetPlaceedCopyWith<$Res> {
+  factory _$$BetPlacementBetPlaceedCopyWith(_$BetPlacementBetPlaceed value,
+          $Res Function(_$BetPlacementBetPlaceed) then) =
+      __$$BetPlacementBetPlaceedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$BetPlacementBetPlaceedCopyWithImpl<$Res>
+    extends _$BetPlacementEventCopyWithImpl<$Res>
+    implements _$$BetPlacementBetPlaceedCopyWith<$Res> {
+  __$$BetPlacementBetPlaceedCopyWithImpl(_$BetPlacementBetPlaceed _value,
+      $Res Function(_$BetPlacementBetPlaceed) _then)
+      : super(_value, (v) => _then(v as _$BetPlacementBetPlaceed));
+
+  @override
+  _$BetPlacementBetPlaceed get _value =>
+      super._value as _$BetPlacementBetPlaceed;
+}
+
+/// @nodoc
+
+class _$BetPlacementBetPlaceed implements BetPlacementBetPlaceed {
+  const _$BetPlacementBetPlaceed();
+
+  @override
+  String toString() {
+    return 'BetPlacementEvent.placeBet()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$BetPlacementBetPlaceed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int gameId, int numberOfDice, int? highestBetQuantity)
+        bettingAvailable,
+    required TResult Function(int betOption) betOptionSelected,
+    required TResult Function(int valueOption, int numberOfDice)
+        valueOptionSelected,
+    required TResult Function() placeBet,
+  }) {
+    return placeBet();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int gameId, int numberOfDice, int? highestBetQuantity)?
+        bettingAvailable,
+    TResult Function(int betOption)? betOptionSelected,
+    TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
+    TResult Function()? placeBet,
+  }) {
+    return placeBet?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int gameId, int numberOfDice, int? highestBetQuantity)?
+        bettingAvailable,
+    TResult Function(int betOption)? betOptionSelected,
+    TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
+    TResult Function()? placeBet,
+    required TResult orElse(),
+  }) {
+    if (placeBet != null) {
+      return placeBet();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BetPlacementBettingAvailable value)
+        bettingAvailable,
+    required TResult Function(BetPlacementBetOptionSelected value)
+        betOptionSelected,
+    required TResult Function(BetPlacementValueOptionSelected value)
+        valueOptionSelected,
+    required TResult Function(BetPlacementBetPlaceed value) placeBet,
+  }) {
+    return placeBet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(BetPlacementBettingAvailable value)? bettingAvailable,
+    TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
+    TResult Function(BetPlacementValueOptionSelected value)?
+        valueOptionSelected,
+    TResult Function(BetPlacementBetPlaceed value)? placeBet,
+  }) {
+    return placeBet?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BetPlacementBettingAvailable value)? bettingAvailable,
+    TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
+    TResult Function(BetPlacementValueOptionSelected value)?
+        valueOptionSelected,
+    TResult Function(BetPlacementBetPlaceed value)? placeBet,
+    required TResult orElse(),
+  }) {
+    if (placeBet != null) {
+      return placeBet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BetPlacementBetPlaceed implements BetPlacementEvent {
+  const factory BetPlacementBetPlaceed() = _$BetPlacementBetPlaceed;
 }

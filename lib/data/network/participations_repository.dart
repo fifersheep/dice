@@ -36,7 +36,7 @@ class SupabaseParticipationsRepository extends ParticipationsRepository {
         'id': id,
       })
       .execute()
-      .then((res) => Response.from(res, () {
+      .then((res) => Response.buildFrom(res, () {
             final dyn = res.data as List<dynamic>;
             return dyn.map((e) => e as int).toList();
           }));
