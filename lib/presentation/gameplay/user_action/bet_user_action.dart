@@ -54,21 +54,42 @@ class _BetUserActionState extends State<BetUserAction> {
             final selectedValueOption = data.selectedValueOption;
             final betSelected = selectedBetOption != null && selectedValueOption != null;
             final backgroundColor = betSelected ? ThemeColors.white : ThemeColors.white50;
-            final onPressed = !betSelected
+            final onPlaceBetPressed = !betSelected
                 ? null
                 : () {
                     bloc.add(const BetPlacementEvent.placeBet());
                   };
 
-            return SizedBox.expand(
+            return AspectRatio(
+              aspectRatio: 1,
               child: Stack(alignment: Alignment.center, clipBehavior: Clip.none, children: [
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: SizedBox(
+                      height: 65,
+                      width: 65,
+                      child: FloatingActionButton(
+                        foregroundColor: ThemeColors.green,
+                        backgroundColor: widget.highestBetQuantity == null ? ThemeColors.white50 : ThemeColors.white,
+                        onPressed: () {
+                          bloc.add(const BetPlacementEvent.claimLastBet());
+                        },
+                        elevation: 0,
+                        child: const Text("Claim"),
+                      ),
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: 100,
                   width: 100,
                   child: FloatingActionButton(
                     foregroundColor: ThemeColors.green,
                     backgroundColor: backgroundColor,
-                    onPressed: onPressed,
+                    onPressed: onPlaceBetPressed,
                     elevation: 0,
                     child: Text(data.placeBetLabel),
                   ),

@@ -18,6 +18,12 @@ abstract class BetPlacementRepository {
     required int betQuantity,
     required int betValue,
   });
+
+  Future<Response<bool>> placeClaim({
+    required int gameId,
+    required int playerId,
+    required String participationCupId,
+  });
 }
 
 class SupabaseBetPlacementRepository extends BetPlacementRepository {
@@ -40,6 +46,21 @@ class SupabaseBetPlacementRepository extends BetPlacementRepository {
             'participation_cup_id': participationCupId,
             'bet_quantity': betQuantity,
             'bet_value': betValue,
+          })
+          .execute()
+          .then((res) => Response.from(res));
+
+  @override
+  Future<Response<bool>> placeClaim({
+    required int gameId,
+    required int playerId,
+    required String participationCupId,
+  }) =>
+      SupabaseClientExtensions.instance
+          .rpc('place_claim', params: {
+            'game_id': gameId,
+            'player_id': playerId,
+            'participation_cup_id': participationCupId,
           })
           .execute()
           .then((res) => Response.from(res));

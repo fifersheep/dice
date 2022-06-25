@@ -16,4 +16,5 @@ class BetPlacementState with _$BetPlacementState {
     required String placeBetLabel,
   }) = BetPlacementPayload;
   const factory BetPlacementState.placingBet() = BetPlacementPlacingBet;
+  const factory BetPlacementState.placingClaim() = BetPlacementPlacingClaim;
 }

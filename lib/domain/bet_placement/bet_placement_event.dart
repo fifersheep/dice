@@ -9,5 +9,6 @@ class BetPlacementEvent with _$BetPlacementEvent {
   const factory BetPlacementEvent.betOptionSelected(int betOption) = BetPlacementBetOptionSelected;
   const factory BetPlacementEvent.valueOptionSelected(int valueOption, int numberOfDice) =
       BetPlacementValueOptionSelected;
-  const factory BetPlacementEvent.placeBet() = BetPlacementBetPlaceed;
+  const factory BetPlacementEvent.placeBet() = BetPlacementBetPlaced;
+  const factory BetPlacementEvent.claimLastBet() = BetPlacementClaimLastBet;
 }

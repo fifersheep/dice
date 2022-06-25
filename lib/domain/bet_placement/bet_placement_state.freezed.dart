@@ -30,6 +30,7 @@ mixin _$BetPlacementState {
             String placeBetLabel)
         payload,
     required TResult Function() placingBet,
+    required TResult Function() placingClaim,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -46,6 +47,7 @@ mixin _$BetPlacementState {
             String placeBetLabel)?
         payload,
     TResult Function()? placingBet,
+    TResult Function()? placingClaim,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +64,7 @@ mixin _$BetPlacementState {
             String placeBetLabel)?
         payload,
     TResult Function()? placingBet,
+    TResult Function()? placingClaim,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,6 +73,7 @@ mixin _$BetPlacementState {
     required TResult Function(BetPlacementLoading value) loading,
     required TResult Function(BetPlacementPayload value) payload,
     required TResult Function(BetPlacementPlacingBet value) placingBet,
+    required TResult Function(BetPlacementPlacingClaim value) placingClaim,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -77,6 +81,7 @@ mixin _$BetPlacementState {
     TResult Function(BetPlacementLoading value)? loading,
     TResult Function(BetPlacementPayload value)? payload,
     TResult Function(BetPlacementPlacingBet value)? placingBet,
+    TResult Function(BetPlacementPlacingClaim value)? placingClaim,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -84,6 +89,7 @@ mixin _$BetPlacementState {
     TResult Function(BetPlacementLoading value)? loading,
     TResult Function(BetPlacementPayload value)? payload,
     TResult Function(BetPlacementPlacingBet value)? placingBet,
+    TResult Function(BetPlacementPlacingClaim value)? placingClaim,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -159,6 +165,7 @@ class _$BetPlacementLoading implements BetPlacementLoading {
             String placeBetLabel)
         payload,
     required TResult Function() placingBet,
+    required TResult Function() placingClaim,
   }) {
     return loading();
   }
@@ -178,6 +185,7 @@ class _$BetPlacementLoading implements BetPlacementLoading {
             String placeBetLabel)?
         payload,
     TResult Function()? placingBet,
+    TResult Function()? placingClaim,
   }) {
     return loading?.call();
   }
@@ -197,6 +205,7 @@ class _$BetPlacementLoading implements BetPlacementLoading {
             String placeBetLabel)?
         payload,
     TResult Function()? placingBet,
+    TResult Function()? placingClaim,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -211,6 +220,7 @@ class _$BetPlacementLoading implements BetPlacementLoading {
     required TResult Function(BetPlacementLoading value) loading,
     required TResult Function(BetPlacementPayload value) payload,
     required TResult Function(BetPlacementPlacingBet value) placingBet,
+    required TResult Function(BetPlacementPlacingClaim value) placingClaim,
   }) {
     return loading(this);
   }
@@ -221,6 +231,7 @@ class _$BetPlacementLoading implements BetPlacementLoading {
     TResult Function(BetPlacementLoading value)? loading,
     TResult Function(BetPlacementPayload value)? payload,
     TResult Function(BetPlacementPlacingBet value)? placingBet,
+    TResult Function(BetPlacementPlacingClaim value)? placingClaim,
   }) {
     return loading?.call(this);
   }
@@ -231,6 +242,7 @@ class _$BetPlacementLoading implements BetPlacementLoading {
     TResult Function(BetPlacementLoading value)? loading,
     TResult Function(BetPlacementPayload value)? payload,
     TResult Function(BetPlacementPlacingBet value)? placingBet,
+    TResult Function(BetPlacementPlacingClaim value)? placingClaim,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -421,6 +433,7 @@ class _$BetPlacementPayload implements BetPlacementPayload {
             String placeBetLabel)
         payload,
     required TResult Function() placingBet,
+    required TResult Function() placingClaim,
   }) {
     return payload(gameId, numberOfDice, highestBetQuantity, betOptions,
         valueOptions, selectedBetOption, selectedValueOption, placeBetLabel);
@@ -441,6 +454,7 @@ class _$BetPlacementPayload implements BetPlacementPayload {
             String placeBetLabel)?
         payload,
     TResult Function()? placingBet,
+    TResult Function()? placingClaim,
   }) {
     return payload?.call(gameId, numberOfDice, highestBetQuantity, betOptions,
         valueOptions, selectedBetOption, selectedValueOption, placeBetLabel);
@@ -461,6 +475,7 @@ class _$BetPlacementPayload implements BetPlacementPayload {
             String placeBetLabel)?
         payload,
     TResult Function()? placingBet,
+    TResult Function()? placingClaim,
     required TResult orElse(),
   }) {
     if (payload != null) {
@@ -476,6 +491,7 @@ class _$BetPlacementPayload implements BetPlacementPayload {
     required TResult Function(BetPlacementLoading value) loading,
     required TResult Function(BetPlacementPayload value) payload,
     required TResult Function(BetPlacementPlacingBet value) placingBet,
+    required TResult Function(BetPlacementPlacingClaim value) placingClaim,
   }) {
     return payload(this);
   }
@@ -486,6 +502,7 @@ class _$BetPlacementPayload implements BetPlacementPayload {
     TResult Function(BetPlacementLoading value)? loading,
     TResult Function(BetPlacementPayload value)? payload,
     TResult Function(BetPlacementPlacingBet value)? placingBet,
+    TResult Function(BetPlacementPlacingClaim value)? placingClaim,
   }) {
     return payload?.call(this);
   }
@@ -496,6 +513,7 @@ class _$BetPlacementPayload implements BetPlacementPayload {
     TResult Function(BetPlacementLoading value)? loading,
     TResult Function(BetPlacementPayload value)? payload,
     TResult Function(BetPlacementPlacingBet value)? placingBet,
+    TResult Function(BetPlacementPlacingClaim value)? placingClaim,
     required TResult orElse(),
   }) {
     if (payload != null) {
@@ -583,6 +601,7 @@ class _$BetPlacementPlacingBet implements BetPlacementPlacingBet {
             String placeBetLabel)
         payload,
     required TResult Function() placingBet,
+    required TResult Function() placingClaim,
   }) {
     return placingBet();
   }
@@ -602,6 +621,7 @@ class _$BetPlacementPlacingBet implements BetPlacementPlacingBet {
             String placeBetLabel)?
         payload,
     TResult Function()? placingBet,
+    TResult Function()? placingClaim,
   }) {
     return placingBet?.call();
   }
@@ -621,6 +641,7 @@ class _$BetPlacementPlacingBet implements BetPlacementPlacingBet {
             String placeBetLabel)?
         payload,
     TResult Function()? placingBet,
+    TResult Function()? placingClaim,
     required TResult orElse(),
   }) {
     if (placingBet != null) {
@@ -635,6 +656,7 @@ class _$BetPlacementPlacingBet implements BetPlacementPlacingBet {
     required TResult Function(BetPlacementLoading value) loading,
     required TResult Function(BetPlacementPayload value) payload,
     required TResult Function(BetPlacementPlacingBet value) placingBet,
+    required TResult Function(BetPlacementPlacingClaim value) placingClaim,
   }) {
     return placingBet(this);
   }
@@ -645,6 +667,7 @@ class _$BetPlacementPlacingBet implements BetPlacementPlacingBet {
     TResult Function(BetPlacementLoading value)? loading,
     TResult Function(BetPlacementPayload value)? payload,
     TResult Function(BetPlacementPlacingBet value)? placingBet,
+    TResult Function(BetPlacementPlacingClaim value)? placingClaim,
   }) {
     return placingBet?.call(this);
   }
@@ -655,6 +678,7 @@ class _$BetPlacementPlacingBet implements BetPlacementPlacingBet {
     TResult Function(BetPlacementLoading value)? loading,
     TResult Function(BetPlacementPayload value)? payload,
     TResult Function(BetPlacementPlacingBet value)? placingBet,
+    TResult Function(BetPlacementPlacingClaim value)? placingClaim,
     required TResult orElse(),
   }) {
     if (placingBet != null) {
@@ -666,4 +690,150 @@ class _$BetPlacementPlacingBet implements BetPlacementPlacingBet {
 
 abstract class BetPlacementPlacingBet implements BetPlacementState {
   const factory BetPlacementPlacingBet() = _$BetPlacementPlacingBet;
+}
+
+/// @nodoc
+abstract class _$$BetPlacementPlacingClaimCopyWith<$Res> {
+  factory _$$BetPlacementPlacingClaimCopyWith(_$BetPlacementPlacingClaim value,
+          $Res Function(_$BetPlacementPlacingClaim) then) =
+      __$$BetPlacementPlacingClaimCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$BetPlacementPlacingClaimCopyWithImpl<$Res>
+    extends _$BetPlacementStateCopyWithImpl<$Res>
+    implements _$$BetPlacementPlacingClaimCopyWith<$Res> {
+  __$$BetPlacementPlacingClaimCopyWithImpl(_$BetPlacementPlacingClaim _value,
+      $Res Function(_$BetPlacementPlacingClaim) _then)
+      : super(_value, (v) => _then(v as _$BetPlacementPlacingClaim));
+
+  @override
+  _$BetPlacementPlacingClaim get _value =>
+      super._value as _$BetPlacementPlacingClaim;
+}
+
+/// @nodoc
+
+class _$BetPlacementPlacingClaim implements BetPlacementPlacingClaim {
+  const _$BetPlacementPlacingClaim();
+
+  @override
+  String toString() {
+    return 'BetPlacementState.placingClaim()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BetPlacementPlacingClaim);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(
+            int gameId,
+            int numberOfDice,
+            int? highestBetQuantity,
+            List<int> betOptions,
+            List<int> valueOptions,
+            int? selectedBetOption,
+            int? selectedValueOption,
+            String placeBetLabel)
+        payload,
+    required TResult Function() placingBet,
+    required TResult Function() placingClaim,
+  }) {
+    return placingClaim();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(
+            int gameId,
+            int numberOfDice,
+            int? highestBetQuantity,
+            List<int> betOptions,
+            List<int> valueOptions,
+            int? selectedBetOption,
+            int? selectedValueOption,
+            String placeBetLabel)?
+        payload,
+    TResult Function()? placingBet,
+    TResult Function()? placingClaim,
+  }) {
+    return placingClaim?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(
+            int gameId,
+            int numberOfDice,
+            int? highestBetQuantity,
+            List<int> betOptions,
+            List<int> valueOptions,
+            int? selectedBetOption,
+            int? selectedValueOption,
+            String placeBetLabel)?
+        payload,
+    TResult Function()? placingBet,
+    TResult Function()? placingClaim,
+    required TResult orElse(),
+  }) {
+    if (placingClaim != null) {
+      return placingClaim();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BetPlacementLoading value) loading,
+    required TResult Function(BetPlacementPayload value) payload,
+    required TResult Function(BetPlacementPlacingBet value) placingBet,
+    required TResult Function(BetPlacementPlacingClaim value) placingClaim,
+  }) {
+    return placingClaim(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(BetPlacementLoading value)? loading,
+    TResult Function(BetPlacementPayload value)? payload,
+    TResult Function(BetPlacementPlacingBet value)? placingBet,
+    TResult Function(BetPlacementPlacingClaim value)? placingClaim,
+  }) {
+    return placingClaim?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BetPlacementLoading value)? loading,
+    TResult Function(BetPlacementPayload value)? payload,
+    TResult Function(BetPlacementPlacingBet value)? placingBet,
+    TResult Function(BetPlacementPlacingClaim value)? placingClaim,
+    required TResult orElse(),
+  }) {
+    if (placingClaim != null) {
+      return placingClaim(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BetPlacementPlacingClaim implements BetPlacementState {
+  const factory BetPlacementPlacingClaim() = _$BetPlacementPlacingClaim;
 }

@@ -25,6 +25,7 @@ mixin _$BetPlacementEvent {
     required TResult Function(int valueOption, int numberOfDice)
         valueOptionSelected,
     required TResult Function() placeBet,
+    required TResult Function() claimLastBet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +35,7 @@ mixin _$BetPlacementEvent {
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
     TResult Function()? placeBet,
+    TResult Function()? claimLastBet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,6 +45,7 @@ mixin _$BetPlacementEvent {
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
     TResult Function()? placeBet,
+    TResult Function()? claimLastBet,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -54,7 +57,8 @@ mixin _$BetPlacementEvent {
         betOptionSelected,
     required TResult Function(BetPlacementValueOptionSelected value)
         valueOptionSelected,
-    required TResult Function(BetPlacementBetPlaceed value) placeBet,
+    required TResult Function(BetPlacementBetPlaced value) placeBet,
+    required TResult Function(BetPlacementClaimLastBet value) claimLastBet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,7 +67,8 @@ mixin _$BetPlacementEvent {
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
-    TResult Function(BetPlacementBetPlaceed value)? placeBet,
+    TResult Function(BetPlacementBetPlaced value)? placeBet,
+    TResult Function(BetPlacementClaimLastBet value)? claimLastBet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,7 +77,8 @@ mixin _$BetPlacementEvent {
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
-    TResult Function(BetPlacementBetPlaceed value)? placeBet,
+    TResult Function(BetPlacementBetPlaced value)? placeBet,
+    TResult Function(BetPlacementClaimLastBet value)? claimLastBet,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -193,6 +199,7 @@ class _$BetPlacementBettingAvailable implements BetPlacementBettingAvailable {
     required TResult Function(int valueOption, int numberOfDice)
         valueOptionSelected,
     required TResult Function() placeBet,
+    required TResult Function() claimLastBet,
   }) {
     return bettingAvailable(gameId, numberOfDice, highestBetQuantity);
   }
@@ -205,6 +212,7 @@ class _$BetPlacementBettingAvailable implements BetPlacementBettingAvailable {
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
     TResult Function()? placeBet,
+    TResult Function()? claimLastBet,
   }) {
     return bettingAvailable?.call(gameId, numberOfDice, highestBetQuantity);
   }
@@ -217,6 +225,7 @@ class _$BetPlacementBettingAvailable implements BetPlacementBettingAvailable {
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
     TResult Function()? placeBet,
+    TResult Function()? claimLastBet,
     required TResult orElse(),
   }) {
     if (bettingAvailable != null) {
@@ -234,7 +243,8 @@ class _$BetPlacementBettingAvailable implements BetPlacementBettingAvailable {
         betOptionSelected,
     required TResult Function(BetPlacementValueOptionSelected value)
         valueOptionSelected,
-    required TResult Function(BetPlacementBetPlaceed value) placeBet,
+    required TResult Function(BetPlacementBetPlaced value) placeBet,
+    required TResult Function(BetPlacementClaimLastBet value) claimLastBet,
   }) {
     return bettingAvailable(this);
   }
@@ -246,7 +256,8 @@ class _$BetPlacementBettingAvailable implements BetPlacementBettingAvailable {
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
-    TResult Function(BetPlacementBetPlaceed value)? placeBet,
+    TResult Function(BetPlacementBetPlaced value)? placeBet,
+    TResult Function(BetPlacementClaimLastBet value)? claimLastBet,
   }) {
     return bettingAvailable?.call(this);
   }
@@ -258,7 +269,8 @@ class _$BetPlacementBettingAvailable implements BetPlacementBettingAvailable {
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
-    TResult Function(BetPlacementBetPlaceed value)? placeBet,
+    TResult Function(BetPlacementBetPlaced value)? placeBet,
+    TResult Function(BetPlacementClaimLastBet value)? claimLastBet,
     required TResult orElse(),
   }) {
     if (bettingAvailable != null) {
@@ -358,6 +370,7 @@ class _$BetPlacementBetOptionSelected implements BetPlacementBetOptionSelected {
     required TResult Function(int valueOption, int numberOfDice)
         valueOptionSelected,
     required TResult Function() placeBet,
+    required TResult Function() claimLastBet,
   }) {
     return betOptionSelected(betOption);
   }
@@ -370,6 +383,7 @@ class _$BetPlacementBetOptionSelected implements BetPlacementBetOptionSelected {
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
     TResult Function()? placeBet,
+    TResult Function()? claimLastBet,
   }) {
     return betOptionSelected?.call(betOption);
   }
@@ -382,6 +396,7 @@ class _$BetPlacementBetOptionSelected implements BetPlacementBetOptionSelected {
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
     TResult Function()? placeBet,
+    TResult Function()? claimLastBet,
     required TResult orElse(),
   }) {
     if (betOptionSelected != null) {
@@ -399,7 +414,8 @@ class _$BetPlacementBetOptionSelected implements BetPlacementBetOptionSelected {
         betOptionSelected,
     required TResult Function(BetPlacementValueOptionSelected value)
         valueOptionSelected,
-    required TResult Function(BetPlacementBetPlaceed value) placeBet,
+    required TResult Function(BetPlacementBetPlaced value) placeBet,
+    required TResult Function(BetPlacementClaimLastBet value) claimLastBet,
   }) {
     return betOptionSelected(this);
   }
@@ -411,7 +427,8 @@ class _$BetPlacementBetOptionSelected implements BetPlacementBetOptionSelected {
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
-    TResult Function(BetPlacementBetPlaceed value)? placeBet,
+    TResult Function(BetPlacementBetPlaced value)? placeBet,
+    TResult Function(BetPlacementClaimLastBet value)? claimLastBet,
   }) {
     return betOptionSelected?.call(this);
   }
@@ -423,7 +440,8 @@ class _$BetPlacementBetOptionSelected implements BetPlacementBetOptionSelected {
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
-    TResult Function(BetPlacementBetPlaceed value)? placeBet,
+    TResult Function(BetPlacementBetPlaced value)? placeBet,
+    TResult Function(BetPlacementClaimLastBet value)? claimLastBet,
     required TResult orElse(),
   }) {
     if (betOptionSelected != null) {
@@ -532,6 +550,7 @@ class _$BetPlacementValueOptionSelected
     required TResult Function(int valueOption, int numberOfDice)
         valueOptionSelected,
     required TResult Function() placeBet,
+    required TResult Function() claimLastBet,
   }) {
     return valueOptionSelected(valueOption, numberOfDice);
   }
@@ -544,6 +563,7 @@ class _$BetPlacementValueOptionSelected
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
     TResult Function()? placeBet,
+    TResult Function()? claimLastBet,
   }) {
     return valueOptionSelected?.call(valueOption, numberOfDice);
   }
@@ -556,6 +576,7 @@ class _$BetPlacementValueOptionSelected
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
     TResult Function()? placeBet,
+    TResult Function()? claimLastBet,
     required TResult orElse(),
   }) {
     if (valueOptionSelected != null) {
@@ -573,7 +594,8 @@ class _$BetPlacementValueOptionSelected
         betOptionSelected,
     required TResult Function(BetPlacementValueOptionSelected value)
         valueOptionSelected,
-    required TResult Function(BetPlacementBetPlaceed value) placeBet,
+    required TResult Function(BetPlacementBetPlaced value) placeBet,
+    required TResult Function(BetPlacementClaimLastBet value) claimLastBet,
   }) {
     return valueOptionSelected(this);
   }
@@ -585,7 +607,8 @@ class _$BetPlacementValueOptionSelected
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
-    TResult Function(BetPlacementBetPlaceed value)? placeBet,
+    TResult Function(BetPlacementBetPlaced value)? placeBet,
+    TResult Function(BetPlacementClaimLastBet value)? claimLastBet,
   }) {
     return valueOptionSelected?.call(this);
   }
@@ -597,7 +620,8 @@ class _$BetPlacementValueOptionSelected
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
-    TResult Function(BetPlacementBetPlaceed value)? placeBet,
+    TResult Function(BetPlacementBetPlaced value)? placeBet,
+    TResult Function(BetPlacementClaimLastBet value)? claimLastBet,
     required TResult orElse(),
   }) {
     if (valueOptionSelected != null) {
@@ -620,29 +644,28 @@ abstract class BetPlacementValueOptionSelected implements BetPlacementEvent {
 }
 
 /// @nodoc
-abstract class _$$BetPlacementBetPlaceedCopyWith<$Res> {
-  factory _$$BetPlacementBetPlaceedCopyWith(_$BetPlacementBetPlaceed value,
-          $Res Function(_$BetPlacementBetPlaceed) then) =
-      __$$BetPlacementBetPlaceedCopyWithImpl<$Res>;
+abstract class _$$BetPlacementBetPlacedCopyWith<$Res> {
+  factory _$$BetPlacementBetPlacedCopyWith(_$BetPlacementBetPlaced value,
+          $Res Function(_$BetPlacementBetPlaced) then) =
+      __$$BetPlacementBetPlacedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$BetPlacementBetPlaceedCopyWithImpl<$Res>
+class __$$BetPlacementBetPlacedCopyWithImpl<$Res>
     extends _$BetPlacementEventCopyWithImpl<$Res>
-    implements _$$BetPlacementBetPlaceedCopyWith<$Res> {
-  __$$BetPlacementBetPlaceedCopyWithImpl(_$BetPlacementBetPlaceed _value,
-      $Res Function(_$BetPlacementBetPlaceed) _then)
-      : super(_value, (v) => _then(v as _$BetPlacementBetPlaceed));
+    implements _$$BetPlacementBetPlacedCopyWith<$Res> {
+  __$$BetPlacementBetPlacedCopyWithImpl(_$BetPlacementBetPlaced _value,
+      $Res Function(_$BetPlacementBetPlaced) _then)
+      : super(_value, (v) => _then(v as _$BetPlacementBetPlaced));
 
   @override
-  _$BetPlacementBetPlaceed get _value =>
-      super._value as _$BetPlacementBetPlaceed;
+  _$BetPlacementBetPlaced get _value => super._value as _$BetPlacementBetPlaced;
 }
 
 /// @nodoc
 
-class _$BetPlacementBetPlaceed implements BetPlacementBetPlaceed {
-  const _$BetPlacementBetPlaceed();
+class _$BetPlacementBetPlaced implements BetPlacementBetPlaced {
+  const _$BetPlacementBetPlaced();
 
   @override
   String toString() {
@@ -652,7 +675,7 @@ class _$BetPlacementBetPlaceed implements BetPlacementBetPlaceed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$BetPlacementBetPlaceed);
+        (other.runtimeType == runtimeType && other is _$BetPlacementBetPlaced);
   }
 
   @override
@@ -668,6 +691,7 @@ class _$BetPlacementBetPlaceed implements BetPlacementBetPlaceed {
     required TResult Function(int valueOption, int numberOfDice)
         valueOptionSelected,
     required TResult Function() placeBet,
+    required TResult Function() claimLastBet,
   }) {
     return placeBet();
   }
@@ -680,6 +704,7 @@ class _$BetPlacementBetPlaceed implements BetPlacementBetPlaceed {
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
     TResult Function()? placeBet,
+    TResult Function()? claimLastBet,
   }) {
     return placeBet?.call();
   }
@@ -692,6 +717,7 @@ class _$BetPlacementBetPlaceed implements BetPlacementBetPlaceed {
     TResult Function(int betOption)? betOptionSelected,
     TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
     TResult Function()? placeBet,
+    TResult Function()? claimLastBet,
     required TResult orElse(),
   }) {
     if (placeBet != null) {
@@ -709,7 +735,8 @@ class _$BetPlacementBetPlaceed implements BetPlacementBetPlaceed {
         betOptionSelected,
     required TResult Function(BetPlacementValueOptionSelected value)
         valueOptionSelected,
-    required TResult Function(BetPlacementBetPlaceed value) placeBet,
+    required TResult Function(BetPlacementBetPlaced value) placeBet,
+    required TResult Function(BetPlacementClaimLastBet value) claimLastBet,
   }) {
     return placeBet(this);
   }
@@ -721,7 +748,8 @@ class _$BetPlacementBetPlaceed implements BetPlacementBetPlaceed {
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
-    TResult Function(BetPlacementBetPlaceed value)? placeBet,
+    TResult Function(BetPlacementBetPlaced value)? placeBet,
+    TResult Function(BetPlacementClaimLastBet value)? claimLastBet,
   }) {
     return placeBet?.call(this);
   }
@@ -733,7 +761,8 @@ class _$BetPlacementBetPlaceed implements BetPlacementBetPlaceed {
     TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
     TResult Function(BetPlacementValueOptionSelected value)?
         valueOptionSelected,
-    TResult Function(BetPlacementBetPlaceed value)? placeBet,
+    TResult Function(BetPlacementBetPlaced value)? placeBet,
+    TResult Function(BetPlacementClaimLastBet value)? claimLastBet,
     required TResult orElse(),
   }) {
     if (placeBet != null) {
@@ -743,6 +772,141 @@ class _$BetPlacementBetPlaceed implements BetPlacementBetPlaceed {
   }
 }
 
-abstract class BetPlacementBetPlaceed implements BetPlacementEvent {
-  const factory BetPlacementBetPlaceed() = _$BetPlacementBetPlaceed;
+abstract class BetPlacementBetPlaced implements BetPlacementEvent {
+  const factory BetPlacementBetPlaced() = _$BetPlacementBetPlaced;
+}
+
+/// @nodoc
+abstract class _$$BetPlacementClaimLastBetCopyWith<$Res> {
+  factory _$$BetPlacementClaimLastBetCopyWith(_$BetPlacementClaimLastBet value,
+          $Res Function(_$BetPlacementClaimLastBet) then) =
+      __$$BetPlacementClaimLastBetCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$BetPlacementClaimLastBetCopyWithImpl<$Res>
+    extends _$BetPlacementEventCopyWithImpl<$Res>
+    implements _$$BetPlacementClaimLastBetCopyWith<$Res> {
+  __$$BetPlacementClaimLastBetCopyWithImpl(_$BetPlacementClaimLastBet _value,
+      $Res Function(_$BetPlacementClaimLastBet) _then)
+      : super(_value, (v) => _then(v as _$BetPlacementClaimLastBet));
+
+  @override
+  _$BetPlacementClaimLastBet get _value =>
+      super._value as _$BetPlacementClaimLastBet;
+}
+
+/// @nodoc
+
+class _$BetPlacementClaimLastBet implements BetPlacementClaimLastBet {
+  const _$BetPlacementClaimLastBet();
+
+  @override
+  String toString() {
+    return 'BetPlacementEvent.claimLastBet()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BetPlacementClaimLastBet);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int gameId, int numberOfDice, int? highestBetQuantity)
+        bettingAvailable,
+    required TResult Function(int betOption) betOptionSelected,
+    required TResult Function(int valueOption, int numberOfDice)
+        valueOptionSelected,
+    required TResult Function() placeBet,
+    required TResult Function() claimLastBet,
+  }) {
+    return claimLastBet();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int gameId, int numberOfDice, int? highestBetQuantity)?
+        bettingAvailable,
+    TResult Function(int betOption)? betOptionSelected,
+    TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
+    TResult Function()? placeBet,
+    TResult Function()? claimLastBet,
+  }) {
+    return claimLastBet?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int gameId, int numberOfDice, int? highestBetQuantity)?
+        bettingAvailable,
+    TResult Function(int betOption)? betOptionSelected,
+    TResult Function(int valueOption, int numberOfDice)? valueOptionSelected,
+    TResult Function()? placeBet,
+    TResult Function()? claimLastBet,
+    required TResult orElse(),
+  }) {
+    if (claimLastBet != null) {
+      return claimLastBet();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BetPlacementBettingAvailable value)
+        bettingAvailable,
+    required TResult Function(BetPlacementBetOptionSelected value)
+        betOptionSelected,
+    required TResult Function(BetPlacementValueOptionSelected value)
+        valueOptionSelected,
+    required TResult Function(BetPlacementBetPlaced value) placeBet,
+    required TResult Function(BetPlacementClaimLastBet value) claimLastBet,
+  }) {
+    return claimLastBet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(BetPlacementBettingAvailable value)? bettingAvailable,
+    TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
+    TResult Function(BetPlacementValueOptionSelected value)?
+        valueOptionSelected,
+    TResult Function(BetPlacementBetPlaced value)? placeBet,
+    TResult Function(BetPlacementClaimLastBet value)? claimLastBet,
+  }) {
+    return claimLastBet?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BetPlacementBettingAvailable value)? bettingAvailable,
+    TResult Function(BetPlacementBetOptionSelected value)? betOptionSelected,
+    TResult Function(BetPlacementValueOptionSelected value)?
+        valueOptionSelected,
+    TResult Function(BetPlacementBetPlaced value)? placeBet,
+    TResult Function(BetPlacementClaimLastBet value)? claimLastBet,
+    required TResult orElse(),
+  }) {
+    if (claimLastBet != null) {
+      return claimLastBet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BetPlacementClaimLastBet implements BetPlacementEvent {
+  const factory BetPlacementClaimLastBet() = _$BetPlacementClaimLastBet;
 }
