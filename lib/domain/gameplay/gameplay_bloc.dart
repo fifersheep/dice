@@ -136,6 +136,7 @@ class GameplayBloc extends Bloc<GameplayEvent, GameplayState> {
         currentPlayerId: currentPlayerId,
         gameId: game!.id,
         gameName: game.name,
+        gameMessage: game.message,
         leftParticipations: leftSegment,
         rightParticipations: rightSegment,
         opposingParticipation: slots.firstWhereOrNull((el) => el.slot == ParticipationSlot.top),

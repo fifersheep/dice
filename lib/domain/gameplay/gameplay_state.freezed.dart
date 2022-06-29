@@ -27,6 +27,7 @@ mixin _$GameplayState {
             int currentPlayerId,
             int gameId,
             String gameName,
+            String? gameMessage,
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
@@ -48,6 +49,7 @@ mixin _$GameplayState {
             int currentPlayerId,
             int gameId,
             String gameName,
+            String? gameMessage,
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
@@ -69,6 +71,7 @@ mixin _$GameplayState {
             int currentPlayerId,
             int gameId,
             String gameName,
+            String? gameMessage,
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
@@ -174,6 +177,7 @@ class _$GameLoading implements GameLoading {
             int currentPlayerId,
             int gameId,
             String gameName,
+            String? gameMessage,
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
@@ -198,6 +202,7 @@ class _$GameLoading implements GameLoading {
             int currentPlayerId,
             int gameId,
             String gameName,
+            String? gameMessage,
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
@@ -222,6 +227,7 @@ class _$GameLoading implements GameLoading {
             int currentPlayerId,
             int gameId,
             String gameName,
+            String? gameMessage,
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
@@ -329,6 +335,7 @@ class _$GameError implements GameError {
             int currentPlayerId,
             int gameId,
             String gameName,
+            String? gameMessage,
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
@@ -353,6 +360,7 @@ class _$GameError implements GameError {
             int currentPlayerId,
             int gameId,
             String gameName,
+            String? gameMessage,
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
@@ -377,6 +385,7 @@ class _$GameError implements GameError {
             int currentPlayerId,
             int gameId,
             String gameName,
+            String? gameMessage,
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
@@ -553,6 +562,7 @@ class _$GameInLobby implements GameInLobby {
             int currentPlayerId,
             int gameId,
             String gameName,
+            String? gameMessage,
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
@@ -578,6 +588,7 @@ class _$GameInLobby implements GameInLobby {
             int currentPlayerId,
             int gameId,
             String gameName,
+            String? gameMessage,
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
@@ -603,6 +614,7 @@ class _$GameInLobby implements GameInLobby {
             int currentPlayerId,
             int gameId,
             String gameName,
+            String? gameMessage,
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
@@ -684,6 +696,7 @@ abstract class _$$GameInPlayCopyWith<$Res> {
       {int currentPlayerId,
       int gameId,
       String gameName,
+      String? gameMessage,
       List<GameInPlayParticipation> leftParticipations,
       List<GameInPlayParticipation> rightParticipations,
       GameInPlayParticipation? opposingParticipation,
@@ -708,6 +721,7 @@ class __$$GameInPlayCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
     Object? currentPlayerId = freezed,
     Object? gameId = freezed,
     Object? gameName = freezed,
+    Object? gameMessage = freezed,
     Object? leftParticipations = freezed,
     Object? rightParticipations = freezed,
     Object? opposingParticipation = freezed,
@@ -729,6 +743,10 @@ class __$$GameInPlayCopyWithImpl<$Res> extends _$GameplayStateCopyWithImpl<$Res>
           ? _value.gameName
           : gameName // ignore: cast_nullable_to_non_nullable
               as String,
+      gameMessage: gameMessage == freezed
+          ? _value.gameMessage
+          : gameMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
       leftParticipations: leftParticipations == freezed
           ? _value._leftParticipations
           : leftParticipations // ignore: cast_nullable_to_non_nullable
@@ -768,6 +786,7 @@ class _$GameInPlay implements GameInPlay {
       {required this.currentPlayerId,
       required this.gameId,
       required this.gameName,
+      required this.gameMessage,
       required final List<GameInPlayParticipation> leftParticipations,
       required final List<GameInPlayParticipation> rightParticipations,
       required this.opposingParticipation,
@@ -784,6 +803,8 @@ class _$GameInPlay implements GameInPlay {
   final int gameId;
   @override
   final String gameName;
+  @override
+  final String? gameMessage;
   final List<GameInPlayParticipation> _leftParticipations;
   @override
   List<GameInPlayParticipation> get leftParticipations {
@@ -811,7 +832,7 @@ class _$GameInPlay implements GameInPlay {
 
   @override
   String toString() {
-    return 'GameplayState.inPlay(currentPlayerId: $currentPlayerId, gameId: $gameId, gameName: $gameName, leftParticipations: $leftParticipations, rightParticipations: $rightParticipations, opposingParticipation: $opposingParticipation, currentParticipation: $currentParticipation, currentParticipationDice: $currentParticipationDice, numberOfDice: $numberOfDice, highestBetQuantity: $highestBetQuantity)';
+    return 'GameplayState.inPlay(currentPlayerId: $currentPlayerId, gameId: $gameId, gameName: $gameName, gameMessage: $gameMessage, leftParticipations: $leftParticipations, rightParticipations: $rightParticipations, opposingParticipation: $opposingParticipation, currentParticipation: $currentParticipation, currentParticipationDice: $currentParticipationDice, numberOfDice: $numberOfDice, highestBetQuantity: $highestBetQuantity)';
   }
 
   @override
@@ -823,6 +844,8 @@ class _$GameInPlay implements GameInPlay {
                 .equals(other.currentPlayerId, currentPlayerId) &&
             const DeepCollectionEquality().equals(other.gameId, gameId) &&
             const DeepCollectionEquality().equals(other.gameName, gameName) &&
+            const DeepCollectionEquality()
+                .equals(other.gameMessage, gameMessage) &&
             const DeepCollectionEquality()
                 .equals(other._leftParticipations, _leftParticipations) &&
             const DeepCollectionEquality()
@@ -845,6 +868,7 @@ class _$GameInPlay implements GameInPlay {
       const DeepCollectionEquality().hash(currentPlayerId),
       const DeepCollectionEquality().hash(gameId),
       const DeepCollectionEquality().hash(gameName),
+      const DeepCollectionEquality().hash(gameMessage),
       const DeepCollectionEquality().hash(_leftParticipations),
       const DeepCollectionEquality().hash(_rightParticipations),
       const DeepCollectionEquality().hash(opposingParticipation),
@@ -870,6 +894,7 @@ class _$GameInPlay implements GameInPlay {
             int currentPlayerId,
             int gameId,
             String gameName,
+            String? gameMessage,
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
@@ -883,6 +908,7 @@ class _$GameInPlay implements GameInPlay {
         currentPlayerId,
         gameId,
         gameName,
+        gameMessage,
         leftParticipations,
         rightParticipations,
         opposingParticipation,
@@ -904,6 +930,7 @@ class _$GameInPlay implements GameInPlay {
             int currentPlayerId,
             int gameId,
             String gameName,
+            String? gameMessage,
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
@@ -917,6 +944,7 @@ class _$GameInPlay implements GameInPlay {
         currentPlayerId,
         gameId,
         gameName,
+        gameMessage,
         leftParticipations,
         rightParticipations,
         opposingParticipation,
@@ -938,6 +966,7 @@ class _$GameInPlay implements GameInPlay {
             int currentPlayerId,
             int gameId,
             String gameName,
+            String? gameMessage,
             List<GameInPlayParticipation> leftParticipations,
             List<GameInPlayParticipation> rightParticipations,
             GameInPlayParticipation? opposingParticipation,
@@ -953,6 +982,7 @@ class _$GameInPlay implements GameInPlay {
           currentPlayerId,
           gameId,
           gameName,
+          gameMessage,
           leftParticipations,
           rightParticipations,
           opposingParticipation,
@@ -1007,6 +1037,7 @@ abstract class GameInPlay implements GameplayState {
       {required final int currentPlayerId,
       required final int gameId,
       required final String gameName,
+      required final String? gameMessage,
       required final List<GameInPlayParticipation> leftParticipations,
       required final List<GameInPlayParticipation> rightParticipations,
       required final GameInPlayParticipation? opposingParticipation,
@@ -1018,6 +1049,7 @@ abstract class GameInPlay implements GameplayState {
   int get currentPlayerId => throw _privateConstructorUsedError;
   int get gameId => throw _privateConstructorUsedError;
   String get gameName => throw _privateConstructorUsedError;
+  String? get gameMessage => throw _privateConstructorUsedError;
   List<GameInPlayParticipation> get leftParticipations =>
       throw _privateConstructorUsedError;
   List<GameInPlayParticipation> get rightParticipations =>

@@ -2,12 +2,14 @@ class Game {
   Game({
     required this.id,
     required this.name,
+    required this.message,
     required this.status,
     required this.currentPlayerId,
   });
 
   final int id;
   final String name;
+  final String? message;
   final GameStatus status;
   final int? currentPlayerId;
 
@@ -22,6 +24,7 @@ class Game {
     return Game(
       id: data['id'],
       name: data['name'],
+      message: data['message'],
       status: statuses[data['status']] ?? GameStatus.ended,
       currentPlayerId: data['current_player_id'],
     );
@@ -29,6 +32,7 @@ class Game {
 
   toJson() => {
         'name': name,
+        'message': message,
         'status': status.valueString(),
         'current_player_id': currentPlayerId,
       };

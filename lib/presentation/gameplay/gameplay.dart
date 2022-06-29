@@ -13,12 +13,16 @@ class Gameplay extends StatelessWidget {
         builder: (_, constraints) => Column(
           children: [
             ParticipationsSection(
-              constraints.maxHeight * 0.5,
+              constraints.maxHeight * 0.4,
               gameInPlay.currentParticipationDice,
               gameInPlay.currentParticipation,
               gameInPlay.opposingParticipation,
               gameInPlay.leftParticipations,
               gameInPlay.rightParticipations,
+            ),
+            _gameMessageWidget(
+              constraints.maxHeight * 0.1,
+              gameInPlay.gameMessage,
             ),
             UserActionsSection(
               height: constraints.maxHeight * 0.5,
@@ -29,5 +33,19 @@ class Gameplay extends StatelessWidget {
             ),
           ],
         ),
+      );
+
+  Widget _gameMessageWidget(double height, String? gameMessage) => SizedBox(
+        height: height,
+        child: gameMessage != null
+            ? Center(
+                child: Text(
+                  gameMessage,
+                  style: const TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+              )
+            : null,
       );
 }

@@ -26,6 +26,7 @@ class GameplayState with _$GameplayState {
     required int currentPlayerId,
     required int gameId,
     required String gameName,
+    required String? gameMessage,
     required List<GameInPlayParticipation> leftParticipations,
     required List<GameInPlayParticipation> rightParticipations,
     required GameInPlayParticipation? opposingParticipation,
