@@ -24,6 +24,7 @@ create type public.game_status as enum (
     'Created',
     'Rolling',
     'InPlay',
+    'Claiming',
     'Ended'
 );
 

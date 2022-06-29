@@ -18,6 +18,7 @@ class Game {
       'Created': GameStatus.created,
       'Rolling': GameStatus.rolling,
       'InPlay': GameStatus.inPlay,
+      'Claiming': GameStatus.claiming,
       'Ended': GameStatus.ended,
     };
 
@@ -38,7 +39,7 @@ class Game {
       };
 }
 
-enum GameStatus { created, rolling, inPlay, ended }
+enum GameStatus { created, rolling, inPlay, claiming, ended }
 
 extension GetValueString on GameStatus {
   String valueString() {
