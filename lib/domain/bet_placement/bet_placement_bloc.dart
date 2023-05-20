@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:dice/data/local/current_player.dart';
 import 'package:dice/data/local/shared_prefs.dart';
 import 'package:dice/data/network/bet_placement_repository.dart';
-import 'package:dice/data/network/response.dart';
 
 import 'bet_placement_event.dart';
 import 'bet_placement_state.dart';
