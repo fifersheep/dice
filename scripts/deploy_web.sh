@@ -4,7 +4,7 @@ if [ ! -d "flutter" ]; then
 fi
 
 cd flutter
-git checkout 3.7.12
+git checkout 3.0.1
 cd ..
 export PATH="$PATH:`pwd`/flutter/bin"
 
